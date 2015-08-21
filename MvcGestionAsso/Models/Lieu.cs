@@ -18,5 +18,7 @@ namespace MvcGestionAsso.Models
 		public string CodePostal { get; set; }
 
 		public string Ville { get; set; }
+
+		public virtual List<Activite> Activites { get; set; }
 	}
 }

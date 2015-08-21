@@ -164,15 +164,35 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataLayer\AdherentConfiguration.cs" />
+    <Compile Include="DataLayer\CategorieActiviteConfiguration.cs" />
+    <Compile Include="DataLayer\ActiviteConfiguration.cs" />
+    <Compile Include="DataLayer\FormuleConfiguration.cs" />
+    <Compile Include="DataLayer\IntervenantConfiguration.cs" />
     <Compile Include="DataLayer\LieuConfiguration.cs" />
+    <Compile Include="DataLayer\MissionConfiguration.cs" />
+    <Compile Include="DataLayer\ModeReglementConfiguration.cs" />
+    <Compile Include="DataLayer\ReglementConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508211559329_Initial.cs" />
+    <Compile Include="Migrations\201508211559329_Initial.Designer.cs">
+      <DependentUpon>201508211559329_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activite.cs" />
+    <Compile Include="Models\Adherent.cs" />
+    <Compile Include="Models\CategorieActivite.cs" />
+    <Compile Include="Models\Formule.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Intervenant.cs" />
     <Compile Include="Models\Lieu.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Mission.cs" />
+    <Compile Include="Models\ModeReglement.cs" />
+    <Compile Include="Models\Reglement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,6 +272,11 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508211559329_Initial.resx">
+      <DependentUpon>201508211559329_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

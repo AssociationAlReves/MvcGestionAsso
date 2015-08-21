@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="MCDGestionAsso.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="MCDGestionAssoTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MCDGestionAsso" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MCDGestionAssoContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LieuSet" EntityType="MCDGestionAsso.Lieu" />
+          <EntitySet Name="ActiviteSet" EntityType="MCDGestionAsso.Activite" />
+          <EntitySet Name="IntervenantSet" EntityType="MCDGestionAsso.Intervenant" />
+          <EntitySet Name="AdherentSet" EntityType="MCDGestionAsso.Adherent" />
+          <EntitySet Name="FormuleSet" EntityType="MCDGestionAsso.Formule" />
+          <EntitySet Name="MissionSet" EntityType="MCDGestionAsso.Mission" />
+          <AssociationSet Name="MissionIntervenant" Association="MCDGestionAsso.MissionIntervenant">
+            <End Role="Mission" EntitySet="MissionSet" />
+            <End Role="Intervenant" EntitySet="IntervenantSet" />
+          </AssociationSet>
+          <AssociationSet Name="MissionActivite" Association="MCDGestionAsso.MissionActivite">
+            <End Role="Mission" EntitySet="MissionSet" />
+            <End Role="Activite" EntitySet="ActiviteSet" />
+          </AssociationSet>
+          <AssociationSet Name="ActiviteLieu" Association="MCDGestionAsso.ActiviteLieu">
+            <End Role="Activite" EntitySet="ActiviteSet" />
+            <End Role="Lieu" EntitySet="LieuSet" />
+          </AssociationSet>
+          <AssociationSet Name="FormuleActivite" Association="MCDGestionAsso.FormuleActivite">
+            <End Role="Formule" EntitySet="FormuleSet" />
+            <End Role="Activite" EntitySet="ActiviteSet" />
+          </AssociationSet>
+          <AssociationSet Name="AdherentFormule" Association="MCDGestionAsso.AdherentFormule">
+            <End EntitySet="AdherentSet" Role="Adherent" />
+            <End EntitySet="FormuleSet" Role="Formule" />
+          </AssociationSet>
+          <EntitySet Name="ModeReglementSet" EntityType="MCDGestionAsso.ModeReglement" />
+          <AssociationSet Name="ModeReglementFormule" Association="MCDGestionAsso.ModeReglementFormule">
+            <End Role="ModeReglement" EntitySet="ModeReglementSet" />
+            <End Role="Formule" EntitySet="FormuleSet" />
+          </AssociationSet>
+          <AssociationSet Name="ModeReglementAdherent" Association="MCDGestionAsso.ModeReglementAdherent">
+            <End Role="ModeReglement" EntitySet="ModeReglementSet" />
+            <End Role="Adherent" EntitySet="AdherentSet" />
+          </AssociationSet>
+          <EntitySet Name="ReglementSet" EntityType="MCDGestionAsso.Reglement" />
+          <AssociationSet Name="ReglementAdherent" Association="MCDGestionAsso.ReglementAdherent">
+            <End Role="Reglement" EntitySet="ReglementSet" />
+            <End Role="Adherent" EntitySet="AdherentSet" />
+          </AssociationSet>
+          <AssociationSet Name="ReglementFormule" Association="MCDGestionAsso.ReglementFormule">
+            <End Role="Reglement" EntitySet="ReglementSet" />
+            <End Role="Formule" EntitySet="FormuleSet" />
+          </AssociationSet>
+          <EntitySet Name="CategorieActiviteSet" EntityType="MCDGestionAsso.CategorieActivite" />
+          <AssociationSet Name="CategorieActiviteActivite" Association="MCDGestionAsso.CategorieActiviteActivite">
+            <End Role="CategorieActivite" EntitySet="CategorieActiviteSet" />
+            <End Role="Activite" EntitySet="ActiviteSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Lieu">
+          <Key>
+            <PropertyRef Name="LieuId" />
+          </Key>
+          <Property Name="LieuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Activite" Relationship="MCDGestionAsso.ActiviteLieu" FromRole="Lieu" ToRole="Activite" />
+        </EntityType>
+        <EntityType Name="Activite">
+          <Key>
+            <PropertyRef Name="ActiviteId" />
+          </Key>
+          <Property Name="ActiviteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Mission" Relationship="MCDGestionAsso.MissionActivite" FromRole="Activite" ToRole="Mission" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Lieu" Relationship="MCDGestionAsso.ActiviteLieu" FromRole="Activite" ToRole="Lieu" />
+          <Property Name="LieuLieuId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Formule" Relationship="MCDGestionAsso.FormuleActivite" FromRole="Activite" ToRole="Formule" />
+          <NavigationProperty Name="CategorieActivite" Relationship="MCDGestionAsso.CategorieActiviteActivite" FromRole="Activite" ToRole="CategorieActivite" />
+        </EntityType>
+        <EntityType Name="Intervenant">
+          <Key>
+            <PropertyRef Name="IntervenantId" />
+          </Key>
+          <Property Name="IntervenantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Mission" Relationship="MCDGestionAsso.MissionIntervenant" FromRole="Intervenant" ToRole="Mission" />
+        </EntityType>
+        <EntityType Name="Adherent">
+          <Key>
+            <PropertyRef Name="AdherentId" />
+          </Key>
+          <Property Name="AdherentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Formule" Relationship="MCDGestionAsso.AdherentFormule" FromRole="Adherent" ToRole="Formule" />
+          <NavigationProperty Name="ModeReglement" Relationship="MCDGestionAsso.ModeReglementAdherent" FromRole="Adherent" ToRole="ModeReglement" />
+          <NavigationProperty Name="Reglement" Relationship="MCDGestionAsso.ReglementAdherent" FromRole="Adherent" ToRole="Reglement" />
+        </EntityType>
+        <EntityType Name="Formule">
+          <Key>
+            <PropertyRef Name="FormuleId" />
+          </Key>
+          <Property Name="FormuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Activite" Relationship="MCDGestionAsso.FormuleActivite" FromRole="Formule" ToRole="Activite" />
+          <Property Name="ActiviteActiviteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Adherent" Relationship="MCDGestionAsso.AdherentFormule" FromRole="Formule" ToRole="Adherent" />
+          <Property Name="AdherentAdherentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reglement" Relationship="MCDGestionAsso.ReglementFormule" FromRole="Formule" ToRole="Reglement" />
+        </EntityType>
+        <EntityType Name="Mission">
+          <Key>
+            <PropertyRef Name="MissionId" />
+          </Key>
+          <Property Name="MissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Intervenant" Relationship="MCDGestionAsso.MissionIntervenant" FromRole="Mission" ToRole="Intervenant" />
+          <Property Name="IntervenantIntervenantId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activite" Relationship="MCDGestionAsso.MissionActivite" FromRole="Mission" ToRole="Activite" />
+          <Property Name="ActiviteActiviteId" Type="Int32" Nullable="false" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="MissionIntervenant">
+          <End Type="MCDGestionAsso.Mission" Role="Mission" Multiplicity="*" />
+          <End Type="MCDGestionAsso.Intervenant" Role="Intervenant" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Intervenant">
+              <PropertyRef Name="IntervenantId" />
+            </Principal>
+            <Dependent Role="Mission">
+              <PropertyRef Name="IntervenantIntervenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MissionActivite">
+          <End Type="MCDGestionAsso.Mission" Role="Mission" Multiplicity="*" />
+          <End Type="MCDGestionAsso.Activite" Role="Activite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Activite">
+              <PropertyRef Name="ActiviteId" />
+            </Principal>
+            <Dependent Role="Mission">
+              <PropertyRef Name="ActiviteActiviteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ActiviteLieu">
+          <End Type="MCDGestionAsso.Activite" Role="Activite" Multiplicity="*" />
+          <End Type="MCDGestionAsso.Lieu" Role="Lieu" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Lieu">
+              <PropertyRef Name="LieuId" />
+            </Principal>
+            <Dependent Role="Activite">
+              <PropertyRef Name="LieuLieuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormuleActivite">
+          <End Type="MCDGestionAsso.Formule" Role="Formule" Multiplicity="*" />
+          <End Type="MCDGestionAsso.Activite" Role="Activite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Activite">
+              <PropertyRef Name="ActiviteId" />
+            </Principal>
+            <Dependent Role="Formule">
+              <PropertyRef Name="ActiviteActiviteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AdherentFormule">
+          <End Type="MCDGestionAsso.Adherent" Multiplicity="1" Role="Adherent" />
+          <End Type="MCDGestionAsso.Formule" Multiplicity="*" Role="Formule" />
+          <ReferentialConstraint>
+            <Principal Role="Adherent">
+              <PropertyRef Name="AdherentId" />
+            </Principal>
+            <Dependent Role="Formule">
+              <PropertyRef Name="AdherentAdherentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ModeReglement">
+          <Key>
+            <PropertyRef Name="ModeReglementId" />
+          </Key>
+          <Property Name="ModeReglementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Formule" Relationship="MCDGestionAsso.ModeReglementFormule" FromRole="ModeReglement" ToRole="Formule" />
+          <NavigationProperty Name="Adherent" Relationship="MCDGestionAsso.ModeReglementAdherent" FromRole="ModeReglement" ToRole="Adherent" />
+        </EntityType>
+        <Association Name="ModeReglementFormule">
+          <End Type="MCDGestionAsso.ModeReglement" Role="ModeReglement" Multiplicity="*" />
+          <End Type="MCDGestionAsso.Formule" Role="Formule" Multiplicity="1" />
+        </Association>
+        <Association Name="ModeReglementAdherent">
+          <End Type="MCDGestionAsso.ModeReglement" Role="ModeReglement" Multiplicity="1" />
+          <End Type="MCDGestionAsso.Adherent" Role="Adherent" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Reglement">
+          <Key>
+            <PropertyRef Name="ReglementId" />
+          </Key>
+          <Property Name="ReglementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Adherent" Relationship="MCDGestionAsso.ReglementAdherent" FromRole="Reglement" ToRole="Adherent" />
+          <NavigationProperty Name="Formule" Relationship="MCDGestionAsso.ReglementFormule" FromRole="Reglement" ToRole="Formule" />
+        </EntityType>
+        <Association Name="ReglementAdherent">
+          <End Type="MCDGestionAsso.Reglement" Role="Reglement" Multiplicity="1" />
+          <End Type="MCDGestionAsso.Adherent" Role="Adherent" Multiplicity="*" />
+        </Association>
+        <Association Name="ReglementFormule">
+          <End Type="MCDGestionAsso.Reglement" Role="Reglement" Multiplicity="*" />
+          <End Type="MCDGestionAsso.Formule" Role="Formule" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CategorieActivite">
+          <Key>
+            <PropertyRef Name="CategorieActiviteId" />
+          </Key>
+          <Property Name="CategorieActiviteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="CategorieActiviteActivite">
+          <End Type="MCDGestionAsso.CategorieActivite" Role="CategorieActivite" Multiplicity="1" />
+          <End Type="MCDGestionAsso.Activite" Role="Activite" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="MCDGestionAsso" />
+        <Alias Key="Target" Value="MCDGestionAsso.Store" />
+        <EntityContainerMapping CdmEntityContainer="MCDGestionAssoContainer" StorageEntityContainer="MCDGestionAssoTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

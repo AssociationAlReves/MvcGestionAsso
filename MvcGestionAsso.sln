@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6B858F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCD", "MCD\MCD.csproj", "{48B1D820-C7AD-4071-9288-2A192FAD2730}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,8 @@ Global
 		{49DAEA06-C667-4DF2-947C-913B647CE7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49DAEA06-C667-4DF2-947C-913B647CE7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49DAEA06-C667-4DF2-947C-913B647CE7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48B1D820-C7AD-4071-9288-2A192FAD2730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B1D820-C7AD-4071-9288-2A192FAD2730}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
