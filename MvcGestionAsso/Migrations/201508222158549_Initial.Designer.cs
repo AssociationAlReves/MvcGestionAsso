@@ -13,7 +13,7 @@ namespace MvcGestionAsso.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201508211559329_Initial"; }
+            get { return "201508222158549_Initial"; }
         }
         
         string IMigrationMetadata.Source

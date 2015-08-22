@@ -17,13 +17,13 @@ namespace MvcGestionAsso.DataLayer
 				.HasMaxLength(50)
 				.IsRequired()
 				.HasColumnAnnotation("Index",
-				new IndexAnnotation(new IndexAttribute("AK_Formule_FormuleNom") { IsUnique = true }));
+				new IndexAnnotation(new IndexAttribute("AK_Formule_FormuleNom") { IsUnique = false }));
 
 			Property(f => f.DebutValidite)
-				.IsRequired();
+				.IsOptional();
 
 			Property(f => f.FinValidite)
-				.IsRequired();
+				.IsOptional();
 
 			Property(f => f.IsActive)
 				.IsOptional();

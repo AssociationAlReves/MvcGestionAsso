@@ -81,8 +81,8 @@ namespace MvcGestionAsso.Migrations
                         IntervenantNom = c.String(nullable: false, maxLength: 50),
                         IntervenantPrenom = c.String(nullable: false, maxLength: 50),
                         NumeroSecuriteSociale = c.String(maxLength: 15),
-                        DateCreation = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
-												DateModification = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        DateCreation = c.DateTime(nullable: false),
+                        DateModification = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.IntervenantId)
                 .Index(t => t.IntervenantNom, name: "AK_Intervenant_IntervenantNom");
@@ -102,8 +102,8 @@ namespace MvcGestionAsso.Migrations
                         Adresse2 = c.String(maxLength: 150),
                         CodePostal = c.String(maxLength: 5),
                         Ville = c.String(maxLength: 150),
-												DateCreation = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
-												DateModification = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        DateCreation = c.DateTime(nullable: false),
+                        DateModification = c.DateTime(nullable: false),
                         DateResiliation = c.DateTime(),
                         Statut = c.Int(nullable: false),
                         CertificatMedical = c.Boolean(),
@@ -117,15 +117,15 @@ namespace MvcGestionAsso.Migrations
                     {
                         FormuleId = c.Int(nullable: false, identity: true),
                         FormuleNom = c.String(nullable: false, maxLength: 50),
-                        DebutValidite = c.DateTime(nullable: false),
-                        FinValidite = c.DateTime(nullable: false),
+                        DebutValidite = c.DateTime(),
+                        FinValidite = c.DateTime(),
                         IsActive = c.Boolean(),
                         Tarif = c.Decimal(nullable: false, precision: 18, scale: 2),
                         ActiviteId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.FormuleId)
                 .ForeignKey("dbo.Activites", t => t.ActiviteId, cascadeDelete: true)
-                .Index(t => t.FormuleNom, unique: true, name: "AK_Formule_FormuleNom")
+                .Index(t => t.FormuleNom, name: "AK_Formule_FormuleNom")
                 .Index(t => t.ActiviteId);
             
             CreateTable(

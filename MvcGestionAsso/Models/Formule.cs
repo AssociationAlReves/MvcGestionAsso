@@ -11,8 +11,8 @@ namespace MvcGestionAsso.Models
 
 		public string FormuleNom { get; set; }
 
-		public DateTime DebutValidite { get; set; }
-		public DateTime FinValidite { get; set; }
+		public DateTime? DebutValidite { get; set; }
+		public DateTime? FinValidite { get; set; }
 
 		public bool IsActive { get; set; }
 
