@@ -2,14 +2,59 @@
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MvcGestionAsso.Migrations.Seed
 {
 	public static class SampleDataSeed
 	{
-		public static void Seed(MvcGestionAsso.Models.ApplicationDbContext context)
+		public static void Seed(ApplicationDbContext context)
 		{
+			var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+			userManager.UserValidator = new UserValidator<ApplicationUser>(userManager) 
+			{ 
+				AllowOnlyAlphanumericUserNames=true, 
+				RequireUniqueEmail = true
+			};
+			var roleManager = new RoleManager<ApplicationRole>(new RoleStore<ApplicationRole>(new ApplicationDbContext()));
+
+			string name = "bossalreves@gmail.com";
+			string password = "Pa$$w0rd";
+			string firstname = "Admin";
+			string lastName = "Association";
+			string roleName = "Admin";
+
+			var role = roleManager.FindByName(roleName);
+			if (role == null)
+			{
+				role = new ApplicationRole(roleName);
+				var roleResult = roleManager.Create(role);
+			}
+
+			var user = userManager.FindByName(name);
+			if (user == null)
+			{
+				user = new ApplicationUser { UserName=name, Email = name, FirstName = firstname, LastName = lastName };
+				var userResult = userManager.Create(user, password);
+				var result = userManager.SetLockoutEnabled(user.Id, false);
+			}
+
+			var rolesForUser = userManager.GetRoles(user.Id);
+
+			if (!rolesForUser.Contains(role.Name))
+			{
+				var result = userManager.AddToRole(user.Id, role.Name);
+			}
+
+
+
+			// --------------------------------------------------------------------
+			// Data
+			// ---
+
 			#region CategorieActivite
 			// --------------------------------------------------------------------
 			// CategorieActivite
@@ -167,7 +212,7 @@ namespace MvcGestionAsso.Migrations.Seed
 					IsActive = true,
 					Tarif = 230
 				});
-			context.SaveChanges(); 
+			context.SaveChanges();
 			#endregion
 
 		}

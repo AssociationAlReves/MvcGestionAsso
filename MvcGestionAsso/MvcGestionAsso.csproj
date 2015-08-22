@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -165,6 +165,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataLayer\AdherentConfiguration.cs" />
+    <Compile Include="DataLayer\ApplicationDbContext.cs" />
+    <Compile Include="DataLayer\ApplicationUserConfiguration.cs" />
     <Compile Include="DataLayer\CategorieActiviteConfiguration.cs" />
     <Compile Include="DataLayer\ActiviteConfiguration.cs" />
     <Compile Include="DataLayer\FormuleConfiguration.cs" />
@@ -181,13 +183,18 @@
     <Compile Include="Migrations\201508222158549_Initial.Designer.cs">
       <DependentUpon>201508222158549_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508222243565_Identity.cs" />
+    <Compile Include="Migrations\201508222243565_Identity.Designer.cs">
+      <DependentUpon>201508222243565_Identity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activite.cs" />
     <Compile Include="Models\Adherent.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\CategorieActivite.cs" />
     <Compile Include="Models\Formule.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Intervenant.cs" />
     <Compile Include="Models\Lieu.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -278,6 +285,9 @@
     <EmbeddedResource Include="Migrations\201508222158549_Initial.resx">
       <DependentUpon>201508222158549_Initial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508222243565_Identity.resx">
+      <DependentUpon>201508222243565_Identity.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -297,7 +307,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52967</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52967/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
