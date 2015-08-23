@@ -37,6 +37,7 @@ namespace MvcGestionAsso.DataLayer
 
 			Property(a => a.CertificatMedical).IsOptional();
 
+			HasRequired(a => a.EditeurCourant);
 
 		}
 	}

@@ -41,6 +41,8 @@ namespace MvcGestionAsso.Models
 		public virtual List<Formule> Formules { get; set; }
 		public virtual List<Reglement> Reglements { get; set; }
 
+		public ApplicationUser EditeurCourant { get; set; }
+		public string EditeurCourantId { get; set; }
 		//public virtual List<ModeReglement> ModeReglement { get; set; }
 		
 	}

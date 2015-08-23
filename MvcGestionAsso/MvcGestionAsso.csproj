@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201508232206098_AppUserPropertieseN.Designer.cs">
       <DependentUpon>201508232206098_AppUserPropertieseN.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508232255009_IntegratedModel.cs" />
+    <Compile Include="Migrations\201508232255009_IntegratedModel.Designer.cs">
+      <DependentUpon>201508232255009_IntegratedModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Activite.cs" />
@@ -329,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508232206098_AppUserPropertieseN.resx">
       <DependentUpon>201508232206098_AppUserPropertieseN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508232255009_IntegratedModel.resx">
+      <DependentUpon>201508232255009_IntegratedModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
