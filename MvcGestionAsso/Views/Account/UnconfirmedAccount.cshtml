@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Compte non activé";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>Si vous n'avez toujours pas reçu de mail 10 minutes après votre création de compte, 
+    ou si vous avez accidentellement supprimé le message, alors cliquer sur ce bouton et nous vous enverrons un autre message.</p>
+
+@using(Html.BeginForm("RegenerateEmailConfirmation", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form"}))
+{
+    @Html.Hidden("Email", (string)ViewBag.Email)
+    <input type="submit" value="Envoyer l'email à nouveau" class="btn btn-primary" />
+}

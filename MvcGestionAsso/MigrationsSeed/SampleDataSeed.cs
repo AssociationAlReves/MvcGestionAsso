@@ -21,7 +21,7 @@ namespace MvcGestionAsso.Migrations.Seed
 			};
 			var roleManager = new RoleManager<ApplicationRole>(new RoleStore<ApplicationRole>(new ApplicationDbContext()));
 
-			string name = "bossalreves@gmail.com";
+			string name = "boss@alreves.org";
 			string password = "Pa$$w0rd";
 			string firstname = "Admin";
 			string lastName = "Association";

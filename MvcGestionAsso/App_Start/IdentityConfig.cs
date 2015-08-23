@@ -26,21 +26,17 @@ namespace MvcGestionAsso
 			const string userName = "MvcGestionAsso Admin";
 			const string from = "admin@mvcgestionasso.org";
 
-			// Create the email object first, then add the properties.
-			SendGridMessage myMessage = new SendGridMessage();
-			myMessage.AddTo(message.Destination);
-			myMessage.From = new MailAddress(from, userName);
-			myMessage.Subject = message.Subject;
-			myMessage.Text = message.Subject;
+			var sendGridMsg = new SendGridMessage();
+			sendGridMsg.AddTo(message.Destination);
+			sendGridMsg.From = new MailAddress(from, userName);
+			sendGridMsg.Subject = message.Subject;
+			sendGridMsg.Html = message.Body;
+			sendGridMsg.Text = message.Body;
 
-			// Create credentials, specifying your user name and password.
-			var credentials = new NetworkCredential(ConfigurationManager.AppSettings["SendGrid_UserName"], ConfigurationManager.AppSettings["SendGrid_Password"]);
+			var transportWeb = new Web(ConfigurationManager.AppSettings["SendGrid_APIKey"]);
 
-			// Create an Web transport for sending email, using credentials...
-			var transportWeb = new Web(credentials);
+			return transportWeb.DeliverAsync(sendGridMsg);
 
-			// Send the email.
-			return transportWeb.DeliverAsync(myMessage);
 		}
 	}
 
