@@ -168,26 +168,45 @@ namespace MvcGestionAsso.Controllers
 
 				if (result.Succeeded)
 				{
-					string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-
-					var callbackUrl = Url.Action(
-							"ConfirmEmail",
-							"Account",
-							new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-
-					await UserManager.SendEmailAsync(
-				user.Id,
-				"Confirmez votre compte",
-				"Merci de confirmer la création de votre compte en cliquant <a href=\"" + callbackUrl + "\">sur ce lien</a>");
-
-
-					return View("CheckYourEmail");
+					return await GenerateEmailConfirmation(user);
 				}
 				AddErrors(result);
 			}
 
 			// Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
 			return View(model);
+		}
+
+		[AllowAnonymous]
+		public async Task<ActionResult> GenerateEmailConfirmation(ApplicationUser user)
+		{
+			string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
+			var callbackUrl = Url.Action(
+					"ConfirmEmail",
+					"Account",
+					new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+			await UserManager.SendEmailAsync(
+		user.Id,
+		"Confirmez votre compte",
+		"Merci de confirmer la création de votre compte en cliquant <a href=\"" + callbackUrl + "\">sur ce lien</a>");
+
+
+			return View("CheckYourEmail");
+		}
+
+		[AllowAnonymous]
+		[HttpPost]
+		public async Task<ActionResult> RegenerateEmailConfirmation(string email)
+		{
+			var user = await UserManager.FindByNameAsync(email);
+			if (user != null)
+			{
+				return RedirectToAction("GenerateEmailConfirmation", user);
+			}
+
+			return View("Login");
 		}
 
 		//
