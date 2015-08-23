@@ -163,6 +163,9 @@ namespace MvcGestionAsso.Controllers
 			{
 				var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
 				var result = await UserManager.CreateAsync(user, model.Password);
+
+				await UserManager.SetTwoFactorEnabledAsync(user.Id, true);
+
 				if (result.Succeeded)
 				{
 					string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

@@ -16,6 +16,7 @@ using Microsoft.Owin.Security;
 using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
 using SendGrid;
+using Twilio;
 
 namespace MvcGestionAsso
 {
@@ -44,7 +45,13 @@ namespace MvcGestionAsso
 	{
 		public Task SendAsync(IdentityMessage message)
 		{
-			// Connectez votre service SMS ici pour envoyer un message texte.
+			string accountSid = ConfigurationManager.AppSettings["Twilio_AccountSid"];
+			string authToken = ConfigurationManager.AppSettings["Twilio_AuthToken"];
+			string phoneNumber = ConfigurationManager.AppSettings["Twilio_PhoneNumber"];
+
+			var twilioRestClient = new TwilioRestClient(accountSid, authToken);
+			twilioRestClient.SendSmsMessage(phoneNumber, message.Destination, message.Body);
+
 			return Task.FromResult(0);
 		}
 	}
