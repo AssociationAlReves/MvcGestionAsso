@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -12,6 +15,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
+using SendGrid;
 
 namespace MvcGestionAsso
 {
@@ -19,8 +23,24 @@ namespace MvcGestionAsso
 	{
 		public Task SendAsync(IdentityMessage message)
 		{
-			// Indiquez votre service de messagerie ici pour envoyer un e-mail.
-			return Task.FromResult(0);
+			const string userName = "MvcGestionAsso Admin";
+			const string from = "admin@mvcgestionasso.org";
+
+			// Create the email object first, then add the properties.
+			SendGridMessage myMessage = new SendGridMessage();
+			myMessage.AddTo(message.Destination);
+			myMessage.From = new MailAddress(from, userName);
+			myMessage.Subject = message.Subject;
+			myMessage.Text = message.Subject;
+
+			// Create credentials, specifying your user name and password.
+			var credentials = new NetworkCredential(ConfigurationManager.AppSettings["SendGrid_UserName"], ConfigurationManager.AppSettings["SendGrid_Password"]);
+
+			// Create an Web transport for sending email, using credentials...
+			var transportWeb = new Web(credentials);
+
+			// Send the email.
+			return transportWeb.DeliverAsync(myMessage);
 		}
 	}
 

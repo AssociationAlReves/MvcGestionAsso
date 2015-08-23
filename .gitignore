@@ -196,4 +196,4 @@ FakesAssemblies/
 *.opt
 
 # User defined sensitive files
-*.sensitive.cs
+*.sensitive.*
