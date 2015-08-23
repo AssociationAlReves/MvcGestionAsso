@@ -11,8 +11,8 @@ namespace MvcGestionAsso.DataLayer
 	{
 		public ApplicationUserConfiguration()
 		{
-			Property(au => au.FirstName).HasMaxLength(15).IsOptional();
-			Property(au => au.LastName).HasMaxLength(15).IsOptional();
+			Property(au => au.FirstName).HasMaxLength(15).IsRequired();
+			Property(au => au.LastName).HasMaxLength(15).IsRequired();
 		}
 	}
 }

@@ -208,7 +208,7 @@ namespace MvcGestionAsso.Controllers
 			{
 				return View("Error");
 			}
-			
+
 		}
 
 		//
@@ -393,7 +393,20 @@ namespace MvcGestionAsso.Controllers
 				{
 					return View("ExternalLoginFailure");
 				}
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+				string firstName = info.ExternalIdentity.Claims.First(c => c.Type.Contains("givenname")).Value ??
+					string.Empty;
+				string lastName = info.ExternalIdentity.Claims.First(c => c.Type.Contains("surname")).Value ??
+					string.Empty;
+
+
+				var user = new ApplicationUser
+				{
+					UserName = model.Email,
+					Email = model.Email,
+					FirstName = firstName.Substring(0, Math.Min(firstName.Length, 15)),
+					LastName = lastName.Substring(0, Math.Min(lastName.Length, 15))
+				};
 				var result = await UserManager.CreateAsync(user);
 				if (result.Succeeded)
 				{

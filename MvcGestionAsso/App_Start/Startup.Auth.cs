@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using MvcGestionAsso.Models;
 using MvcGestionAsso.DataLayer;
+using System.Configuration;
 
 namespace MvcGestionAsso
 {
@@ -60,11 +61,11 @@ namespace MvcGestionAsso
 			//   appId: "",
 			//   appSecret: "");
 
-			//app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-			//{
-			//    ClientId = "",
-			//    ClientSecret = ""
-			//});
+			app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+			{
+				ClientId = ConfigurationManager.AppSettings["Google_ClientId"],
+				ClientSecret = ConfigurationManager.AppSettings["Google_ClientSecret"]
+			});
 		}
 	}
 }
