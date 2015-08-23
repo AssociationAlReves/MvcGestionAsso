@@ -196,8 +196,16 @@ namespace MvcGestionAsso.Controllers
 			{
 				return View("Error");
 			}
-			var result = await UserManager.ConfirmEmailAsync(userId, code);
-			return View(result.Succeeded ? "ConfirmEmail" : "Error");
+			try
+			{
+				var result = await UserManager.ConfirmEmailAsync(userId, code);
+				return View(result.Succeeded ? "ConfirmEmail" : "Error");
+			}
+			catch (InvalidOperationException)
+			{
+				return View("Error");
+			}
+			
 		}
 
 		//
@@ -226,10 +234,10 @@ namespace MvcGestionAsso.Controllers
 
 				// Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
 				// Envoyer un message électronique avec ce lien
-				// string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-				// var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-				// await UserManager.SendEmailAsync(user.Id, "Réinitialiser le mot de passe", "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
-				// return RedirectToAction("ForgotPasswordConfirmation", "Account");
+				string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+				var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+				await UserManager.SendEmailAsync(user.Id, "Réinitialiser le mot de passe", "Réinitialisez votre mot de passe en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
+				return RedirectToAction("ForgotPasswordConfirmation", "Account");
 			}
 
 			// Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
