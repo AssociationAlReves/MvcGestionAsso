@@ -85,7 +85,7 @@ namespace MvcGestionAsso.Controllers
 
 			// Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
 			// Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
-			var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+			var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
 			switch (result)
 			{
 				case SignInStatus.Success:
@@ -161,7 +161,16 @@ namespace MvcGestionAsso.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+				var user = new ApplicationUser
+				{
+					UserName = model.Email,
+					Email = model.Email,
+					FirstName = model.FirstName,
+					LastName = model.LastName,
+					Address = model.Address,
+					City = model.City,
+					ZipCode = model.ZipCode
+				};
 				var result = await UserManager.CreateAsync(user, model.Password);
 
 				await UserManager.SetTwoFactorEnabledAsync(user.Id, true);
@@ -429,6 +438,8 @@ namespace MvcGestionAsso.Controllers
 				var result = await UserManager.CreateAsync(user);
 				if (result.Succeeded)
 				{
+					await UserManager.SetTwoFactorEnabledAsync(user.Id, true);
+
 					result = await UserManager.AddLoginAsync(user.Id, info.Login);
 					if (result.Succeeded)
 					{

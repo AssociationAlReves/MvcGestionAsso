@@ -207,6 +207,14 @@
     <Compile Include="Migrations\201508232026310_FirstLastNameRequired.Designer.cs">
       <DependentUpon>201508232026310_FirstLastNameRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508232201363_AppUserProperties.cs" />
+    <Compile Include="Migrations\201508232201363_AppUserProperties.Designer.cs">
+      <DependentUpon>201508232201363_AppUserProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508232206098_AppUserPropertieseN.cs" />
+    <Compile Include="Migrations\201508232206098_AppUserPropertieseN.Designer.cs">
+      <DependentUpon>201508232206098_AppUserPropertieseN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activite.cs" />
@@ -315,6 +323,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508232026310_FirstLastNameRequired.resx">
       <DependentUpon>201508232026310_FirstLastNameRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508232201363_AppUserProperties.resx">
+      <DependentUpon>201508232201363_AppUserProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508232206098_AppUserPropertieseN.resx">
+      <DependentUpon>201508232206098_AppUserPropertieseN.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
