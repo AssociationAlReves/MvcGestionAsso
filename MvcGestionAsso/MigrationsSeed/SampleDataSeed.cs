@@ -4,8 +4,10 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
+using MvcGestionAsso.Utils;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using LoremNET;
 
 namespace MvcGestionAsso.Migrations.Seed
 {
@@ -13,10 +15,13 @@ namespace MvcGestionAsso.Migrations.Seed
 	{
 		public static void Seed(ApplicationDbContext context)
 		{
+			ApplicationUser adminUser;
+
+			#region Admin user
 			var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-			userManager.UserValidator = new UserValidator<ApplicationUser>(userManager) 
-			{ 
-				AllowOnlyAlphanumericUserNames=true, 
+			userManager.UserValidator = new UserValidator<ApplicationUser>(userManager)
+			{
+				AllowOnlyAlphanumericUserNames = true,
 				RequireUniqueEmail = true
 			};
 			var roleManager = new RoleManager<ApplicationRole>(new RoleStore<ApplicationRole>(new ApplicationDbContext()));
@@ -34,22 +39,21 @@ namespace MvcGestionAsso.Migrations.Seed
 				var roleResult = roleManager.Create(role);
 			}
 
-			var user = userManager.FindByName(name);
-			if (user == null)
+			adminUser = userManager.FindByName(name);
+			if (adminUser == null)
 			{
-				user = new ApplicationUser { UserName=name, Email = name, FirstName = firstname, LastName = lastName };
-				var userResult = userManager.Create(user, password);
-				var result = userManager.SetLockoutEnabled(user.Id, false);
+				adminUser = new ApplicationUser { UserName = name, Email = name, FirstName = firstname, LastName = lastName };
+				var userResult = userManager.Create(adminUser, password);
+				var result = userManager.SetLockoutEnabled(adminUser.Id, false);
 			}
 
-			var rolesForUser = userManager.GetRoles(user.Id);
+			var rolesForUser = userManager.GetRoles(adminUser.Id);
 
 			if (!rolesForUser.Contains(role.Name))
 			{
-				var result = userManager.AddToRole(user.Id, role.Name);
+				var result = userManager.AddToRole(adminUser.Id, role.Name);
 			}
-
-
+			#endregion
 
 			// --------------------------------------------------------------------
 			// Data
@@ -214,7 +218,40 @@ namespace MvcGestionAsso.Migrations.Seed
 				});
 			context.SaveChanges();
 			#endregion
+			Formule aboZumbaCDH = context.Formules.First(f => f.ActiviteId == zumbaCDH.ActiviteId);
+			Formule abozumbaBEL = context.Formules.First(f => f.ActiviteId == zumbaBEL.ActiviteId && f.FormuleNom == "Abonnement annuel");
+			Formule abozumbaBELSemestre = context.Formules.First(f => f.ActiviteId == zumbaBEL.ActiviteId && f.FormuleNom == "Abonnement semestre");
+			Formule abodanseBEL1 = context.Formules.First(f => f.ActiviteId == danseBEL1.ActiviteId);
+			Formule abodanseBEL2 = context.Formules.First(f => f.ActiviteId == danseBEL2.ActiviteId);
 
+			#region Adherents (5000 random)
+			if (context.Adherents.Any() == false)
+			{
+				for (int i = 0; i < 1000; i++)
+				{
+
+					context.Adherents.Add( new Adherent
+						{
+							AdherentNom = Lorem.Words(1).Limit(30),
+							AdherentPrenom = Lorem.Words(1, Lorem.Chance(1, 20) ? 2 : 1).Limit(30),
+							Adresse = (Lorem.Number(1, 1000) + " " + Lorem.Sentence(2, 5)).Limit(150),
+							Adresse2 = (Lorem.Chance(20, 100) ? Lorem.Words(2, 5) : "").Limit(150),
+							CertificatMedical = Lorem.Chance(80, 100),
+							CodePostal = Lorem.Number(10000, 95999).ToString(),
+							EditeurCourantId = adminUser.Id,
+							EMail = Lorem.Email().Limit(80),
+							Notes = Lorem.Chance(10, 100) ? Lorem.Paragraph(20, 2).Limit(150) : "",
+							Statut = Lorem.RandomEnum<StatutAdherent>(),
+							Telephone = "0" + Lorem.Number(100000000, 999999999).ToString(),
+							Ville = Lorem.Words(1, 4).Limit(150),
+							DateCreation = DateTime.Now,
+							DateModification = DateTime.Now,
+							DateResiliation = null
+						});
+				}
+				context.SaveChanges();
+			}
+			#endregion
 		}
 	}
 }
