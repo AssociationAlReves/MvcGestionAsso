@@ -81,8 +81,8 @@ namespace MvcGestionAsso.Migrations
                         IntervenantNom = c.String(nullable: false, maxLength: 50),
                         IntervenantPrenom = c.String(nullable: false, maxLength: 50),
                         NumeroSecuriteSociale = c.String(maxLength: 15),
-                        DateCreation = c.DateTime(nullable: false),
-                        DateModification = c.DateTime(nullable: false),
+												DateCreation = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+												DateModification = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.IntervenantId)
                 .Index(t => t.IntervenantNom, name: "AK_Intervenant_IntervenantNom");
@@ -102,9 +102,9 @@ namespace MvcGestionAsso.Migrations
                         Adresse2 = c.String(maxLength: 150),
                         CodePostal = c.String(maxLength: 5),
                         Ville = c.String(maxLength: 150),
-                        DateCreation = c.DateTime(nullable: false),
-                        DateModification = c.DateTime(nullable: false),
-                        DateResiliation = c.DateTime(),
+                        DateCreation = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+												DateModification = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        DateResiliation = c.DateTime(nullable: true),
                         Statut = c.Int(nullable: false),
                         CertificatMedical = c.Boolean(),
                     })
