@@ -20,7 +20,7 @@ namespace MvcGestionAsso.DataLayer
 
 			Property(r => r.ChequeNumero).HasMaxLength(10).IsOptional()
 				.HasColumnAnnotation("Index",
-				new IndexAnnotation(new IndexAttribute("AK_Cheque_ChequeNumero") { IsUnique = true }
+				new IndexAnnotation(new IndexAttribute("AK_Cheque_ChequeNumero") { IsUnique = false }
 				));
 
 			Property(r => r.ChequeBanque).HasMaxLength(80).IsOptional();

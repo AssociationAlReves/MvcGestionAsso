@@ -14,19 +14,14 @@ namespace MvcGestionAsso.DataLayer
 	{
 		public ModeReglementConfiguration()
 		{
-			Property( mr => mr.ModeReglementCode)
-				.HasMaxLength(15)
-				.IsRequired()
+
+			Property(m => m.AdherentId).IsRequired()
 				.HasColumnAnnotation("Index",
-				new IndexAnnotation(new IndexAttribute("AK_ModeReglement_ModeReglementCode") { IsUnique = true }));
+				new IndexAnnotation(new IndexAttribute("AK_ModeReglement_Index",2) { IsUnique = true }));
 
-			Property(mr => mr.ModeReglementNom)
-				.HasMaxLength(100)
-				.IsRequired()
+			Property(m => m.FormuleId).IsRequired()
 				.HasColumnAnnotation("Index",
-				new IndexAnnotation(new IndexAttribute("AK_ModeReglement_ModeReglementNom") { IsUnique = true }));
-
-
+				new IndexAnnotation(new IndexAttribute("AK_ModeReglement_Index", 1) { IsUnique = true }));
 		}
 	}
 }

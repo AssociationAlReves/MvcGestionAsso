@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace MvcGestionAsso.Models
 {
@@ -9,14 +8,22 @@ namespace MvcGestionAsso.Models
 	{
 		public int ModeReglementId { get; set; }
 
-		public string ModeReglementCode { get; set; }
-
-		public string ModeReglementNom { get; set; }
+		public TypeReglement TypeReglement { get; set; }
 
 		public int AdherentId { get; set; }
 		public virtual Adherent Adherent { get; set; }
 
 		public int FormuleId { get; set; }
 		public virtual Formule Formule { get; set; }
+	}
+
+	public enum TypeReglement
+	{
+		Especes = 10,
+		Cheque_Comptant = 15,
+		Cheque_2Fois = 20,
+		Cheque_3Fois = 30,
+		Cheque_4Fois = 40,
+		CarteBleue = 50
 	}
 }

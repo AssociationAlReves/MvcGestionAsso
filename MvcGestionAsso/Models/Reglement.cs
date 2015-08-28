@@ -17,8 +17,8 @@ namespace MvcGestionAsso.Models
 		public string ChequeNumero { get; set; }
 		public string ChequeBanque { get; set; }
 		public string ChequeTitulaire { get; set; }
-		public DateTime ChequeDate { get; set; }
-		public DateTime ChequeDateEncaissement { get; set; }
+		public DateTime? ChequeDate { get; set; }
+		public DateTime? ChequeDateEncaissement { get; set; }
 
 		public int AdherentId { get; set; }
 		public virtual Adherent Adherent { get; set; }

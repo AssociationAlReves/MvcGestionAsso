@@ -223,6 +223,22 @@
     <Compile Include="Migrations\201508232255009_IntegratedModel.Designer.cs">
       <DependentUpon>201508232255009_IntegratedModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508282147027_ModeReglemenChgt.cs" />
+    <Compile Include="Migrations\201508282147027_ModeReglemenChgt.Designer.cs">
+      <DependentUpon>201508282147027_ModeReglemenChgt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508282220397_ModeReglementIndex.cs" />
+    <Compile Include="Migrations\201508282220397_ModeReglementIndex.Designer.cs">
+      <DependentUpon>201508282220397_ModeReglementIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508282245496_RegNullable.cs" />
+    <Compile Include="Migrations\201508282245496_RegNullable.Designer.cs">
+      <DependentUpon>201508282245496_RegNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508282306368_RegChequeIndex.cs" />
+    <Compile Include="Migrations\201508282306368_RegChequeIndex.Designer.cs">
+      <DependentUpon>201508282306368_RegChequeIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -341,6 +357,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508232255009_IntegratedModel.resx">
       <DependentUpon>201508232255009_IntegratedModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508282147027_ModeReglemenChgt.resx">
+      <DependentUpon>201508282147027_ModeReglemenChgt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508282220397_ModeReglementIndex.resx">
+      <DependentUpon>201508282220397_ModeReglementIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508282245496_RegNullable.resx">
+      <DependentUpon>201508282245496_RegNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508282306368_RegChequeIndex.resx">
+      <DependentUpon>201508282306368_RegChequeIndex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
