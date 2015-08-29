@@ -7,13 +7,13 @@ namespace MvcGestionAsso.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RegChequeIndex : IMigrationMetadata
+    public sealed partial class AboAdherent : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RegChequeIndex));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AboAdherent));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508282306368_RegChequeIndex"; }
+            get { return "201508292202422_AboAdherent"; }
         }
         
         string IMigrationMetadata.Source

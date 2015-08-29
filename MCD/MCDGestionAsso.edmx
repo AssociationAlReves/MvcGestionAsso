@@ -39,15 +39,7 @@
             <End EntitySet="AdherentSet" Role="Adherent" />
             <End EntitySet="FormuleSet" Role="Formule" />
           </AssociationSet>
-          <EntitySet Name="ModeReglementSet" EntityType="MCDGestionAsso.ModeReglement" />
-          <AssociationSet Name="ModeReglementFormule" Association="MCDGestionAsso.ModeReglementFormule">
-            <End Role="ModeReglement" EntitySet="ModeReglementSet" />
-            <End Role="Formule" EntitySet="FormuleSet" />
-          </AssociationSet>
-          <AssociationSet Name="ModeReglementAdherent" Association="MCDGestionAsso.ModeReglementAdherent">
-            <End Role="ModeReglement" EntitySet="ModeReglementSet" />
-            <End Role="Adherent" EntitySet="AdherentSet" />
-          </AssociationSet>
+          <EntitySet Name="AbonnementSet" EntityType="MCDGestionAsso.Abonnement" />
           <EntitySet Name="ReglementSet" EntityType="MCDGestionAsso.Reglement" />
           <AssociationSet Name="ReglementAdherent" Association="MCDGestionAsso.ReglementAdherent">
             <End Role="Reglement" EntitySet="ReglementSet" />
@@ -61,6 +53,14 @@
           <AssociationSet Name="CategorieActiviteActivite" Association="MCDGestionAsso.CategorieActiviteActivite">
             <End Role="CategorieActivite" EntitySet="CategorieActiviteSet" />
             <End Role="Activite" EntitySet="ActiviteSet" />
+          </AssociationSet>
+          <AssociationSet Name="AbonnementAdherent" Association="MCDGestionAsso.AbonnementAdherent">
+            <End Role="Abonnement" EntitySet="AbonnementSet" />
+            <End Role="Adherent" EntitySet="AdherentSet" />
+          </AssociationSet>
+          <AssociationSet Name="AbonnementFormule" Association="MCDGestionAsso.AbonnementFormule">
+            <End Role="Abonnement" EntitySet="AbonnementSet" />
+            <End Role="Formule" EntitySet="FormuleSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Lieu">
@@ -96,8 +96,8 @@
           </Key>
           <Property Name="AdherentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Formule" Relationship="MCDGestionAsso.AdherentFormule" FromRole="Adherent" ToRole="Formule" />
-          <NavigationProperty Name="ModeReglement" Relationship="MCDGestionAsso.ModeReglementAdherent" FromRole="Adherent" ToRole="ModeReglement" />
           <NavigationProperty Name="Reglement" Relationship="MCDGestionAsso.ReglementAdherent" FromRole="Adherent" ToRole="Reglement" />
+          <NavigationProperty Name="Abonnement" Relationship="MCDGestionAsso.AbonnementAdherent" FromRole="Adherent" ToRole="Abonnement" />
         </EntityType>
         <EntityType Name="Formule">
           <Key>
@@ -109,6 +109,7 @@
           <NavigationProperty Name="Adherent" Relationship="MCDGestionAsso.AdherentFormule" FromRole="Formule" ToRole="Adherent" />
           <Property Name="AdherentAdherentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Reglement" Relationship="MCDGestionAsso.ReglementFormule" FromRole="Formule" ToRole="Reglement" />
+          <NavigationProperty Name="Abonnement" Relationship="MCDGestionAsso.AbonnementFormule" FromRole="Formule" ToRole="Abonnement" />
         </EntityType>
         <EntityType Name="Mission">
           <Key>
@@ -182,22 +183,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ModeReglement">
+        <EntityType Name="Abonnement">
           <Key>
-            <PropertyRef Name="ModeReglementId" />
+            <PropertyRef Name="AbonnementId" />
           </Key>
-          <Property Name="ModeReglementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Formule" Relationship="MCDGestionAsso.ModeReglementFormule" FromRole="ModeReglement" ToRole="Formule" />
-          <NavigationProperty Name="Adherent" Relationship="MCDGestionAsso.ModeReglementAdherent" FromRole="ModeReglement" ToRole="Adherent" />
+          <Property Name="AbonnementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Adherent" Relationship="MCDGestionAsso.AbonnementAdherent" FromRole="Abonnement" ToRole="Adherent" />
+          <Property Name="AdherentAdherentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Formule" Relationship="MCDGestionAsso.AbonnementFormule" FromRole="Abonnement" ToRole="Formule" />
         </EntityType>
-        <Association Name="ModeReglementFormule">
-          <End Type="MCDGestionAsso.ModeReglement" Role="ModeReglement" Multiplicity="*" />
-          <End Type="MCDGestionAsso.Formule" Role="Formule" Multiplicity="1" />
-        </Association>
-        <Association Name="ModeReglementAdherent">
-          <End Type="MCDGestionAsso.ModeReglement" Role="ModeReglement" Multiplicity="1" />
-          <End Type="MCDGestionAsso.Adherent" Role="Adherent" Multiplicity="1" />
-        </Association>
         <EntityType Name="Reglement">
           <Key>
             <PropertyRef Name="ReglementId" />
@@ -223,6 +217,22 @@
         <Association Name="CategorieActiviteActivite">
           <End Type="MCDGestionAsso.CategorieActivite" Role="CategorieActivite" Multiplicity="1" />
           <End Type="MCDGestionAsso.Activite" Role="Activite" Multiplicity="1" />
+        </Association>
+        <Association Name="AbonnementAdherent">
+          <End Type="MCDGestionAsso.Abonnement" Role="Abonnement" Multiplicity="*" />
+          <End Type="MCDGestionAsso.Adherent" Role="Adherent" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Adherent">
+              <PropertyRef Name="AdherentId" />
+            </Principal>
+            <Dependent Role="Abonnement">
+              <PropertyRef Name="AdherentAdherentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AbonnementFormule">
+          <End Type="MCDGestionAsso.Abonnement" Role="Abonnement" Multiplicity="*" />
+          <End Type="MCDGestionAsso.Formule" Role="Formule" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>

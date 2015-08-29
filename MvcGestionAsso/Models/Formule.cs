@@ -21,7 +21,7 @@ namespace MvcGestionAsso.Models
 		public int ActiviteId { get; set; }
 		public virtual Activite Activite { get; set; }
 
-		public virtual List<Adherent> AdherentsAbonnes { get; set; }
+		public virtual List<Abonnement> Abonnements { get; set; }
 
 		//public virtual List<Reglement> Reglements { get; set; }
 	}

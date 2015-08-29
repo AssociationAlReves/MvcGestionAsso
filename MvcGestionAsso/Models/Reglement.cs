@@ -20,11 +20,14 @@ namespace MvcGestionAsso.Models
 		public DateTime? ChequeDate { get; set; }
 		public DateTime? ChequeDateEncaissement { get; set; }
 
-		public int AdherentId { get; set; }
-		public virtual Adherent Adherent { get; set; }
+		//public int AdherentId { get; set; }
+		//public virtual Adherent Adherent { get; set; }
 
-		public int FormuleId { get; set; }
-		public virtual Formule Formule { get; set; }
+		//public int FormuleId { get; set; }
+		//public virtual Formule Formule { get; set; }
+
+		public int AbonnementId { get; set; }
+		public virtual Abonnement Abonnement { get; set; }
 	}
 
 	public enum MoyenPaiement

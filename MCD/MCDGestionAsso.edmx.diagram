@@ -16,15 +16,15 @@
         <AssociationConnector Association="MCDGestionAsso.ActiviteLieu" />
         <AssociationConnector Association="MCDGestionAsso.FormuleActivite" />
         <AssociationConnector Association="MCDGestionAsso.AdherentFormule" />
-        <EntityTypeShape EntityType="MCDGestionAsso.ModeReglement" Width="2" PointX="2.75" PointY="4.125" FillColor="0, 122, 204" />
-        <AssociationConnector Association="MCDGestionAsso.ModeReglementFormule" />
-        <AssociationConnector Association="MCDGestionAsso.ModeReglementAdherent" />
+        <EntityTypeShape EntityType="MCDGestionAsso.Abonnement" Width="2" PointX="2.75" PointY="4.125" FillColor="0, 122, 204" />
         <EntityTypeShape EntityType="MCDGestionAsso.Reglement" Width="1.5" PointX="0.75" PointY="1.375" FillColor="0, 122, 204" />
         <AssociationConnector Association="MCDGestionAsso.ReglementAdherent" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="MCDGestionAsso.ReglementFormule" />
         <EntityTypeShape EntityType="MCDGestionAsso.CategorieActivite" Width="1.5" PointX="10.75" PointY="4.375" FillColor="0, 122, 204" />
         <AssociationConnector Association="MCDGestionAsso.CategorieActiviteActivite" />
+        <AssociationConnector Association="MCDGestionAsso.AbonnementAdherent" />
+        <AssociationConnector Association="MCDGestionAsso.AbonnementFormule" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

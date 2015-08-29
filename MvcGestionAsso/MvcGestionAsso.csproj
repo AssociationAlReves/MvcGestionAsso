@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataLayer\AbonnementConfiguration.cs" />
     <Compile Include="DataLayer\AdherentConfiguration.cs" />
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
     <Compile Include="DataLayer\ApplicationUserConfiguration.cs" />
@@ -193,53 +194,21 @@
     <Compile Include="DataLayer\IntervenantConfiguration.cs" />
     <Compile Include="DataLayer\LieuConfiguration.cs" />
     <Compile Include="DataLayer\MissionConfiguration.cs" />
-    <Compile Include="DataLayer\ModeReglementConfiguration.cs" />
     <Compile Include="DataLayer\ReglementConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MigrationsSeed\SampleDataSeed.cs" />
-    <Compile Include="Migrations\201508222158549_Initial.cs" />
-    <Compile Include="Migrations\201508222158549_Initial.Designer.cs">
-      <DependentUpon>201508222158549_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201508292144100_Initial.cs" />
+    <Compile Include="Migrations\201508292144100_Initial.Designer.cs">
+      <DependentUpon>201508292144100_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508222243565_Identity.cs" />
-    <Compile Include="Migrations\201508222243565_Identity.Designer.cs">
-      <DependentUpon>201508222243565_Identity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508232026310_FirstLastNameRequired.cs" />
-    <Compile Include="Migrations\201508232026310_FirstLastNameRequired.Designer.cs">
-      <DependentUpon>201508232026310_FirstLastNameRequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508232201363_AppUserProperties.cs" />
-    <Compile Include="Migrations\201508232201363_AppUserProperties.Designer.cs">
-      <DependentUpon>201508232201363_AppUserProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508232206098_AppUserPropertieseN.cs" />
-    <Compile Include="Migrations\201508232206098_AppUserPropertieseN.Designer.cs">
-      <DependentUpon>201508232206098_AppUserPropertieseN.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508232255009_IntegratedModel.cs" />
-    <Compile Include="Migrations\201508232255009_IntegratedModel.Designer.cs">
-      <DependentUpon>201508232255009_IntegratedModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508282147027_ModeReglemenChgt.cs" />
-    <Compile Include="Migrations\201508282147027_ModeReglemenChgt.Designer.cs">
-      <DependentUpon>201508282147027_ModeReglemenChgt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508282220397_ModeReglementIndex.cs" />
-    <Compile Include="Migrations\201508282220397_ModeReglementIndex.Designer.cs">
-      <DependentUpon>201508282220397_ModeReglementIndex.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508282245496_RegNullable.cs" />
-    <Compile Include="Migrations\201508282245496_RegNullable.Designer.cs">
-      <DependentUpon>201508282245496_RegNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508282306368_RegChequeIndex.cs" />
-    <Compile Include="Migrations\201508282306368_RegChequeIndex.Designer.cs">
-      <DependentUpon>201508282306368_RegChequeIndex.cs</DependentUpon>
+    <Compile Include="Migrations\201508292202422_AboAdherent.cs" />
+    <Compile Include="Migrations\201508292202422_AboAdherent.Designer.cs">
+      <DependentUpon>201508292202422_AboAdherent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Activite.cs" />
@@ -252,7 +221,6 @@
     <Compile Include="Models\Lieu.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Mission.cs" />
-    <Compile Include="Models\ModeReglement.cs" />
     <Compile Include="Models\Reglement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -340,35 +308,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508222158549_Initial.resx">
-      <DependentUpon>201508222158549_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508292144100_Initial.resx">
+      <DependentUpon>201508292144100_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508222243565_Identity.resx">
-      <DependentUpon>201508222243565_Identity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508232026310_FirstLastNameRequired.resx">
-      <DependentUpon>201508232026310_FirstLastNameRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508232201363_AppUserProperties.resx">
-      <DependentUpon>201508232201363_AppUserProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508232206098_AppUserPropertieseN.resx">
-      <DependentUpon>201508232206098_AppUserPropertieseN.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508232255009_IntegratedModel.resx">
-      <DependentUpon>201508232255009_IntegratedModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508282147027_ModeReglemenChgt.resx">
-      <DependentUpon>201508282147027_ModeReglemenChgt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508282220397_ModeReglementIndex.resx">
-      <DependentUpon>201508282220397_ModeReglementIndex.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508282245496_RegNullable.resx">
-      <DependentUpon>201508282245496_RegNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508282306368_RegChequeIndex.resx">
-      <DependentUpon>201508282306368_RegChequeIndex.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508292202422_AboAdherent.resx">
+      <DependentUpon>201508292202422_AboAdherent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

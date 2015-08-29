@@ -38,8 +38,7 @@ namespace MvcGestionAsso.Models
 
 		public bool CertificatMedical { get; set; }
 
-		public virtual List<Formule> Formules { get; set; }
-		public virtual List<Reglement> Reglements { get; set; }
+		public virtual List<Abonnement> Abonnements { get; set; }
 
 		public ApplicationUser EditeurCourant { get; set; }
 		public string EditeurCourantId { get; set; }

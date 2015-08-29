@@ -242,8 +242,6 @@ namespace MvcGestionAsso.Migrations.Seed
 				#region Adherents (1000 random)
 				if (context.Adherents.Any() == false)
 				{
-					
-
 					for (int i = 1; i <= 1000; i++)
 					{
 
@@ -267,66 +265,54 @@ namespace MvcGestionAsso.Migrations.Seed
 							});
 						context.SaveChanges();
 
-						#region FormuleAdherents
+						#region Abonnements
 						Adherent adh = context.Adherents.Find(i);
-						adh.Formules = new List<Formule>();
-
-						adh.Formules.Add(Lorem.Random(formules));
+						adh.Abonnements = new List<Abonnement>();
+						Formule firstFormule = Lorem.Random(formules);
+						AddAbonnement(context, adh, firstFormule);
 						if (Lorem.Chance(1, 50)) // multiple formules
 						{
-							adh.Formules.Add(Lorem.Random(formules));
-							adh.Formules = adh.Formules.Distinct(new FormuleComparer()).ToList(); // ensure it is distinct
+							Formule secondFormule = Lorem.Random(formules);
+							if (secondFormule.FormuleId != firstFormule.FormuleId) // ensure it is distinct
+								AddAbonnement(context, adh, secondFormule);
 						}
 						context.SaveChanges();
+						#endregion
 
-						#region ModeReglement
-
-						foreach (Formule f in adh.Formules)
+						#region Reglement
+						foreach (Abonnement abo in adh.Abonnements)
 						{
-							context.ModesReglement.AddOrUpdate(m => new { m.AdherentId, m.FormuleId },
-								new ModeReglement
-								{
-									TypeReglement = Lorem.RandomEnum<TypeReglement>(),
-									AdherentId = adh.AdherentId,
-									FormuleId = f.FormuleId,
-								});
-							context.SaveChanges();
-							ModeReglement modeReg = context.ModesReglement.First(m => m.AdherentId == adh.AdherentId && m.FormuleId == f.FormuleId);
-							#region Reglement
 							if (Lorem.Chance(95, 100))
 							{
-								switch (modeReg.TypeReglement)
+								switch (abo.TypeReglement)
 								{
 
 									case TypeReglement.CarteBleue:
 									case TypeReglement.Especes:
-										context.Reglements.Add(new Reglement { AdherentId = adh.AdherentId, FormuleId = f.FormuleId, Montant = f.Tarif, IsAdhesionIncluse = true });
+										context.Reglements.Add(new Reglement {  AbonnementId = abo.AbonnementId, Montant =  abo.Formule.Tarif, IsAdhesionIncluse = true });
 										break;
 									case TypeReglement.Cheque_Comptant:
 
-										AddReglementCheque(context, adh, f, 1);
+										AddReglementCheque(context, adh, abo, 1);
 										break;
 									case TypeReglement.Cheque_2Fois:
-										AddReglementCheque(context, adh, f, 2);
+										AddReglementCheque(context, adh, abo, 2);
 										break;
 									case TypeReglement.Cheque_3Fois:
-										AddReglementCheque(context, adh, f, 3);
+										AddReglementCheque(context, adh, abo, 3);
 										break;
 									case TypeReglement.Cheque_4Fois:
-										AddReglementCheque(context, adh, f, 4);
+										AddReglementCheque(context, adh, abo, 4);
 										break;
 								}
 
 								context.SaveChanges();
 							}
-							#endregion
-
 						}
 						#endregion
 
 
 
-						#endregion
 
 
 					}
@@ -344,7 +330,7 @@ namespace MvcGestionAsso.Migrations.Seed
 
 				throw;
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				// Uncomment to debug seed
 				if (System.Diagnostics.Debugger.IsAttached == false)
@@ -352,16 +338,30 @@ namespace MvcGestionAsso.Migrations.Seed
 			}
 		}
 
-		private static void AddReglementCheque(ApplicationDbContext context, Adherent adh, Formule f, int numChq)
+		private static void AddAbonnement(ApplicationDbContext context, Adherent adh, Formule formule)
+		{
+			DateTime dtStart = Lorem.DateTime(formule.DebutValidite.Value, formule.FinValidite.Value);
+			adh.Abonnements.Add(new Abonnement
+			{
+				AdherentId = adh.AdherentId,
+				DateDebut = dtStart,
+				DateFin = Lorem.DateTime(dtStart, formule.FinValidite.Value),
+				TypeReglement = Lorem.RandomEnum<TypeReglement>(),
+				FormuleId = formule.FormuleId,
+				Formule = formule
+			});
+		}
+
+		private static void AddReglementCheque(ApplicationDbContext context, Adherent adh, Abonnement abo, int numChq)
 		{
 			DateTime dtCheque;
+			Formule f = abo.Formule;
 			for (int n = 0; n < numChq; n++)
 			{
 				dtCheque = Lorem.DateTime(f.DebutValidite.Value, f.FinValidite.Value);
 				context.Reglements.Add(new Reglement
 				{
-					AdherentId = adh.AdherentId,
-					FormuleId = f.FormuleId,
+					AbonnementId = abo.AbonnementId,
 					Montant = f.Tarif / numChq,
 					IsAdhesionIncluse = n == 0,
 					ChequeBanque = Lorem.Words(1, 4).Limit(80),

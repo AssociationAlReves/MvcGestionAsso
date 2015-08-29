@@ -22,7 +22,7 @@ namespace MvcGestionAsso.DataLayer
 		public DbSet<Intervenant> Intervenants { get; set; }
 		public DbSet<Lieu> Lieux { get; set; }
 		public DbSet<Mission> Missions { get; set; }
-		public DbSet<ModeReglement> ModesReglement { get; set; }
+		public DbSet<Abonnement> Abonnements { get; set; }
 		public DbSet<Reglement> Reglements { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace MvcGestionAsso.DataLayer
 			modelBuilder.Configurations.Add(new IntervenantConfiguration());
 			modelBuilder.Configurations.Add(new LieuConfiguration());
 			modelBuilder.Configurations.Add(new MissionConfiguration());
-			modelBuilder.Configurations.Add(new ModeReglementConfiguration());
+			modelBuilder.Configurations.Add(new AbonnementConfiguration());
 			modelBuilder.Configurations.Add(new ReglementConfiguration());
 			modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
 
