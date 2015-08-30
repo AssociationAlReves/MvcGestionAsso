@@ -182,6 +182,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationRolesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataLayer\AbonnementConfiguration.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Intervenant.cs" />
     <Compile Include="Models\Lieu.cs" />
+    <Compile Include="ViewModels\ApplicationRoleViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Mission.cs" />
     <Compile Include="Models\Reglement.cs" />
@@ -303,6 +305,11 @@
     <Content Include="Views\Account\CheckYourEmail.cshtml" />
     <Content Include="Views\Account\UnconfirmedAccount.cshtml" />
     <Content Include="Views\Manage\ChangeProfile.cshtml" />
+    <Content Include="Views\ApplicationRoles\Create.cshtml" />
+    <Content Include="Views\ApplicationRoles\Delete.cshtml" />
+    <Content Include="Views\ApplicationRoles\Details.cshtml" />
+    <Content Include="Views\ApplicationRoles\Edit.cshtml" />
+    <Content Include="Views\ApplicationRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

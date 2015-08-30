@@ -49,5 +49,7 @@ namespace MvcGestionAsso.DataLayer
 		{
 			return new ApplicationDbContext();
 		}
+
+		public System.Data.Entity.DbSet<MvcGestionAsso.Models.ApplicationRole> IdentityRoles { get; set; }
 	}
 }
