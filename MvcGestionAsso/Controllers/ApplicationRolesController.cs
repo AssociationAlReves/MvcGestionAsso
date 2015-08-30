@@ -14,7 +14,7 @@ using MvcGestionAsso.ViewModels;
 
 namespace MvcGestionAsso.Controllers
 {
-	//[Authorize(Roles = "Admin")]
+	[Authorize(Roles = "Admin")]
 	public class ApplicationRolesController : Controller
 	{
 		//private ApplicationDbContext db = new ApplicationDbContext();

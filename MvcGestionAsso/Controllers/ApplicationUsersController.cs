@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace MvcGestionAsso.Controllers
 {
+	[Authorize(Roles = "Admin")]
 	public class ApplicationUsersController : Controller
 	{
 		public ApplicationUsersController()
@@ -101,9 +102,9 @@ namespace MvcGestionAsso.Controllers
 			var userRoles = await UserManager.GetRolesAsync(applicationUser.Id);
 			applicationUser.RolesList = RoleManager.Roles.ToList().Select(r => new SelectListItem
 																																							{
-																																								  Selected = userRoles.Contains(r.Name),
-																																									Text = r.Name,
-																																									Value = r.Name
+																																								Selected = userRoles.Contains(r.Name),
+																																								Text = r.Name,
+																																								Value = r.Name
 																																							});
 
 			return View(applicationUser);
@@ -129,7 +130,7 @@ namespace MvcGestionAsso.Controllers
 				// and the current stored count of users with admin == 1
 				var role = await RoleManager.FindByNameAsync("Admin");
 				bool isOnlyOneAdmin = role.Users.Count == 1;
-			
+
 				// Populate roles list in case we have to return to edit view
 				applicationUser = await UserManager.FindByIdAsync(applicationUser.Id);
 				applicationUser.RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem
@@ -139,14 +140,14 @@ namespace MvcGestionAsso.Controllers
 																																							Value = x.Name
 																																						});
 				// Then prevent removal of admin role
-				if (isAdmin  && isAdminDeselected && isOnlyOneAdmin)
+				if (isAdmin && isAdminDeselected && isOnlyOneAdmin)
 				{
 					ModelState.AddModelError("", "Au moins un utilisateur doit avoir le rôle Admin. Vous ne pouvez pas supprimer le dernier utilisateur dans ce cas.");
 					return View(applicationUser);
 				}
 
 				var result = await UserManager.AddToRolesAsync(
-					applicationUser.Id, 
+					applicationUser.Id,
 					rolesSelectedOnView.Except(rolesCurrentlyPersisted).ToArray());
 
 				if (!result.Succeeded)
@@ -185,7 +186,7 @@ namespace MvcGestionAsso.Controllers
 			await UserManager.SetLockoutEndDateAsync(id, DateTime.UtcNow.AddYears(-1));
 			return RedirectToAction("Index");
 		}
-		
+
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)
