@@ -18,13 +18,32 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nom d'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Gestion Association", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+
+                    @* Security *@
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">Sécurité <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Rôles", "Index", "ApplicationRoles")</li>
+                            <li>@Html.ActionLink("Utilisateurs", "Index", "ApplicationUsers")</li>
+                        </ul>
+                    </li>
+
+                    @* Association *@
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">Assocation <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Inventory Items", "Index", "InventoryItems")</li>
+                            <li>@Html.ActionLink("Service Items", "Index", "ServiceItems")</li>
+                        </ul>
+                    </li>
+
                     <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +53,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Mvc Gestion Association</p>
         </footer>
     </div>
 

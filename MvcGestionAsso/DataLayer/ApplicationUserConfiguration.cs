@@ -16,6 +16,7 @@ namespace MvcGestionAsso.DataLayer
 			Property(au => au.Address).HasMaxLength(30).IsOptional();
 			Property(au => au.City).HasMaxLength(30).IsOptional();
 			Property(au => au.ZipCode).HasMaxLength(5).IsOptional();
+			Ignore(au => au.RolesList);
 		}
 	}
 }
