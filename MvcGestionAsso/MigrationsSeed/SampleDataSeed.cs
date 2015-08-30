@@ -239,10 +239,11 @@ namespace MvcGestionAsso.Migrations.Seed
 				Formule abodanseBEL2 = context.Formules.First(f => f.ActiviteId == danseBEL2.ActiviteId);
 				Formule[] formules = context.Formules.ToArray();
 
-				#region Adherents (1000 random)
+				const int numAdherents = 2; //1000;
+				#region Adherents
 				if (context.Adherents.Any() == false)
 				{
-					for (int i = 1; i <= 1000; i++)
+					for (int i = 1; i <= numAdherents; i++)
 					{
 
 						context.Adherents.Add(new Adherent
@@ -289,7 +290,7 @@ namespace MvcGestionAsso.Migrations.Seed
 
 									case TypeReglement.CarteBleue:
 									case TypeReglement.Especes:
-										context.Reglements.Add(new Reglement {  AbonnementId = abo.AbonnementId, Montant =  abo.Formule.Tarif, IsAdhesionIncluse = true });
+										context.Reglements.Add(new Reglement { AbonnementId = abo.AbonnementId, Montant = abo.Formule.Tarif, IsAdhesionIncluse = true });
 										break;
 									case TypeReglement.Cheque_Comptant:
 
@@ -318,6 +319,48 @@ namespace MvcGestionAsso.Migrations.Seed
 					}
 				}
 				#endregion
+
+				#region Intervenants
+				string numSecu1 = Lorem.Number(100000000000000, 299999999999999).ToString();
+				string numSecu2 = Lorem.Number(100000000000000, 299999999999999).ToString();
+				context.Intervenants.AddOrUpdate(i => i.NumeroSecuriteSociale, new Intervenant
+					{
+						IntervenantNom = Lorem.Words(1).Limit(50),
+						IntervenantPrenom = Lorem.Words(1).Limit(50),
+						NumeroSecuriteSociale = numSecu1
+					});
+				context.Intervenants.AddOrUpdate(i => i.NumeroSecuriteSociale, new Intervenant
+				{
+					IntervenantNom = Lorem.Words(1).Limit(50),
+					IntervenantPrenom = Lorem.Words(1).Limit(50),
+					NumeroSecuriteSociale = numSecu2
+				});
+				context.SaveChanges();
+				#endregion
+				Intervenant int1 = context.Intervenants.First(i => i.NumeroSecuriteSociale == numSecu1);
+
+				#region Missions
+				context.Missions.AddOrUpdate(m => new { m.ActiviteId, m.IntervenantId }, new Mission
+						{
+							ActiviteId = zumbaCDH.ActiviteId,
+							IntervenantId = int1.IntervenantId,
+							DateDebut = zumbaCDH.DateDebut,
+							DateFin = zumbaCDH.DateFin,
+							Description = "Instructeur Zumba",
+							SalaireHoraire = 20
+						});
+				context.Missions.AddOrUpdate(m => new { m.ActiviteId, m.IntervenantId }, new Mission
+				{
+					ActiviteId = zumbaBEL.ActiviteId,
+					IntervenantId = int1.IntervenantId,
+					DateDebut = zumbaBEL.DateDebut,
+					DateFin = zumbaBEL.DateFin,
+					Description = "Instructeur Zumba",
+					SalaireHoraire = 20
+				});
+				context.SaveChanges(); 
+				#endregion
+
 
 			}
 			catch (System.Data.Entity.Validation.DbEntityValidationException e)
