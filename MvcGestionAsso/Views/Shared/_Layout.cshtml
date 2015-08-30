@@ -32,17 +32,31 @@
                         </ul>
                     </li>
 
-                    @* Association *@
+                    @* Activites *@
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">Assocation <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">Activités <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("Catégories", "Index", "Activites")</li>
+                            <li>@Html.ActionLink("Activités", "Index", "Activites")</li>
                             <li class="divider"></li>
-                            <li>@Html.ActionLink("Inventory Items", "Index", "InventoryItems")</li>
-                            <li>@Html.ActionLink("Service Items", "Index", "ServiceItems")</li>
+                            <li>@Html.ActionLink("Lieux", "Index", "Lieux")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Formules", "Index", "Formules")</li>
                         </ul>
                     </li>
 
+                    @* Gestion *@
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">Adhérents <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Adhérents", "Index", "Adherents")</li>
+                            <li>@Html.ActionLink("Abonnements", "Index", "Abonnements")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Missions", "Index", "Missions")</li>
+                            <li>@Html.ActionLink("Intervenants", "Index", "Intervenants")</li>
+                        </ul>
+                    </li>
+                    
                     <li>@Html.ActionLink("À propos de", "About", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
