@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201508292202422_AboAdherent.Designer.cs">
       <DependentUpon>201508292202422_AboAdherent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508302017530_RemoveCascadeConventions.cs" />
+    <Compile Include="Migrations\201508302017530_RemoveCascadeConventions.Designer.cs">
+      <DependentUpon>201508302017530_RemoveCascadeConventions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
@@ -313,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508292202422_AboAdherent.resx">
       <DependentUpon>201508292202422_AboAdherent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508302017530_RemoveCascadeConventions.resx">
+      <DependentUpon>201508302017530_RemoveCascadeConventions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

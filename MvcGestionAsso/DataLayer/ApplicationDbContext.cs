@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -27,6 +28,9 @@ namespace MvcGestionAsso.DataLayer
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+			modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
 			modelBuilder.Configurations.Add(new ActiviteConfiguration());
 			modelBuilder.Configurations.Add(new AdherentConfiguration());
 			modelBuilder.Configurations.Add(new CategorieActiviteConfiguration());
