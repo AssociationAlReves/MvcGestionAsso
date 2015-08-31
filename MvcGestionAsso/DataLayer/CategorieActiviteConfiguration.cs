@@ -13,12 +13,17 @@ namespace MvcGestionAsso.DataLayer
 	{
 		public CategorieActiviteConfiguration()
 		{
+			Property(ca => ca.Id).HasColumnName("CategorieActiviteId");
+
 			Property(ca => ca.CategorieActiviteNom)
 				.HasMaxLength(50)
 				.IsRequired()
 				.HasColumnAnnotation("Index",
 				new IndexAnnotation(new IndexAttribute("AK_CategorieActivite_CategorieActiviteNom") { IsUnique = true }));
 
+			HasOptional(ca => ca.Parent)
+								.WithMany(ca => ca.Children)
+								.HasForeignKey(ca => ca.ParentId);
 		}
 
 	}

@@ -68,18 +68,37 @@ namespace MvcGestionAsso.Migrations.Seed
 				// --------------------------------------------------------------------
 				// CategorieActivite
 				// ---
+				string nomcatDanse = "Cours de danse";
+				context.CategoriesActivite.AddOrUpdate(c => c.CategorieActiviteNom,
+					 new CategorieActivite
+					 {
+						 CategorieActiviteNom = nomcatDanse,
+						 ParentId = null
+					 });
+				context.CategoriesActivite.AddOrUpdate(c => c.CategorieActiviteNom,
+					 new CategorieActivite
+					 {
+						 CategorieActiviteNom = "Ateliers",
+						 ParentId = null
+					 });
+				context.SaveChanges();
+				CategorieActivite catDanseParent = context.CategoriesActivite.First(c => c.CategorieActiviteNom == nomcatDanse);
+
+
 				string nomCatDanseContemporaine = "Danse contemporaine";
 				context.CategoriesActivite.AddOrUpdate(c => c.CategorieActiviteNom,
 					 new CategorieActivite
 					 {
-						 CategorieActiviteNom = nomCatDanseContemporaine
+						 CategorieActiviteNom = nomCatDanseContemporaine,
+						 ParentId = catDanseParent.Id
 					 });
 
 				string nomCatZumba = "Zumba";
 				context.CategoriesActivite.AddOrUpdate(c => c.CategorieActiviteNom,
 					 new CategorieActivite
 					 {
-						 CategorieActiviteNom = nomCatZumba
+						 CategorieActiviteNom = nomCatZumba,
+						 ParentId = catDanseParent.Id
 					 });
 				context.SaveChanges();
 				#endregion
@@ -127,7 +146,7 @@ namespace MvcGestionAsso.Migrations.Seed
 					{
 						ActiviteCode = "DANSE-BEL-1",
 						ActiviteNom = "Danse contemporaine 4-6 ans Bellegarde",
-						CategorieActiviteId = catDanse.CategorieActiviteId,
+						CategorieActiviteId = catDanse.Id,
 						DureeHeures = 1,
 						DateDebut = new DateTime(2014, 09, 04, 17, 0, 0),
 						DateFin = new DateTime(2015, 07, 01),
@@ -139,7 +158,7 @@ namespace MvcGestionAsso.Migrations.Seed
 					{
 						ActiviteCode = "DANSE-BEL-2",
 						ActiviteNom = "Danse contemporaine 7-9 ans Bellegarde",
-						CategorieActiviteId = catDanse.CategorieActiviteId,
+						CategorieActiviteId = catDanse.Id,
 						DureeHeures = 1,
 						DateDebut = new DateTime(2014, 09, 04, 18, 0, 0),
 						DateFin = new DateTime(2015, 07, 01),
@@ -151,7 +170,7 @@ namespace MvcGestionAsso.Migrations.Seed
 					{
 						ActiviteCode = "ZUMBA-BEL",
 						ActiviteNom = "Zumba Bellegarde",
-						CategorieActiviteId = catZumba.CategorieActiviteId,
+						CategorieActiviteId = catZumba.Id,
 						DureeHeures = 1,
 						DateDebut = new DateTime(2014, 09, 04, 20, 0, 0),
 						DateFin = new DateTime(2015, 07, 01),
@@ -163,7 +182,7 @@ namespace MvcGestionAsso.Migrations.Seed
 				{
 					ActiviteCode = "ZUMBA-CDH",
 					ActiviteNom = "Zumba",
-					CategorieActiviteId = catZumba.CategorieActiviteId,
+					CategorieActiviteId = catZumba.Id,
 					DureeHeures = 1,
 					DateDebut = new DateTime(2014, 09, 01, 19, 0, 0),
 					DateFin = new DateTime(2015, 07, 01),

@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationRolesController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
+    <Compile Include="Controllers\CategoriesActiviteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataLayer\AbonnementConfiguration.cs" />
@@ -212,8 +213,13 @@
     <Compile Include="Migrations\201508302017530_RemoveCascadeConventions.Designer.cs">
       <DependentUpon>201508302017530_RemoveCascadeConventions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508311206243_Categories.cs" />
+    <Compile Include="Migrations\201508311206243_Categories.Designer.cs">
+      <DependentUpon>201508311206243_Categories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
+    <Compile Include="Models\ITreeNodeDotNet3.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Activite.cs" />
@@ -312,6 +318,11 @@
     <Content Include="Views\ApplicationRoles\Index.cshtml" />
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\CategoriesActivite\Create.cshtml" />
+    <Content Include="Views\CategoriesActivite\Delete.cshtml" />
+    <Content Include="Views\CategoriesActivite\Details.cshtml" />
+    <Content Include="Views\CategoriesActivite\Edit.cshtml" />
+    <Content Include="Views\CategoriesActivite\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508302017530_RemoveCascadeConventions.resx">
       <DependentUpon>201508302017530_RemoveCascadeConventions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311206243_Categories.resx">
+      <DependentUpon>201508311206243_Categories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

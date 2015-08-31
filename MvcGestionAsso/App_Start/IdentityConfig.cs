@@ -50,7 +50,7 @@ namespace MvcGestionAsso
 			string phoneNumber = ConfigurationManager.AppSettings["Twilio_PhoneNumber"];
 
 			var twilioRestClient = new TwilioRestClient(accountSid, authToken);
-			twilioRestClient.SendSmsMessage(phoneNumber, message.Destination, message.Body);
+			twilioRestClient.SendMessage(phoneNumber, message.Destination, message.Body);
 
 			return Task.FromResult(0);
 		}
