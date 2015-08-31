@@ -257,7 +257,7 @@ namespace MvcGestionAsso.Migrations.Seed
 								EditeurCourantId = adminUser.Id,
 								EMail = Lorem.Email().Limit(80),
 								Notes = Lorem.Chance(10, 100) ? Lorem.Paragraph(20, 2).Limit(150) : "",
-								Statut = Lorem.RandomEnum<StatutAdherent>(),
+								Statut = Lorem.Enum<StatutAdherent>(),
 								Telephone = "0" + Lorem.Number(100000000, 999999999).ToString(),
 								Ville = Lorem.Words(1, 4).Limit(150),
 								DateCreation = DateTime.Now,
@@ -389,7 +389,7 @@ namespace MvcGestionAsso.Migrations.Seed
 				AdherentId = adh.AdherentId,
 				DateDebut = dtStart,
 				DateFin = Lorem.DateTime(dtStart, formule.FinValidite.Value),
-				TypeReglement = Lorem.RandomEnum<TypeReglement>(),
+				TypeReglement = Lorem.Enum<TypeReglement>(),
 				FormuleId = formule.FormuleId,
 				Formule = formule
 			});
