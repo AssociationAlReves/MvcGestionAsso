@@ -1,0 +1,74 @@
+﻿@model MvcGestionAsso.Models.Activite
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Activite</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.CategorieActiviteNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.CategorieActiviteNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lieu.LieuCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lieu.LieuCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiviteNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActiviteNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiviteCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActiviteCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DureeHeures)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DureeHeures)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ActiviteId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -181,10 +181,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivitesController.cs" />
     <Compile Include="Controllers\ApplicationRolesController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\CategoriesActiviteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LieuxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataLayer\AbonnementConfiguration.cs" />
     <Compile Include="DataLayer\AdherentConfiguration.cs" />
@@ -323,6 +325,16 @@
     <Content Include="Views\CategoriesActivite\Delete.cshtml" />
     <Content Include="Views\CategoriesActivite\Edit.cshtml" />
     <Content Include="Views\CategoriesActivite\Index.cshtml" />
+    <Content Include="Views\Lieux\Create.cshtml" />
+    <Content Include="Views\Lieux\Delete.cshtml" />
+    <Content Include="Views\Lieux\Details.cshtml" />
+    <Content Include="Views\Lieux\Edit.cshtml" />
+    <Content Include="Views\Lieux\Index.cshtml" />
+    <Content Include="Views\Activites\Create.cshtml" />
+    <Content Include="Views\Activites\Delete.cshtml" />
+    <Content Include="Views\Activites\Details.cshtml" />
+    <Content Include="Views\Activites\Edit.cshtml" />
+    <Content Include="Views\Activites\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

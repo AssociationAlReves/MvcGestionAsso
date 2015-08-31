@@ -30,8 +30,6 @@ namespace MvcGestionAsso.Models
 		[Display(Name = "Catégorie")]    
 		public string CategorieActiviteNom { get; set; }
 
-		public virtual List<Activite> Activites { get; set; }
-
 		public virtual CategorieActivite Parent { get; set; }
 
 		public IList<CategorieActivite> Children { get; set; }
