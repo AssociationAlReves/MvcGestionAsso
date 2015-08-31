@@ -231,6 +231,7 @@
     <Compile Include="Models\Intervenant.cs" />
     <Compile Include="Models\Lieu.cs" />
     <Compile Include="ViewModels\ApplicationRoleViewModel.cs" />
+    <Compile Include="ViewModels\CategorieActiviteViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Mission.cs" />
     <Compile Include="Models\Reglement.cs" />
@@ -320,7 +321,6 @@
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
     <Content Include="Views\CategoriesActivite\Create.cshtml" />
     <Content Include="Views\CategoriesActivite\Delete.cshtml" />
-    <Content Include="Views\CategoriesActivite\Details.cshtml" />
     <Content Include="Views\CategoriesActivite\Edit.cshtml" />
     <Content Include="Views\CategoriesActivite\Index.cshtml" />
   </ItemGroup>

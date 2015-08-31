@@ -1,39 +1,16 @@
-﻿@model IEnumerable<MvcGestionAsso.Models.CategorieActivite>
+﻿@model string
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Catégories d'activités";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <br />
+    <a href="/CategoriesActivite/Create" class="btn btn-success btn-xs">Nouvelle</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Parent.CategorieActiviteNom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CategorieActiviteNom)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Parent.CategorieActiviteNom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategorieActiviteNom)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+<div id="categories">
+    @Html.Raw(@Model)
+</div>
