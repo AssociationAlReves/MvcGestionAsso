@@ -12,7 +12,7 @@ namespace MvcGestionAsso.Models
 
 		[Required(ErrorMessage = "Le nom du lieu est requis.")]
 		[StringLength(100, ErrorMessage = "Le nom du lieu doit comporter moins de 100 caractères.")]
-		[Display(Name = "Nom")]
+		[Display(Name = "Lieu")]
 		public string LieuNom { get; set; }
 
 		[Required(ErrorMessage = "Le code du lieu est requis.")]
