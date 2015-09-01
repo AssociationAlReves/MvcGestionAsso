@@ -1,0 +1,146 @@
+﻿@model MvcGestionAsso.Models.Adherent
+
+@{
+    ViewBag.Title = "Détails";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Adherent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EditeurCourant.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditeurCourant.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdherentNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdherentNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdherentPrenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdherentPrenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Famille)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Famille)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodePostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodePostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateResiliation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateResiliation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CertificatMedical)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CertificatMedical)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.AdherentId }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>
