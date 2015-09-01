@@ -29,7 +29,8 @@ namespace MvcGestionAsso.Models
 		[Range(0.5, 8, ErrorMessage = "La durée doit être comprise entre 0.5 et 8 heures")]
 		public float DureeHeures { get; set; }
 
-		public virtual Lieu Lieu { get; set; }
+		public Lieu Lieu { get; set; }
+		[Display(Name = "Lieu")]
 		public int LieuId { get; set; }
 
 		public CategorieActivite Categorie { get; set; }

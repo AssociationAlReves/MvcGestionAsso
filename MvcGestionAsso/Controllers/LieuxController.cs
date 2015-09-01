@@ -14,12 +14,12 @@ namespace MvcGestionAsso.Controllers
 {
     public class LieuxController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+			private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
         // GET: Lieux
         public async Task<ActionResult> Index()
         {
-            return View(await db.Lieux.ToListAsync());
+					return View(await _applicationDbContext.Lieux.ToListAsync());
         }
 
         // GET: Lieux/Details/5
@@ -29,7 +29,7 @@ namespace MvcGestionAsso.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lieu lieu = await db.Lieux.FindAsync(id);
+						Lieu lieu = await _applicationDbContext.Lieux.FindAsync(id);
             if (lieu == null)
             {
                 return HttpNotFound();
@@ -52,8 +52,8 @@ namespace MvcGestionAsso.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Lieux.Add(lieu);
-                await db.SaveChangesAsync();
+                _applicationDbContext.Lieux.Add(lieu);
+                await _applicationDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +67,7 @@ namespace MvcGestionAsso.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lieu lieu = await db.Lieux.FindAsync(id);
+            Lieu lieu = await _applicationDbContext.Lieux.FindAsync(id);
             if (lieu == null)
             {
                 return HttpNotFound();
@@ -84,8 +84,8 @@ namespace MvcGestionAsso.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lieu).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _applicationDbContext.Entry(lieu).State = EntityState.Modified;
+                await _applicationDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(lieu);
@@ -98,7 +98,7 @@ namespace MvcGestionAsso.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lieu lieu = await db.Lieux.FindAsync(id);
+            Lieu lieu = await _applicationDbContext.Lieux.FindAsync(id);
             if (lieu == null)
             {
                 return HttpNotFound();
@@ -111,9 +111,9 @@ namespace MvcGestionAsso.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Lieu lieu = await db.Lieux.FindAsync(id);
-            db.Lieux.Remove(lieu);
-            await db.SaveChangesAsync();
+            Lieu lieu = await _applicationDbContext.Lieux.FindAsync(id);
+            _applicationDbContext.Lieux.Remove(lieu);
+            await _applicationDbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -121,7 +121,7 @@ namespace MvcGestionAsso.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _applicationDbContext.Dispose();
             }
             base.Dispose(disposing);
         }

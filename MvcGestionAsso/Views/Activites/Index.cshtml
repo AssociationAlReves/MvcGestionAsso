@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<MvcGestionAsso.Models.Activite>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Activités";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Créer", "Create")
 </p>
 <table class="table">
     <tr>
@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Categorie.CategorieActiviteNom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Lieu.LieuCode)
+            @Html.DisplayNameFor(model => model.Lieu.LieuNom)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ActiviteNom)
@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.Categorie.CategorieActiviteNom)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Lieu.LieuCode)
+            @Html.DisplayFor(modelItem => item.Lieu.LieuNom)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ActiviteNom)
@@ -59,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.DureeHeures)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ActiviteId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ActiviteId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ActiviteId })
+            @Html.ActionLink("Modifier", "Edit", new { id=item.ActiviteId }) |
+            @Html.ActionLink("Détails", "Details", new { id=item.ActiviteId }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.ActiviteId })
         </td>
     </tr>
 }

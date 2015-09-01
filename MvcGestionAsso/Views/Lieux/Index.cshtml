@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<MvcGestionAsso.Models.Lieu>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lieux";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nouveau", "Create")
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Ville)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LieuId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LieuId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LieuId })
+            @Html.ActionLink("Modifier", "Edit", new { id=item.LieuId }) |
+            @Html.ActionLink("Détails", "Details", new { id=item.LieuId }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.LieuId })
         </td>
     </tr>
 }

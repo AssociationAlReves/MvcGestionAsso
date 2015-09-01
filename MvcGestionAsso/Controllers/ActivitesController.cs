@@ -14,12 +14,12 @@ namespace MvcGestionAsso.Controllers
 {
     public class ActivitesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
         // GET: Activites
         public async Task<ActionResult> Index()
         {
-            var activites = db.Activites.Include(a => a.Categorie).Include(a => a.Lieu);
+            var activites = _applicationDbContext.Activites.Include(a => a.Categorie).Include(a => a.Lieu);
             return View(await activites.ToListAsync());
         }
 
@@ -30,7 +30,7 @@ namespace MvcGestionAsso.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activite activite = await db.Activites.FindAsync(id);
+            Activite activite = await _applicationDbContext.Activites.FindAsync(id);
             if (activite == null)
             {
                 return HttpNotFound();
@@ -41,8 +41,8 @@ namespace MvcGestionAsso.Controllers
         // GET: Activites/Create
         public ActionResult Create()
         {
-            ViewBag.CategorieActiviteId = new SelectList(db.CategoriesActivite, "Id", "CategorieActiviteNom");
-            ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuCode");
+            ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom");
+						ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom");
             return View();
         }
 
@@ -55,13 +55,13 @@ namespace MvcGestionAsso.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Activites.Add(activite);
-                await db.SaveChangesAsync();
+                _applicationDbContext.Activites.Add(activite);
+                await _applicationDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategorieActiviteId = new SelectList(db.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
-            ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuCode", activite.LieuId);
+            ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
+						ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
             return View(activite);
         }
 
@@ -72,13 +72,13 @@ namespace MvcGestionAsso.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activite activite = await db.Activites.FindAsync(id);
+            Activite activite = await _applicationDbContext.Activites.FindAsync(id);
             if (activite == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategorieActiviteId = new SelectList(db.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
-            ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuCode", activite.LieuId);
+            ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
+            ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
             return View(activite);
         }
 
@@ -91,12 +91,12 @@ namespace MvcGestionAsso.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(activite).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _applicationDbContext.Entry(activite).State = EntityState.Modified;
+                await _applicationDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategorieActiviteId = new SelectList(db.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
-            ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuCode", activite.LieuId);
+            ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
+						ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
             return View(activite);
         }
 
@@ -107,7 +107,7 @@ namespace MvcGestionAsso.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activite activite = await db.Activites.FindAsync(id);
+            Activite activite = await _applicationDbContext.Activites.FindAsync(id);
             if (activite == null)
             {
                 return HttpNotFound();
@@ -120,9 +120,9 @@ namespace MvcGestionAsso.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Activite activite = await db.Activites.FindAsync(id);
-            db.Activites.Remove(activite);
-            await db.SaveChangesAsync();
+            Activite activite = await _applicationDbContext.Activites.FindAsync(id);
+            _applicationDbContext.Activites.Remove(activite);
+            await _applicationDbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -130,7 +130,7 @@ namespace MvcGestionAsso.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _applicationDbContext.Dispose();
             }
             base.Dispose(disposing);
         }
