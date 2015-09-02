@@ -14,6 +14,8 @@ This MVC app is aiming at easing management of :
 ## Notes
  - Many terms are in French (ie: *Adherent* for *Subscriber*,
    *Abonnement* for *Subscription*, etc)
+- SendGrid is used for emails
+- Twilio is used for SMS
 
 ## Credits
  - Based on Pluralsight course [Master-Detail Workflow Apps with EF, MVC, Identity 2, and Modals](http://www.pluralsight.com/courses/master-detail-workflow-ef-mvc-identity-modals), by Adam Churvis
