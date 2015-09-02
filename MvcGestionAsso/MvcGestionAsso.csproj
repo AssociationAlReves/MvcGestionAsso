@@ -197,6 +197,7 @@
     <Compile Include="Controllers\ApplicationRolesController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\CategoriesActiviteController.cs" />
+    <Compile Include="Controllers\FormulesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LieuxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -381,6 +382,11 @@
     <Content Include="Views\Abonnements\Details.cshtml" />
     <Content Include="Views\Abonnements\Edit.cshtml" />
     <Content Include="Views\Abonnements\Index.cshtml" />
+    <Content Include="Views\Formules\Create.cshtml" />
+    <Content Include="Views\Formules\Delete.cshtml" />
+    <Content Include="Views\Formules\Details.cshtml" />
+    <Content Include="Views\Formules\Edit.cshtml" />
+    <Content Include="Views\Formules\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

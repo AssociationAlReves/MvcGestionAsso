@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MvcGestionAsso.Models.Formule>
+
+@{
+    ViewBag.Title = "Formules";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Activite.ActiviteNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FormuleNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DebutValidite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinValidite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarif)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activite.ActiviteNom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormuleNom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DebutValidite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinValidite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarif)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.FormuleId }) |
+            @Html.ActionLink("Détails", "Details", new { id=item.FormuleId }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.FormuleId })
+        </td>
+    </tr>
+}
+
+</table>
