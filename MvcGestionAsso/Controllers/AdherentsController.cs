@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcGestionAsso.Controllers
 {
@@ -17,7 +19,7 @@ namespace MvcGestionAsso.Controllers
 		private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
 		// GET: Adherents
-		public async Task<ActionResult> Index(string sort, string search)
+		public ActionResult Index(string sort, string search, int? page)
 		{
 			ViewBag.NomSort = ComputeSort("nom", sort, true);
 			ViewBag.PrenomSort = ComputeSort("prenom", sort);
@@ -25,6 +27,9 @@ namespace MvcGestionAsso.Controllers
 			ViewBag.DateCreationSort = ComputeSort("datecreation", sort);
 			ViewBag.DateModifSort = ComputeSort("datemodif", sort);
 			ViewBag.StatutSort = ComputeSort("statut", sort);
+
+			ViewBag.CurrentSort = sort;
+			ViewBag.CurrentSearch = search;
 
 			IQueryable<Adherent> adherents = _applicationDbContext.Adherents;
 
@@ -103,7 +108,12 @@ namespace MvcGestionAsso.Controllers
 			}
 			#endregion
 
-			return View(await adherents.ToListAsync());
+			#region Pagination
+			const int PAGE_SIZE = 10;
+			int pageNumber = page ?? 1;
+			#endregion
+
+			return View(adherents.ToPagedList(pageNumber, PAGE_SIZE));
 		}
 
 		private string ComputeSort(string fieldName, string inputSort, bool isDefault = false, bool isDefaultSortAscending = true)

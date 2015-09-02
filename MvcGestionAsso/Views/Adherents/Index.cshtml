@@ -1,4 +1,7 @@
-﻿@model IEnumerable<MvcGestionAsso.Models.Adherent>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<MvcGestionAsso.Models.Adherent>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Adhérents";
@@ -19,22 +22,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink(Html.DisplayNameFor(model => model.AdherentNom).ToHtmlString(), "Index", new { sort = ViewBag.NomSort })
+            @Html.ActionLink("Nom", "Index", new { sort = ViewBag.NomSort, search = ViewBag.CurrentSearch })
         </th>
         <th>
-            @Html.ActionLink("Prénom", "Index", new { sort = ViewBag.PrenomSort })
+            @Html.ActionLink("Prénom", "Index", new { sort = ViewBag.PrenomSort, search = ViewBag.CurrentSearch })
         </th>
         <th>
-            @Html.ActionLink(Html.DisplayNameFor(model => model.Famille).ToHtmlString(), "Index", new { sort = ViewBag.FamilleSort })
+            @Html.ActionLink("Famille", "Index", new { sort = ViewBag.FamilleSort, search = ViewBag.CurrentSearch })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Notes)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.EMail)
+            @Html.DisplayNameFor(model => model.First().EMail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telephone)
+            @Html.DisplayNameFor(model => model.First().Telephone)
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Adresse)
@@ -46,19 +49,19 @@
             @Html.DisplayNameFor(model => model.CodePostal)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Ville)
+            @Html.DisplayNameFor(model => model.First().Ville)
         </th>
         <th>
-            @Html.ActionLink(Html.DisplayNameFor(model => model.DateCreation).ToHtmlString(), "Index", new { sort = ViewBag.DateCreationSort })
+            @Html.ActionLink(Html.DisplayNameFor(model => model.First().DateCreation).ToHtmlString(), "Index", new { sort = ViewBag.DateCreationSort, search = ViewBag.CurrentSearch })
         </th>
         <th>
-            @Html.ActionLink(Html.DisplayNameFor(model => model.DateModification).ToHtmlString(), "Index", new { sort = ViewBag.DateModifSort })
+            @Html.ActionLink(Html.DisplayNameFor(model => model.First().DateModification).ToHtmlString(), "Index", new { sort = ViewBag.DateModifSort, search = ViewBag.CurrentSearch })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.DateResiliation)
         </th>*@
         <th>
-            @Html.ActionLink(Html.DisplayNameFor(model => model.Statut).ToHtmlString(), "Index", new { sort = ViewBag.StatutSort })
+            @Html.ActionLink(Html.DisplayNameFor(model => model.First().Statut).ToHtmlString(), "Index", new { sort = ViewBag.StatutSort, search = ViewBag.CurrentSearch })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.CertificatMedical)
@@ -122,3 +125,7 @@
 }
 
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sort = ViewBag.CurrentSort, search = ViewBag.CurrentSearch}))
