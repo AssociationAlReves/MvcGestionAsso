@@ -1,10 +1,17 @@
 ﻿@model IEnumerable<MvcGestionAsso.Models.Adherent>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Adhérents";
 }
 
 <h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Index", "Adherents", FormMethod.Get, new { @class = "form-inline"}))
+{
+    @Html.Label("search", "Nom ou Prénom :", new { @class = "control-label"})
+    @Html.TextBox("search", ViewBag.CurrentSearch as string, new { @class = "form-control"})
+    <input type="submit" value="Rechercher" class="btn btn-default"/>
+}
 
 <p>
     @Html.ActionLink("Nouveau", "Create")

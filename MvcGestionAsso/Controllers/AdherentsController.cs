@@ -17,7 +17,7 @@ namespace MvcGestionAsso.Controllers
 		private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
 		// GET: Adherents
-		public async Task<ActionResult> Index(string sort)
+		public async Task<ActionResult> Index(string sort, string search)
 		{
 			ViewBag.NomSort = ComputeSort("nom", sort, true);
 			ViewBag.PrenomSort = ComputeSort("prenom", sort);
@@ -27,6 +27,14 @@ namespace MvcGestionAsso.Controllers
 			ViewBag.StatutSort = ComputeSort("statut", sort);
 
 			IQueryable<Adherent> adherents = _applicationDbContext.Adherents;
+
+			#region Searching
+			if (!String.IsNullOrEmpty(search))
+			{
+				adherents = adherents
+					.Where(a => a.AdherentNom.StartsWith(search) || a.AdherentPrenom.StartsWith(search));
+			}
+			#endregion
 
 			#region Sorting
 			switch (sort)
