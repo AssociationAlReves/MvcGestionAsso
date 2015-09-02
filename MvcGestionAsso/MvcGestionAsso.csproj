@@ -272,7 +272,6 @@
     <Content Include="appSettings.sensitive.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="CodeTemplates\ApiControllerWithContext\Controller.cs.t4" />
     <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />

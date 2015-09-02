@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AdherentNom)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.AdherentNom).ToHtmlString(), "Index", new { sort = ViewBag.NomSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AdherentPrenom)
+            @Html.ActionLink("Prénom", "Index", new { sort = ViewBag.PrenomSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Famille)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Famille).ToHtmlString(), "Index", new { sort = ViewBag.FamilleSort })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Notes)
@@ -42,16 +42,16 @@
             @Html.DisplayNameFor(model => model.Ville)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateCreation)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.DateCreation).ToHtmlString(), "Index", new { sort = ViewBag.DateCreationSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateModification)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.DateModification).ToHtmlString(), "Index", new { sort = ViewBag.DateModifSort })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.DateResiliation)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Statut)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Statut).ToHtmlString(), "Index", new { sort = ViewBag.StatutSort })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.CertificatMedical)
