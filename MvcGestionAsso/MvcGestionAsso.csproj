@@ -76,6 +76,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -240,7 +242,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Models\ITreeNodeDotNet3.cs" />
-    <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="Misc\StringExtensions.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Activite.cs" />
     <Compile Include="Models\Adherent.cs" />
@@ -290,7 +292,9 @@
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <None Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <None Include="Misc\ERD Diagram.edmx" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <None Include="Misc\EDR Diagram.bmp" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />

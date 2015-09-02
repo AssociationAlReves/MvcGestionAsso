@@ -1,0 +1,760 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Edmx Version="3.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <Runtime>
+    <ConceptualModels>
+      <Schema Namespace="MvcGestionAsso.DataLayer" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Abonnement" customannotation:ClrType="MvcGestionAsso.Models.Abonnement, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="AbonnementId" />
+          </Key>
+          <Property Name="AbonnementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdherentId" Type="Int32" Nullable="false" />
+          <Property Name="FormuleId" Type="Int32" Nullable="false" />
+          <Property Name="TypeReglement" Type="Self.TypeReglement" Nullable="false" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Adherent" Relationship="Self.Adherent_Abonnements" FromRole="Adherent_Abonnements_Target" ToRole="Adherent_Abonnements_Source" />
+          <NavigationProperty Name="Formule" Relationship="Self.Formule_Abonnements" FromRole="Formule_Abonnements_Target" ToRole="Formule_Abonnements_Source" />
+          <NavigationProperty Name="Reglements" Relationship="Self.Reglement_Abonnement" FromRole="Reglement_Abonnement_Target" ToRole="Reglement_Abonnement_Source" />
+        </EntityType>
+        <EntityType Name="Adherent" customannotation:ClrType="MvcGestionAsso.Models.Adherent, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="AdherentId" />
+          </Key>
+          <Property Name="AdherentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdherentNom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdherentPrenom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Famille" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CodePostal" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="DateModification" Type="DateTime" Nullable="false" />
+          <Property Name="DateResiliation" Type="DateTime" />
+          <Property Name="Statut" Type="Self.StatutAdherent" Nullable="false" />
+          <Property Name="CertificatMedical" Type="Boolean" />
+          <NavigationProperty Name="Abonnements" Relationship="Self.Adherent_Abonnements" FromRole="Adherent_Abonnements_Source" ToRole="Adherent_Abonnements_Target" />
+        </EntityType>
+        <EntityType Name="Formule" customannotation:ClrType="MvcGestionAsso.Models.Formule, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="FormuleId" />
+          </Key>
+          <Property Name="FormuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormuleNom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DebutValidite" Type="DateTime" />
+          <Property Name="FinValidite" Type="DateTime" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Tarif" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ActiviteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonnements" Relationship="Self.Formule_Abonnements" FromRole="Formule_Abonnements_Source" ToRole="Formule_Abonnements_Target" />
+          <NavigationProperty Name="Activite" Relationship="Self.Formule_Activite" FromRole="Formule_Activite_Source" ToRole="Formule_Activite_Target" />
+        </EntityType>
+        <EntityType Name="Activite" customannotation:ClrType="MvcGestionAsso.Models.Activite, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="ActiviteId" />
+          </Key>
+          <Property Name="ActiviteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActiviteNom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActiviteCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" />
+          <Property Name="DureeHeures" Type="Single" Nullable="false" />
+          <Property Name="LieuId" Type="Int32" Nullable="false" />
+          <Property Name="CategorieActiviteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categorie" Relationship="Self.Activite_Categorie" FromRole="Activite_Categorie_Source" ToRole="Activite_Categorie_Target" />
+          <NavigationProperty Name="Lieu" Relationship="Self.Lieu_Activites" FromRole="Lieu_Activites_Target" ToRole="Lieu_Activites_Source" />
+          <NavigationProperty Name="Missions" Relationship="Self.Mission_Activite" FromRole="Mission_Activite_Target" ToRole="Mission_Activite_Source" />
+        </EntityType>
+        <EntityType Name="CategorieActivite" customannotation:ClrType="MvcGestionAsso.Models.CategorieActivite, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="CategorieActiviteNom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Children" Relationship="Self.CategorieActivite_Parent" FromRole="CategorieActivite_Parent_Target" ToRole="CategorieActivite_Parent_Source" />
+          <NavigationProperty Name="Parent" Relationship="Self.CategorieActivite_Parent" FromRole="CategorieActivite_Parent_Source" ToRole="CategorieActivite_Parent_Target" />
+        </EntityType>
+        <EntityType Name="Lieu" customannotation:ClrType="MvcGestionAsso.Models.Lieu, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="LieuId" />
+          </Key>
+          <Property Name="LieuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LieuNom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LieuCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CodePostal" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activites" Relationship="Self.Lieu_Activites" FromRole="Lieu_Activites_Source" ToRole="Lieu_Activites_Target" />
+        </EntityType>
+        <EntityType Name="Mission" customannotation:ClrType="MvcGestionAsso.Models.Mission, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="MissionId" />
+          </Key>
+          <Property Name="MissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SalaireHoraire" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" />
+          <Property Name="IntervenantId" Type="Int32" Nullable="false" />
+          <Property Name="ActiviteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activite" Relationship="Self.Mission_Activite" FromRole="Mission_Activite_Source" ToRole="Mission_Activite_Target" />
+          <NavigationProperty Name="Intervenant" Relationship="Self.Intervenant_Missions" FromRole="Intervenant_Missions_Target" ToRole="Intervenant_Missions_Source" />
+        </EntityType>
+        <EntityType Name="Intervenant" customannotation:ClrType="MvcGestionAsso.Models.Intervenant, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="IntervenantId" />
+          </Key>
+          <Property Name="IntervenantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IntervenantNom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntervenantPrenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroSecuriteSociale" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="DateModification" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Missions" Relationship="Self.Intervenant_Missions" FromRole="Intervenant_Missions_Source" ToRole="Intervenant_Missions_Target" />
+        </EntityType>
+        <EntityType Name="Reglement" customannotation:ClrType="MvcGestionAsso.Models.Reglement, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="ReglementId" />
+          </Key>
+          <Property Name="ReglementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Montant" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MoyenPaiement" Type="Self.MoyenPaiement" Nullable="false" />
+          <Property Name="IsAdhesionIncluse" Type="Boolean" Nullable="false" />
+          <Property Name="ChequeNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeBanque" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeTitulaire" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeDate" Type="DateTime" />
+          <Property Name="ChequeDateEncaissement" Type="DateTime" />
+          <Property Name="AbonnementId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonnement" Relationship="Self.Reglement_Abonnement" FromRole="Reglement_Abonnement_Source" ToRole="Reglement_Abonnement_Target" />
+        </EntityType>
+        <EnumType Name="TypeReglement" IsFlags="false" customannotation:ClrType="MvcGestionAsso.Models.TypeReglement, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" UnderlyingType="Int32">
+          <Member Name="Especes" Value="10" />
+          <Member Name="Cheque_Comptant" Value="15" />
+          <Member Name="Cheque_2Fois" Value="20" />
+          <Member Name="Cheque_3Fois" Value="30" />
+          <Member Name="Cheque_4Fois" Value="40" />
+          <Member Name="CarteBleue" Value="50" />
+        </EnumType>
+        <EnumType Name="StatutAdherent" IsFlags="false" customannotation:ClrType="MvcGestionAsso.Models.StatutAdherent, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" UnderlyingType="Int32">
+          <Member Name="Cree" Value="0" />
+          <Member Name="Valide" Value="10" />
+          <Member Name="AdhesionAJour" Value="20" />
+          <Member Name="Resilie" Value="30" />
+          <Member Name="Supprime" Value="-20" />
+          <Member Name="Annule" Value="-10" />
+        </EnumType>
+        <EnumType Name="MoyenPaiement" IsFlags="false" customannotation:ClrType="MvcGestionAsso.Models.MoyenPaiement, MvcGestionAsso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" UnderlyingType="Int32">
+          <Member Name="Especes" Value="10" />
+          <Member Name="Cheque" Value="20" />
+          <Member Name="CB" Value="30" />
+        </EnumType>
+        <Association Name="Adherent_Abonnements">
+          <End Role="Adherent_Abonnements_Source" Type="Self.Adherent" Multiplicity="1" />
+          <End Role="Adherent_Abonnements_Target" Type="Self.Abonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adherent_Abonnements_Source">
+              <PropertyRef Name="AdherentId" />
+            </Principal>
+            <Dependent Role="Adherent_Abonnements_Target">
+              <PropertyRef Name="AdherentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Formule_Abonnements">
+          <End Role="Formule_Abonnements_Source" Type="Self.Formule" Multiplicity="1" />
+          <End Role="Formule_Abonnements_Target" Type="Self.Abonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formule_Abonnements_Source">
+              <PropertyRef Name="FormuleId" />
+            </Principal>
+            <Dependent Role="Formule_Abonnements_Target">
+              <PropertyRef Name="FormuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategorieActivite_Parent">
+          <End Role="CategorieActivite_Parent_Source" Type="Self.CategorieActivite" Multiplicity="*" />
+          <End Role="CategorieActivite_Parent_Target" Type="Self.CategorieActivite" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieActivite_Parent_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategorieActivite_Parent_Source">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Activite_Categorie">
+          <End Role="Activite_Categorie_Source" Type="Self.Activite" Multiplicity="*" />
+          <End Role="Activite_Categorie_Target" Type="Self.CategorieActivite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Activite_Categorie_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activite_Categorie_Source">
+              <PropertyRef Name="CategorieActiviteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Lieu_Activites">
+          <End Role="Lieu_Activites_Source" Type="Self.Lieu" Multiplicity="1" />
+          <End Role="Lieu_Activites_Target" Type="Self.Activite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lieu_Activites_Source">
+              <PropertyRef Name="LieuId" />
+            </Principal>
+            <Dependent Role="Lieu_Activites_Target">
+              <PropertyRef Name="LieuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Mission_Activite">
+          <End Role="Mission_Activite_Source" Type="Self.Mission" Multiplicity="*" />
+          <End Role="Mission_Activite_Target" Type="Self.Activite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Mission_Activite_Target">
+              <PropertyRef Name="ActiviteId" />
+            </Principal>
+            <Dependent Role="Mission_Activite_Source">
+              <PropertyRef Name="ActiviteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Intervenant_Missions">
+          <End Role="Intervenant_Missions_Source" Type="Self.Intervenant" Multiplicity="1" />
+          <End Role="Intervenant_Missions_Target" Type="Self.Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intervenant_Missions_Source">
+              <PropertyRef Name="IntervenantId" />
+            </Principal>
+            <Dependent Role="Intervenant_Missions_Target">
+              <PropertyRef Name="IntervenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Formule_Activite">
+          <End Role="Formule_Activite_Source" Type="Self.Formule" Multiplicity="*" />
+          <End Role="Formule_Activite_Target" Type="Self.Activite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Formule_Activite_Target">
+              <PropertyRef Name="ActiviteId" />
+            </Principal>
+            <Dependent Role="Formule_Activite_Source">
+              <PropertyRef Name="ActiviteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Reglement_Abonnement">
+          <End Role="Reglement_Abonnement_Source" Type="Self.Reglement" Multiplicity="*" />
+          <End Role="Reglement_Abonnement_Target" Type="Self.Abonnement" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Reglement_Abonnement_Target">
+              <PropertyRef Name="AbonnementId" />
+            </Principal>
+            <Dependent Role="Reglement_Abonnement_Source">
+              <PropertyRef Name="AbonnementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ApplicationDbContext" customannotation:UseClrTypes="true">
+          <EntitySet Name="Abonnements" EntityType="Self.Abonnement" />
+          <EntitySet Name="Adherents" EntityType="Self.Adherent" />
+          <EntitySet Name="Formules" EntityType="Self.Formule" />
+          <EntitySet Name="Activites" EntityType="Self.Activite" />
+          <EntitySet Name="CategoriesActivite" EntityType="Self.CategorieActivite" />
+          <EntitySet Name="Lieux" EntityType="Self.Lieu" />
+          <EntitySet Name="Missions" EntityType="Self.Mission" />
+          <EntitySet Name="Intervenants" EntityType="Self.Intervenant" />
+          <EntitySet Name="Reglements" EntityType="Self.Reglement" />
+          <AssociationSet Name="Adherent_Abonnements" Association="Self.Adherent_Abonnements">
+            <End Role="Adherent_Abonnements_Source" EntitySet="Adherents" />
+            <End Role="Adherent_Abonnements_Target" EntitySet="Abonnements" />
+          </AssociationSet>
+          <AssociationSet Name="Formule_Abonnements" Association="Self.Formule_Abonnements">
+            <End Role="Formule_Abonnements_Source" EntitySet="Formules" />
+            <End Role="Formule_Abonnements_Target" EntitySet="Abonnements" />
+          </AssociationSet>
+          <AssociationSet Name="CategorieActivite_Parent" Association="Self.CategorieActivite_Parent">
+            <End Role="CategorieActivite_Parent_Source" EntitySet="CategoriesActivite" />
+            <End Role="CategorieActivite_Parent_Target" EntitySet="CategoriesActivite" />
+          </AssociationSet>
+          <AssociationSet Name="Activite_Categorie" Association="Self.Activite_Categorie">
+            <End Role="Activite_Categorie_Source" EntitySet="Activites" />
+            <End Role="Activite_Categorie_Target" EntitySet="CategoriesActivite" />
+          </AssociationSet>
+          <AssociationSet Name="Lieu_Activites" Association="Self.Lieu_Activites">
+            <End Role="Lieu_Activites_Source" EntitySet="Lieux" />
+            <End Role="Lieu_Activites_Target" EntitySet="Activites" />
+          </AssociationSet>
+          <AssociationSet Name="Mission_Activite" Association="Self.Mission_Activite">
+            <End Role="Mission_Activite_Source" EntitySet="Missions" />
+            <End Role="Mission_Activite_Target" EntitySet="Activites" />
+          </AssociationSet>
+          <AssociationSet Name="Intervenant_Missions" Association="Self.Intervenant_Missions">
+            <End Role="Intervenant_Missions_Source" EntitySet="Intervenants" />
+            <End Role="Intervenant_Missions_Target" EntitySet="Missions" />
+          </AssociationSet>
+          <AssociationSet Name="Formule_Activite" Association="Self.Formule_Activite">
+            <End Role="Formule_Activite_Source" EntitySet="Formules" />
+            <End Role="Formule_Activite_Target" EntitySet="Activites" />
+          </AssociationSet>
+          <AssociationSet Name="Reglement_Abonnement" Association="Self.Reglement_Abonnement">
+            <End Role="Reglement_Abonnement_Source" EntitySet="Reglements" />
+            <End Role="Reglement_Abonnement_Target" EntitySet="Abonnements" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </ConceptualModels>
+    <Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CodeFirstDatabase" CdmEntityContainer="ApplicationDbContext">
+          <EntitySetMapping Name="Abonnements">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.Abonnement">
+              <MappingFragment StoreEntitySet="Abonnement">
+                <ScalarProperty Name="AbonnementId" ColumnName="AbonnementId" />
+                <ScalarProperty Name="AdherentId" ColumnName="AdherentId" />
+                <ScalarProperty Name="FormuleId" ColumnName="FormuleId" />
+                <ScalarProperty Name="TypeReglement" ColumnName="TypeReglement" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adherents">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.Adherent">
+              <MappingFragment StoreEntitySet="Adherent">
+                <ScalarProperty Name="AdherentId" ColumnName="AdherentId" />
+                <ScalarProperty Name="AdherentNom" ColumnName="AdherentNom" />
+                <ScalarProperty Name="AdherentPrenom" ColumnName="AdherentPrenom" />
+                <ScalarProperty Name="Famille" ColumnName="Famille" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Adresse2" ColumnName="Adresse2" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="DateResiliation" ColumnName="DateResiliation" />
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="CertificatMedical" ColumnName="CertificatMedical" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formules">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.Formule">
+              <MappingFragment StoreEntitySet="Formule">
+                <ScalarProperty Name="FormuleId" ColumnName="FormuleId" />
+                <ScalarProperty Name="FormuleNom" ColumnName="FormuleNom" />
+                <ScalarProperty Name="DebutValidite" ColumnName="DebutValidite" />
+                <ScalarProperty Name="FinValidite" ColumnName="FinValidite" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Tarif" ColumnName="Tarif" />
+                <ScalarProperty Name="ActiviteId" ColumnName="ActiviteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Activites">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.Activite">
+              <MappingFragment StoreEntitySet="Activite">
+                <ScalarProperty Name="ActiviteId" ColumnName="ActiviteId" />
+                <ScalarProperty Name="ActiviteNom" ColumnName="ActiviteNom" />
+                <ScalarProperty Name="ActiviteCode" ColumnName="ActiviteCode" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+                <ScalarProperty Name="DureeHeures" ColumnName="DureeHeures" />
+                <ScalarProperty Name="LieuId" ColumnName="LieuId" />
+                <ScalarProperty Name="CategorieActiviteId" ColumnName="CategorieActiviteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriesActivite">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.CategorieActivite">
+              <MappingFragment StoreEntitySet="CategorieActivite">
+                <ScalarProperty Name="Id" ColumnName="CategorieActiviteId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="CategorieActiviteNom" ColumnName="CategorieActiviteNom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lieux">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.Lieu">
+              <MappingFragment StoreEntitySet="Lieu">
+                <ScalarProperty Name="LieuId" ColumnName="LieuId" />
+                <ScalarProperty Name="LieuNom" ColumnName="LieuNom" />
+                <ScalarProperty Name="LieuCode" ColumnName="LieuCode" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Adresse2" ColumnName="Adresse2" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Missions">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.Mission">
+              <MappingFragment StoreEntitySet="Mission">
+                <ScalarProperty Name="MissionId" ColumnName="MissionId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="SalaireHoraire" ColumnName="SalaireHoraire" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+                <ScalarProperty Name="IntervenantId" ColumnName="IntervenantId" />
+                <ScalarProperty Name="ActiviteId" ColumnName="ActiviteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intervenants">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.Intervenant">
+              <MappingFragment StoreEntitySet="Intervenant">
+                <ScalarProperty Name="IntervenantId" ColumnName="IntervenantId" />
+                <ScalarProperty Name="IntervenantNom" ColumnName="IntervenantNom" />
+                <ScalarProperty Name="IntervenantPrenom" ColumnName="IntervenantPrenom" />
+                <ScalarProperty Name="NumeroSecuriteSociale" ColumnName="NumeroSecuriteSociale" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reglements">
+            <EntityTypeMapping TypeName="MvcGestionAsso.DataLayer.Reglement">
+              <MappingFragment StoreEntitySet="Reglement">
+                <ScalarProperty Name="ReglementId" ColumnName="ReglementId" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+                <ScalarProperty Name="MoyenPaiement" ColumnName="MoyenPaiement" />
+                <ScalarProperty Name="IsAdhesionIncluse" ColumnName="IsAdhesionIncluse" />
+                <ScalarProperty Name="ChequeNumero" ColumnName="ChequeNumero" />
+                <ScalarProperty Name="ChequeBanque" ColumnName="ChequeBanque" />
+                <ScalarProperty Name="ChequeTitulaire" ColumnName="ChequeTitulaire" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="ChequeDateEncaissement" ColumnName="ChequeDateEncaissement" />
+                <ScalarProperty Name="AbonnementId" ColumnName="AbonnementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </Mappings>
+    <StorageModels>
+      <Schema Namespace="CodeFirstDatabaseSchema" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Abonnement">
+          <Key>
+            <PropertyRef Name="AbonnementId" />
+          </Key>
+          <Property Name="AbonnementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdherentId" Type="int" customannotation:Index="{ Name: AK_Abo_AdherentFormule, Order: 1, IsUnique: True }" Nullable="false" />
+          <Property Name="FormuleId" Type="int" customannotation:Index="{ Name: AK_Abo_AdherentFormule, Order: 2, IsUnique: True }" Nullable="false" />
+          <Property Name="TypeReglement" Type="int" Nullable="false" />
+          <Property Name="DateDebut" Type="datetime" Nullable="false" />
+          <Property Name="DateFin" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Adherent">
+          <Key>
+            <PropertyRef Name="AdherentId" />
+          </Key>
+          <Property Name="AdherentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdherentNom" Type="nvarchar" customannotation:Index="{ Name: AK_Adherent_AdherentNom, Order: 1, IsUnique: False }" MaxLength="30" Nullable="false" />
+          <Property Name="AdherentPrenom" Type="nvarchar" customannotation:Index="{ Name: AK_Adherent_AdherentNom, Order: 2, IsUnique: False }" MaxLength="30" Nullable="false" />
+          <Property Name="Famille" Type="nvarchar" MaxLength="30" Nullable="true" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="150" Nullable="true" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="80" Nullable="true" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="10" Nullable="true" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="150" Nullable="true" />
+          <Property Name="Adresse2" Type="nvarchar" MaxLength="150" Nullable="true" />
+          <Property Name="CodePostal" Type="nvarchar" MaxLength="5" Nullable="true" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="150" Nullable="true" />
+          <Property Name="DateCreation" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="DateModification" Type="datetime" Nullable="false" />
+          <Property Name="DateResiliation" Type="datetime" Nullable="true" />
+          <Property Name="Statut" Type="int" Nullable="false" />
+          <Property Name="CertificatMedical" Type="bit" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Formule">
+          <Key>
+            <PropertyRef Name="FormuleId" />
+          </Key>
+          <Property Name="FormuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormuleNom" Type="nvarchar" customannotation:Index="{ Name: AK_Formule_FormuleNom, IsUnique: False }" MaxLength="50" Nullable="false" />
+          <Property Name="DebutValidite" Type="datetime" Nullable="true" />
+          <Property Name="FinValidite" Type="datetime" Nullable="true" />
+          <Property Name="IsActive" Type="bit" Nullable="true" />
+          <Property Name="Tarif" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ActiviteId" Type="int" customannotation:Index="{ Name: IX_ActiviteId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Activite">
+          <Key>
+            <PropertyRef Name="ActiviteId" />
+          </Key>
+          <Property Name="ActiviteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActiviteNom" Type="nvarchar" customannotation:Index="{ Name: AK_Activite_ActiviteNom, IsUnique: True }" MaxLength="100" Nullable="false" />
+          <Property Name="ActiviteCode" Type="nvarchar" customannotation:Index="{ Name: AK_Activite_ActiviteCode, IsUnique: True }" MaxLength="15" Nullable="false" />
+          <Property Name="DateDebut" Type="datetime" Nullable="false" />
+          <Property Name="DateFin" Type="datetime" Nullable="false" />
+          <Property Name="DureeHeures" Type="real" Nullable="false" />
+          <Property Name="LieuId" Type="int" customannotation:Index="{ Name: IX_LieuId, Order: 0 }" Nullable="false" />
+          <Property Name="CategorieActiviteId" Type="int" customannotation:Index="{ Name: IX_CategorieActiviteId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategorieActivite">
+          <Key>
+            <PropertyRef Name="CategorieActiviteId" />
+          </Key>
+          <Property Name="CategorieActiviteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" customannotation:Index="{ Name: IX_ParentId, Order: 0 }" Nullable="true" />
+          <Property Name="CategorieActiviteNom" Type="nvarchar" customannotation:Index="{ Name: AK_CategorieActivite_CategorieActiviteNom, IsUnique: True }" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lieu">
+          <Key>
+            <PropertyRef Name="LieuId" />
+          </Key>
+          <Property Name="LieuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LieuNom" Type="nvarchar" customannotation:Index="{ Name: AK_Lieu_LieuNom, IsUnique: True }" MaxLength="100" Nullable="false" />
+          <Property Name="LieuCode" Type="nvarchar" customannotation:Index="{ Name: AK_Lieu_LieuCode, IsUnique: True }" MaxLength="15" Nullable="false" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="150" Nullable="true" />
+          <Property Name="Adresse2" Type="nvarchar" MaxLength="150" Nullable="true" />
+          <Property Name="CodePostal" Type="nvarchar" MaxLength="5" Nullable="true" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="150" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Mission">
+          <Key>
+            <PropertyRef Name="MissionId" />
+          </Key>
+          <Property Name="MissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="80" Nullable="true" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" Nullable="true" />
+          <Property Name="SalaireHoraire" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DateDebut" Type="datetime" Nullable="false" />
+          <Property Name="DateFin" Type="datetime" Nullable="false" />
+          <Property Name="IntervenantId" Type="int" customannotation:Index="{ Name: IX_IntervenantId, Order: 0 }" Nullable="false" />
+          <Property Name="ActiviteId" Type="int" customannotation:Index="{ Name: IX_ActiviteId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Intervenant">
+          <Key>
+            <PropertyRef Name="IntervenantId" />
+          </Key>
+          <Property Name="IntervenantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IntervenantNom" Type="nvarchar" customannotation:Index="{ Name: AK_Intervenant_IntervenantNom, IsUnique: False }" MaxLength="50" Nullable="false" />
+          <Property Name="IntervenantPrenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumeroSecuriteSociale" Type="nvarchar" MaxLength="15" Nullable="true" />
+          <Property Name="DateCreation" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="DateModification" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reglement">
+          <Key>
+            <PropertyRef Name="ReglementId" />
+          </Key>
+          <Property Name="ReglementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Montant" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MoyenPaiement" Type="int" Nullable="false" />
+          <Property Name="IsAdhesionIncluse" Type="bit" Nullable="false" />
+          <Property Name="ChequeNumero" Type="nvarchar" customannotation:Index="{ Name: AK_Cheque_ChequeNumero, IsUnique: False }" MaxLength="10" Nullable="true" />
+          <Property Name="ChequeBanque" Type="nvarchar" MaxLength="80" Nullable="true" />
+          <Property Name="ChequeTitulaire" Type="nvarchar" MaxLength="80" Nullable="true" />
+          <Property Name="ChequeDate" Type="datetime" Nullable="true" />
+          <Property Name="ChequeDateEncaissement" Type="datetime" Nullable="true" />
+          <Property Name="AbonnementId" Type="int" customannotation:Index="{ Name: IX_AbonnementId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <Association Name="Adherent_Abonnements">
+          <End Role="Adherent" Type="Self.Adherent" Multiplicity="1" />
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adherent">
+              <PropertyRef Name="AdherentId" />
+            </Principal>
+            <Dependent Role="Abonnement">
+              <PropertyRef Name="AdherentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Formule_Abonnements">
+          <End Role="Formule" Type="Self.Formule" Multiplicity="1" />
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formule">
+              <PropertyRef Name="FormuleId" />
+            </Principal>
+            <Dependent Role="Abonnement">
+              <PropertyRef Name="FormuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategorieActivite_Parent">
+          <End Role="CategorieActivite" Type="Self.CategorieActivite" Multiplicity="0..1" />
+          <End Role="CategorieActiviteSelf" Type="Self.CategorieActivite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieActivite">
+              <PropertyRef Name="CategorieActiviteId" />
+            </Principal>
+            <Dependent Role="CategorieActiviteSelf">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Activite_Categorie">
+          <End Role="CategorieActivite" Type="Self.CategorieActivite" Multiplicity="1" />
+          <End Role="Activite" Type="Self.Activite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieActivite">
+              <PropertyRef Name="CategorieActiviteId" />
+            </Principal>
+            <Dependent Role="Activite">
+              <PropertyRef Name="CategorieActiviteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Lieu_Activites">
+          <End Role="Lieu" Type="Self.Lieu" Multiplicity="1" />
+          <End Role="Activite" Type="Self.Activite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lieu">
+              <PropertyRef Name="LieuId" />
+            </Principal>
+            <Dependent Role="Activite">
+              <PropertyRef Name="LieuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Mission_Activite">
+          <End Role="Activite" Type="Self.Activite" Multiplicity="1" />
+          <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activite">
+              <PropertyRef Name="ActiviteId" />
+            </Principal>
+            <Dependent Role="Mission">
+              <PropertyRef Name="ActiviteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Intervenant_Missions">
+          <End Role="Intervenant" Type="Self.Intervenant" Multiplicity="1" />
+          <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intervenant">
+              <PropertyRef Name="IntervenantId" />
+            </Principal>
+            <Dependent Role="Mission">
+              <PropertyRef Name="IntervenantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Formule_Activite">
+          <End Role="Activite" Type="Self.Activite" Multiplicity="1" />
+          <End Role="Formule" Type="Self.Formule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activite">
+              <PropertyRef Name="ActiviteId" />
+            </Principal>
+            <Dependent Role="Formule">
+              <PropertyRef Name="ActiviteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Reglement_Abonnement">
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="1" />
+          <End Role="Reglement" Type="Self.Reglement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonnement">
+              <PropertyRef Name="AbonnementId" />
+            </Principal>
+            <Dependent Role="Reglement">
+              <PropertyRef Name="AbonnementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CodeFirstDatabase">
+          <EntitySet Name="Abonnement" EntityType="Self.Abonnement" Schema="dbo" Table="Abonnements" />
+          <EntitySet Name="Adherent" EntityType="Self.Adherent" Schema="dbo" Table="Adherents" />
+          <EntitySet Name="Formule" EntityType="Self.Formule" Schema="dbo" Table="Formules" />
+          <EntitySet Name="Activite" EntityType="Self.Activite" Schema="dbo" Table="Activites" />
+          <EntitySet Name="CategorieActivite" EntityType="Self.CategorieActivite" Schema="dbo" Table="CategorieActivites" />
+          <EntitySet Name="Lieu" EntityType="Self.Lieu" Schema="dbo" Table="Lieux" />
+          <EntitySet Name="Mission" EntityType="Self.Mission" Schema="dbo" Table="Missions" />
+          <EntitySet Name="Intervenant" EntityType="Self.Intervenant" Schema="dbo" Table="Intervenants" />
+          <EntitySet Name="Reglement" EntityType="Self.Reglement" Schema="dbo" Table="Reglements" />
+          <AssociationSet Name="Adherent_Abonnements" Association="Self.Adherent_Abonnements">
+            <End Role="Adherent" EntitySet="Adherent" />
+            <End Role="Abonnement" EntitySet="Abonnement" />
+          </AssociationSet>
+          <AssociationSet Name="Formule_Abonnements" Association="Self.Formule_Abonnements">
+            <End Role="Formule" EntitySet="Formule" />
+            <End Role="Abonnement" EntitySet="Abonnement" />
+          </AssociationSet>
+          <AssociationSet Name="CategorieActivite_Parent" Association="Self.CategorieActivite_Parent">
+            <End Role="CategorieActivite" EntitySet="CategorieActivite" />
+            <End Role="CategorieActiviteSelf" EntitySet="CategorieActivite" />
+          </AssociationSet>
+          <AssociationSet Name="Activite_Categorie" Association="Self.Activite_Categorie">
+            <End Role="CategorieActivite" EntitySet="CategorieActivite" />
+            <End Role="Activite" EntitySet="Activite" />
+          </AssociationSet>
+          <AssociationSet Name="Lieu_Activites" Association="Self.Lieu_Activites">
+            <End Role="Lieu" EntitySet="Lieu" />
+            <End Role="Activite" EntitySet="Activite" />
+          </AssociationSet>
+          <AssociationSet Name="Mission_Activite" Association="Self.Mission_Activite">
+            <End Role="Activite" EntitySet="Activite" />
+            <End Role="Mission" EntitySet="Mission" />
+          </AssociationSet>
+          <AssociationSet Name="Intervenant_Missions" Association="Self.Intervenant_Missions">
+            <End Role="Intervenant" EntitySet="Intervenant" />
+            <End Role="Mission" EntitySet="Mission" />
+          </AssociationSet>
+          <AssociationSet Name="Formule_Activite" Association="Self.Formule_Activite">
+            <End Role="Activite" EntitySet="Activite" />
+            <End Role="Formule" EntitySet="Formule" />
+          </AssociationSet>
+          <AssociationSet Name="Reglement_Abonnement" Association="Self.Reglement_Abonnement">
+            <End Role="Abonnement" EntitySet="Abonnement" />
+            <End Role="Reglement" EntitySet="Reglement" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </StorageModels>
+  </Runtime>
+  <Designer>
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="ProcessDependentTemplatesOnSave" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <Diagrams >
+      <Diagram DiagramId="41a0db9f186348f7b7eed3bae4e95784" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.Abonnement" Width="1.5" PointX="8.5" PointY="9.25" IsExpanded="true" FillColor="Green" />
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.Adherent" Width="1.5" PointX="9" PointY="3.625" IsExpanded="true" FillColor="Green" />
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.Formule" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" FillColor="Green" />
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.Activite" Width="1.5" PointX="3.625" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.CategorieActivite" Width="1.5" PointX="6.125" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.Lieu" Width="1.5" PointX="1.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.Mission" Width="1.5" PointX="1" PointY="4.625" IsExpanded="true" FillColor="Maroon" />
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.Intervenant" Width="1.5" PointX="3.25" PointY="3.75" IsExpanded="true" FillColor="Maroon" />
+        <EntityTypeShape EntityType="MvcGestionAsso.DataLayer.Reglement" Width="1.5" PointX="11.125" PointY="9.125" IsExpanded="true" FillColor="Green" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.Adherent_Abonnements" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.Formule_Abonnements" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.CategorieActivite_Parent" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.Activite_Categorie" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.Lieu_Activites" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.Mission_Activite" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.Intervenant_Missions" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.Formule_Activite" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcGestionAsso.DataLayer.Reglement_Abonnement" ManuallyRouted="false" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</Edmx>
