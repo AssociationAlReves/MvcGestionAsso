@@ -258,7 +258,7 @@ namespace MvcGestionAsso.Migrations.Seed
 				Formule abodanseBEL2 = context.Formules.First(f => f.ActiviteId == danseBEL2.ActiviteId);
 				Formule[] formules = context.Formules.ToArray();
 
-				const int numAdherents = 2; //1000;
+				const int numAdherents = 1000; //1000;
 				#region Adherents
 				if (context.Adherents.Any() == false)
 				{
@@ -273,7 +273,7 @@ namespace MvcGestionAsso.Migrations.Seed
 								Adresse2 = (Lorem.Chance(20, 100) ? Lorem.Words(2, 5) : "").Limit(150),
 								CertificatMedical = Lorem.Chance(80, 100),
 								CodePostal = Lorem.Number(10000, 95999).ToString(),
-								EditeurCourantId = adminUser.Id,
+								//EditeurCourantId = adminUser.Id,
 								EMail = Lorem.Email().Limit(80),
 								Notes = Lorem.Chance(10, 100) ? Lorem.Paragraph(20, 2).Limit(150) : "",
 								Statut = Lorem.Enum<StatutAdherent>(),

@@ -1,0 +1,58 @@
+﻿@model MvcGestionAsso.Models.Abonnement
+
+@{
+    ViewBag.Title = "Détails";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Abonnement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Adherent.AdherentNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adherent.AdherentNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Formule.FormuleNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Formule.FormuleNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeReglement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeReglement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.AbonnementId }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

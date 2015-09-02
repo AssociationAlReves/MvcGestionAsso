@@ -17,9 +17,12 @@ namespace MvcGestionAsso.DataLayer
 				.IsRequired()
 				.HasMaxLength(30)
 				.HasColumnAnnotation("Index",
-				new IndexAnnotation(new IndexAttribute("AK_Adherent_AdherentNom") { IsUnique = false }));
+				new IndexAnnotation(new IndexAttribute("AK_Adherent_AdherentNom", 1) { IsUnique = false }));
 
-			Property(a => a.AdherentPrenom).HasMaxLength(30).IsRequired();
+			Property(a => a.AdherentPrenom).HasMaxLength(30).IsRequired()
+				.HasColumnAnnotation("Index",
+				new IndexAnnotation(new IndexAttribute("AK_Adherent_AdherentNom", 2) { IsUnique = false }));
+
 			Property(a => a.Famille).HasMaxLength(30).IsOptional();
 			Property(a => a.Notes).HasMaxLength(150).IsOptional();
 			Property(a => a.EMail).HasMaxLength(80).IsOptional();
@@ -36,8 +39,6 @@ namespace MvcGestionAsso.DataLayer
 			Property(a => a.Statut).IsRequired();
 
 			Property(a => a.CertificatMedical).IsOptional();
-
-			HasRequired(a => a.EditeurCourant);
 
 		}
 	}

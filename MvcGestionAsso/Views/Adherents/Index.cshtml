@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.EditeurCourant.FirstName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.AdherentNom)
         </th>
         <th>
@@ -23,16 +20,16 @@
         <th>
             @Html.DisplayNameFor(model => model.Famille)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Notes)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.EMail)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Telephone)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Adresse)
         </th>
         <th>
@@ -40,7 +37,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CodePostal)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Ville)
         </th>
@@ -50,23 +47,20 @@
         <th>
             @Html.DisplayNameFor(model => model.DateModification)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.DateResiliation)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Statut)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.CertificatMedical)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EditeurCourant.FirstName)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.AdherentNom)
         </td>
@@ -76,16 +70,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.Famille)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Notes)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.EMail)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Telephone)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Adresse)
         </td>
         <td>
@@ -93,7 +87,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CodePostal)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Ville)
         </td>
@@ -103,15 +97,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.DateModification)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.DateResiliation)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Statut)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.CertificatMedical)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Modifier", "Edit", new { id=item.AdherentId }) |
             @Html.ActionLink("Détails", "Details", new { id=item.AdherentId }) |
