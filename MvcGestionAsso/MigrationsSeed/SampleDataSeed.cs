@@ -382,21 +382,17 @@ namespace MvcGestionAsso.Migrations.Seed
 
 
 			}
-			catch (System.Data.Entity.Validation.DbEntityValidationException e)
-			{
-				// Uncomment to debug seed
-				if (System.Diagnostics.Debugger.IsAttached == false)
-					System.Diagnostics.Debugger.Launch();
-
-				// Check e.EntityValidationErrors
-
-				throw;
-			}
 			catch (Exception e)
 			{
+				if (e is System.Data.Entity.Validation.DbEntityValidationException)
+				{
+
+				}
 				// Uncomment to debug seed
 				if (System.Diagnostics.Debugger.IsAttached == false)
 					System.Diagnostics.Debugger.Launch();
+
+				throw;
 			}
 		}
 

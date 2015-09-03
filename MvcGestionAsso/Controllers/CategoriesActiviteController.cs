@@ -118,7 +118,7 @@ namespace MvcGestionAsso.Controllers
 			return selectList;
 		}
 
-		public async Task<ActionResult> Index()
+		public ActionResult Index()
 		{
 			// Start the outermost list
 			string fullString = "<ul>";
