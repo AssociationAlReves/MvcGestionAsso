@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DebutValidite, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DebutValidite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DebutValidite, "DateWithPicker")
                 @Html.ValidationMessageFor(model => model.DebutValidite, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FinValidite, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FinValidite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FinValidite, "DateWithPicker")
                 @Html.ValidationMessageFor(model => model.FinValidite, "", new { @class = "text-danger" })
             </div>
         </div>
