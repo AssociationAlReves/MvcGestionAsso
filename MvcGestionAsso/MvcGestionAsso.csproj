@@ -293,9 +293,8 @@
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <None Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
-    <None Include="Misc\ERD Diagram.edmx" />
+    <None Include="Misc\ERD Diagram %28readonly%29.edmx" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <None Include="Misc\EDR Diagram.bmp" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
