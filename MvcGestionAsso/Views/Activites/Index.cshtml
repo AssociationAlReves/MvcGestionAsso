@@ -24,6 +24,9 @@
             @Html.DisplayNameFor(model => model.ActiviteCode)
         </th>
         <th>
+            Planning
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DateDebut)
         </th>
         <th>
@@ -50,10 +53,13 @@
             @Html.DisplayFor(modelItem => item.ActiviteCode)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateDebut)
+            @Html.DisplayFor(modelItem => item.DateDebut, "WeekdayHourDateTime")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateFin)
+            @Html.DisplayFor(modelItem => item.DateDebut, "ShortDateDateTime")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateFin, "ShortDateDateTime")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DureeHeures)
