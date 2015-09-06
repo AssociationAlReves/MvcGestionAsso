@@ -147,9 +147,10 @@ namespace MvcGestionAsso.Migrations.Seed
 						ActiviteCode = "DANSE-BEL-1",
 						ActiviteNom = "Danse contemporaine 4-6 ans Bellegarde",
 						CategorieActiviteId = catDanse.Id,
-						DureeHeures = 1,
-						DateDebut = new DateTime(2014, 09, 04, 17, 0, 0),
+						DateDebut = new DateTime(2014, 09, 04),
 						DateFin = new DateTime(2015, 07, 01),
+						HeureDebut = new TimeSpan(17, 0, 0),
+						HeureFin = new TimeSpan(18, 0, 0),
 						LieuId = bel.LieuId,
 					});
 
@@ -159,9 +160,10 @@ namespace MvcGestionAsso.Migrations.Seed
 						ActiviteCode = "DANSE-BEL-2",
 						ActiviteNom = "Danse contemporaine 7-9 ans Bellegarde",
 						CategorieActiviteId = catDanse.Id,
-						DureeHeures = 1,
-						DateDebut = new DateTime(2014, 09, 04, 18, 0, 0),
+						DateDebut = new DateTime(2014, 09, 04),
 						DateFin = new DateTime(2015, 07, 01),
+						HeureDebut = new TimeSpan(18, 0, 0),
+						HeureFin = new TimeSpan(19, 0, 0),
 						LieuId = bel.LieuId,
 					});
 
@@ -171,9 +173,10 @@ namespace MvcGestionAsso.Migrations.Seed
 						ActiviteCode = "ZUMBA-BEL",
 						ActiviteNom = "Zumba Bellegarde",
 						CategorieActiviteId = catZumba.Id,
-						DureeHeures = 1,
-						DateDebut = new DateTime(2014, 09, 04, 20, 0, 0),
+						DateDebut = new DateTime(2014, 09, 04),
 						DateFin = new DateTime(2015, 07, 01),
+						HeureDebut = new TimeSpan(20, 0, 0),
+						HeureFin = new TimeSpan(21, 0, 0),
 						LieuId = bel.LieuId,
 					});
 
@@ -183,9 +186,10 @@ namespace MvcGestionAsso.Migrations.Seed
 					ActiviteCode = "ZUMBA-CDH",
 					ActiviteNom = "Zumba",
 					CategorieActiviteId = catZumba.Id,
-					DureeHeures = 1,
-					DateDebut = new DateTime(2014, 09, 01, 19, 0, 0),
+					DateDebut = new DateTime(2014, 09, 01),
 					DateFin = new DateTime(2015, 07, 01),
+					HeureDebut = new TimeSpan(19, 0, 0),
+					HeureFin = new TimeSpan(20, 0, 0),
 					LieuId = cdh.LieuId,
 				});
 				context.SaveChanges();
@@ -377,7 +381,7 @@ namespace MvcGestionAsso.Migrations.Seed
 					Description = "Instructeur Zumba",
 					SalaireHoraire = 20
 				});
-				context.SaveChanges(); 
+				context.SaveChanges();
 				#endregion
 
 

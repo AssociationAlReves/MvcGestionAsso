@@ -25,9 +25,17 @@ namespace MvcGestionAsso.Models
 		[Display(Name = "Date de fin")]
 		public DateTime DateFin { get; set; }
 
+		[Display(Name = "Heure de début")]
+		public TimeSpan HeureDebut { get; set; }
+
+		[Display(Name = "Heure de fin")]
+		public TimeSpan HeureFin { get; set; }
+
 		[Display(Name = "Durée (heures)")]
-		[Range(0.5, 8, ErrorMessage = "La durée doit être comprise entre 0.5 et 8 heures")]
-		public float DureeHeures { get; set; }
+		public double DureeHeures
+		{
+			get { return (HeureFin - HeureDebut).TotalHours; }
+		}
 
 		public virtual Lieu Lieu { get; set; }
 		[Display(Name = "Lieu")]

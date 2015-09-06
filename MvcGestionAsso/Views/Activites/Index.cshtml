@@ -33,6 +33,12 @@
             @Html.DisplayNameFor(model => model.DateFin)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.HeureDebut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeureFin)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DureeHeures)
         </th>
         <th></th>
@@ -60,6 +66,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateFin, "ShortDateDateTime")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeureDebut, "TimeOfDayTimeSpan")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeureFin, "TimeOfDayTimeSpan")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DureeHeures)

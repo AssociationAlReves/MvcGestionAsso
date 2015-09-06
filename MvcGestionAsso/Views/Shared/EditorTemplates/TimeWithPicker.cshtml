@@ -1,0 +1,11 @@
+﻿@model TimeSpan?
+@Html.TextBox("", (Model.HasValue ? Model.Value.ToString("hh:mm") : string.Empty), new { @class = "time form-control" })
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.time').timepicker({
+            'timeFormat': 'H\\hi',
+            'minTime': '6:00am',
+            'maxTime': '11:00pm',});
+    });
+</script>

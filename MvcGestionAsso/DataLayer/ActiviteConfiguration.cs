@@ -31,10 +31,11 @@ namespace MvcGestionAsso.DataLayer
 			Property(a => a.DateFin)
 				.IsRequired();
 
-			Property(a => a.DureeHeures)
+			Property(a => a.HeureDebut)
 				.IsRequired();
 
-
+			Property(a => a.HeureFin)
+				.IsRequired();
 
 		}
 
