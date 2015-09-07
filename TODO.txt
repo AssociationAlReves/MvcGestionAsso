@@ -1,0 +1,5 @@
+Complex type : https://visualstudiomagazine.com/articles/2014/04/01/making-complex-types-useful.aspx
+Creer un type "Planification" qui comprend le jour et les deux time
+Un editortemplate + display template
+pour EF -> mapper les propriétés dans des colonnes
+http://jonthornton.github.io/jquery-timepicker/
