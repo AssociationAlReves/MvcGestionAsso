@@ -25,16 +25,13 @@ namespace MvcGestionAsso.Models
 		[Display(Name = "Date de fin")]
 		public DateTime DateFin { get; set; }
 
-		[Display(Name = "Heure de début")]
-		public TimeSpan HeureDebut { get; set; }
-
-		[Display(Name = "Heure de fin")]
-		public TimeSpan HeureFin { get; set; }
+		[Display(Name = "PLanification")]
+		public Planification Planification { get; set; }
 
 		[Display(Name = "Durée (heures)")]
 		public double DureeHeures
 		{
-			get { return (HeureFin - HeureDebut).TotalHours; }
+			get { return (Planification.HeureFin - Planification.HeureDebut).TotalHours; }
 		}
 
 		public virtual Lieu Lieu { get; set; }

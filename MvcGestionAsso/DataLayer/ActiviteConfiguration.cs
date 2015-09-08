@@ -31,11 +31,11 @@ namespace MvcGestionAsso.DataLayer
 			Property(a => a.DateFin)
 				.IsRequired();
 
-			Property(a => a.HeureDebut)
-				.IsRequired();
+			//Property(a => a.Planification).IsRequired();
 
-			Property(a => a.HeureFin)
-				.IsRequired();
+			Property(a => a.Planification.Jour).HasColumnName("PlanifJour");
+			Property(a => a.Planification.HeureDebut).HasColumnName("PlanfHeureDebut");
+			Property(a => a.Planification.HeureFin).HasColumnName("PlanfHeureFin");
 
 		}
 

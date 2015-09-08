@@ -149,8 +149,12 @@ namespace MvcGestionAsso.Migrations.Seed
 						CategorieActiviteId = catDanse.Id,
 						DateDebut = new DateTime(2014, 09, 04),
 						DateFin = new DateTime(2015, 07, 01),
-						HeureDebut = new TimeSpan(17, 0, 0),
-						HeureFin = new TimeSpan(18, 0, 0),
+						Planification = new Planification
+						{
+							Jour = JourSemaine.Jeudi,
+							HeureDebut = TimeSpan.FromHours(17),
+							HeureFin = TimeSpan.FromHours(18)
+						},
 						LieuId = bel.LieuId,
 					});
 
@@ -162,8 +166,12 @@ namespace MvcGestionAsso.Migrations.Seed
 						CategorieActiviteId = catDanse.Id,
 						DateDebut = new DateTime(2014, 09, 04),
 						DateFin = new DateTime(2015, 07, 01),
-						HeureDebut = new TimeSpan(18, 0, 0),
-						HeureFin = new TimeSpan(19, 0, 0),
+						Planification = new Planification
+						{
+							Jour = JourSemaine.Jeudi,
+							HeureDebut = TimeSpan.FromHours(18),
+							HeureFin = TimeSpan.FromHours(19)
+						},
 						LieuId = bel.LieuId,
 					});
 
@@ -175,8 +183,12 @@ namespace MvcGestionAsso.Migrations.Seed
 						CategorieActiviteId = catZumba.Id,
 						DateDebut = new DateTime(2014, 09, 04),
 						DateFin = new DateTime(2015, 07, 01),
-						HeureDebut = new TimeSpan(20, 0, 0),
-						HeureFin = new TimeSpan(21, 0, 0),
+						Planification = new Planification
+						{
+							Jour = JourSemaine.Jeudi,
+							HeureDebut = TimeSpan.FromHours(20),
+							HeureFin = TimeSpan.FromHours(21)
+						},
 						LieuId = bel.LieuId,
 					});
 
@@ -188,8 +200,12 @@ namespace MvcGestionAsso.Migrations.Seed
 					CategorieActiviteId = catZumba.Id,
 					DateDebut = new DateTime(2014, 09, 01),
 					DateFin = new DateTime(2015, 07, 01),
-					HeureDebut = new TimeSpan(19, 0, 0),
-					HeureFin = new TimeSpan(20, 0, 0),
+					Planification = new Planification
+					{
+						Jour = JourSemaine.Lundi,
+						HeureDebut = TimeSpan.FromHours(19),
+						HeureFin = TimeSpan.FromHours(20)
+					},
 					LieuId = cdh.LieuId,
 				});
 				context.SaveChanges();
