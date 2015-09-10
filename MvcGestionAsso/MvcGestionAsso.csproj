@@ -262,6 +262,7 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Intervenant.cs" />
     <Compile Include="Models\Lieu.cs" />
+    <Compile Include="ViewModels\ActiviteViewModel.cs" />
     <Compile Include="ViewModels\ApplicationRoleViewModel.cs" />
     <Compile Include="ViewModels\CategorieActiviteViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -340,6 +341,8 @@
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\datepair.js" />
+    <Content Include="Scripts\datepair.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -441,6 +444,8 @@
     <Content Include="Views\Shared\EditorTemplates\DateWithPicker.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\TimeOfDayTimeSpan.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TimeWithPicker.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Planification.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Planification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

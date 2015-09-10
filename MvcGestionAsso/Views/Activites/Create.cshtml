@@ -48,18 +48,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HeureDebut, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Planification, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HeureDebut, "TimeWithPicker")
-                @Html.ValidationMessageFor(model => model.HeureDebut, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.HeureFin, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HeureFin, "TimeWithPicker")
-                @Html.ValidationMessageFor(model => model.HeureFin, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Planification, "Planification")
+                @Html.ValidationMessageFor(model => model.Planification, "", new { @class = "text-danger" })
             </div>
         </div>
 

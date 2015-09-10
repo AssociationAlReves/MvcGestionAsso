@@ -24,64 +24,47 @@
             @Html.DisplayNameFor(model => model.ActiviteCode)
         </th>
         <th>
-            Planning
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.DateDebut)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateFin)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HeureDebut)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HeureFin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DureeHeures)
+            @Html.DisplayNameFor(model => model.Planification)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categorie.CategorieActiviteNom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lieu.LieuNom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActiviteNom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActiviteCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateDebut, "WeekdayHourDateTime")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateDebut, "ShortDateDateTime")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateFin, "ShortDateDateTime")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HeureDebut, "TimeOfDayTimeSpan")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HeureFin, "TimeOfDayTimeSpan")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DureeHeures)
-        </td>
-        <td>
-            @Html.ActionLink("Modifier", "Edit", new { id=item.ActiviteId }) |
-            @Html.ActionLink("Détails", "Details", new { id=item.ActiviteId }) |
-            @Html.ActionLink("Supprimer", "Delete", new { id=item.ActiviteId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorie.CategorieActiviteNom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lieu.LieuNom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiviteNom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiviteCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDebut, "ShortDateDateTime")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFin, "ShortDateDateTime")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Planification)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.ActiviteId }) |
+                @Html.ActionLink("Détails", "Details", new { id = item.ActiviteId }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.ActiviteId })
+            </td>
+        </tr>
+    }
 
 </table>

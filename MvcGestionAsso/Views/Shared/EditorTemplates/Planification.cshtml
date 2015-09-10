@@ -1,0 +1,27 @@
+﻿@model MvcGestionAsso.Models.Planification
+@{
+    if (Model == null)
+    {
+        @Html.EnumDropDownListFor(m => m.Jour, "Sélectionner le jour", new { @class = "form-control", type = "text" })
+        <div id="timeOnlyExample">
+            @Html.TextBoxFor(m => m.HeureDebut, "", new { @class = "time start form-control", type = "text" })
+            @Html.TextBoxFor(m => m.HeureFin, "", new { @class = "time end form-control", type = "text" })
+        </div>
+        @Html.ValidationMessageFor(m => m.Jour, "", new { @class = "text-danger" })
+    }
+    else
+    {
+        @Html.TextBox("Test", "Test value")
+    }
+}
+
+<script type="text/javascript">
+    $('#timeOnlyExample .time').timepicker({
+        'minTime': '9:00am',
+        'maxTime': '10:00pm',
+        'timeFormat': 'H\\hi'
+    });
+    var timeOnlyExampleEl = document.getElementById('timeOnlyExample');
+    var timeOnlyDatepair = new Datepair(timeOnlyExampleEl);
+
+</script>
