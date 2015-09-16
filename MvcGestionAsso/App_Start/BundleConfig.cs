@@ -11,7 +11,9 @@ namespace MvcGestionAsso
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
 									"~/Scripts/jquery-{version}.js",
 									"~/Scripts/jquery-ui-{version}.js",
-									"~/Scripts/jquery.timepicker.js"));
+									"~/Scripts/jquery.ui.datepicker-fr.js",
+									"~/Scripts/jquery.timepicker.js",
+									"~/Scripts/jquery.datepair.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 									"~/Scripts/jquery.validate*"));

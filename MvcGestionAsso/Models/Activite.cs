@@ -25,7 +25,7 @@ namespace MvcGestionAsso.Models
 		[Display(Name = "Date de fin")]
 		public DateTime DateFin { get; set; }
 
-		[Display(Name = "PLanification")]
+		[Display(Name = "Planification")]
 		public Planification Planification { get; set; }
 
 		[Display(Name = "Durée (heures)")]

@@ -1,0 +1,58 @@
+﻿@model MvcGestionAsso.Models.Planification
+@{
+    if (Model == null)
+    {
+        @Html.EnumDropDownListFor(m => m.Jour, "Sélectionner le jour", new { @class = "form-control", type = "text" })
+        @*<div id="timeOnlyExample" >
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon glyphicon glyphicon-time" id="timeStart" aria-hidden="true"></span>
+                    @Html.TextBoxFor(m => m.HeureDebut, "", new { @class = "time start form-control", type = "text", @placeholder = "Heure de début", @aria_describedby = "timeStart" })
+                </div>
+                <div class="input-group input-group-sm">
+                    <span class=" input-group-addon glyphicon glyphicon-time" id="timeEnd" aria-hidden="true">
+                    </span>
+                    @Html.TextBoxFor(m => m.HeureFin, "", new { @class = "time end form-control", type = "text", @placeholder = "Heure de fin", @aria_describedby = "timeEnd" })
+                </div>
+            </div>*@
+        <div id="timeOnlyExample">
+            @Html.TextBoxFor(m => m.HeureDebut, "", new { @class = "time start form-control", type = "text", @placeholder = "Heure de début", @aria_describedby = "timeStart" })
+            @Html.TextBoxFor(m => m.HeureFin, "", new { @class = "time end form-control", type = "text", @placeholder = "Heure de fin", @aria_describedby = "timeEnd" })
+        </div>
+        @Html.ValidationMessageFor(m => m.Jour, "", new { @class = "text-danger" })
+    }
+    else
+    {
+        @Html.EnumDropDownListFor(m => m.Jour, "Sélectionner le jour", new { @class = "form-control", type = "text" })
+        @*<div id="timeOnlyExample" >
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon glyphicon glyphicon-time" id="timeStart" aria-hidden="true"></span>
+                    @Html.TextBoxFor(m => m.HeureDebut, "", new { @class = "time start form-control", type = "text", @placeholder = "Heure de début", @aria_describedby = "timeStart" })
+                </div>
+                <div class="input-group input-group-sm">
+                    <span class=" input-group-addon glyphicon glyphicon-time" id="timeEnd" aria-hidden="true">
+                    </span>
+                    @Html.TextBoxFor(m => m.HeureFin, "", new { @class = "time end form-control", type = "text", @placeholder = "Heure de fin", @aria_describedby = "timeEnd" })
+                </div>
+            </div>*@
+        <div id="timeOnlyExample">
+            @Html.TextBoxFor(m => m.HeureDebut, "", new { @class = "time start form-control", type = "text", @placeholder = "Heure de début", @aria_describedby = "timeStart" })
+            @Html.TextBoxFor(m => m.HeureFin, "", new { @class = "time end form-control", type = "text", @placeholder = "Heure de fin", @aria_describedby = "timeEnd" })
+        </div>
+        @Html.ValidationMessageFor(m => m.Jour, "", new { @class = "text-danger" })
+    }
+}
+
+<script type="text/javascript">
+
+    // initialize input widgets first
+    $('#timeOnlyExample .time').timepicker({
+        'minTime': '9:00am',
+        'maxTime': '10:00pm',
+        'showDuration': true,
+        'timeFormat': 'H:i'
+    });
+
+    // initialize datepair
+    $('#timeOnlyExample').datepair();
+
+</script>
