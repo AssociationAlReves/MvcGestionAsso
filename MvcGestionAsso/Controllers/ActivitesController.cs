@@ -59,7 +59,7 @@ namespace MvcGestionAsso.Controllers
 			if (ModelState.IsValid)
 			{
 				// check dates
-				if (activite.DateFin< activite.DateDebut)
+				if (activite.DateFin < activite.DateDebut)
 				{
 					ModelState.AddModelError("DateFin", "La date de fin doit être après la date de début.");
 					return View(activite);
@@ -95,16 +95,24 @@ namespace MvcGestionAsso.Controllers
 		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Edit([Bind(Include = "ActiviteId,ActiviteNom,ActiviteCode,DateDebut,DateFin,DureeHeures,LieuId,CategorieActiviteId")] Activite activite)
+		public async Task<ActionResult> Edit([Bind(Include = "ActiviteId,ActiviteNom,ActiviteCode,DateDebut,DateFin,Planification,LieuId,CategorieActiviteId")] Activite activite)
 		{
+			ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
+			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
+
 			if (ModelState.IsValid)
 			{
+				// check dates
+				if (activite.DateFin < activite.DateDebut)
+				{
+					ModelState.AddModelError("DateFin", "La date de fin doit être après la date de début.");
+					return View(activite);
+				}
+
 				_applicationDbContext.Entry(activite).State = EntityState.Modified;
 				await _applicationDbContext.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
-			ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
-			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
 			return View(activite);
 		}
 

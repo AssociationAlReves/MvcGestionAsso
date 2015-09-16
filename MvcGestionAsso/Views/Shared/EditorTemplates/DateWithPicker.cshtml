@@ -1,8 +1,29 @@
 ﻿@model DateTime?
-@Html.TextBox("", (Model.HasValue ? Model.Value.ToString("D") : string.Empty), new { @class = "date form-control" })
+@Html.TextBox("", (Model.HasValue ? Model.Value.ToString("dd/MM/yyyy") : string.Empty), new { @class = "date form-control" })
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.date').datepicker({ dateFormat: "DD d MM yy", showButtonPanel: true });
+
+        $.validator.addMethod('date',
+    function (value, element) {
+        if (this.optional(element)) {
+            return true;
+        }
+        var ok = true;
+        try {
+            $.datepicker.parseDate('dd/mm/yy', value);
+        }
+        catch (err) {
+            ok = false;
+        }
+        return ok;
+    });
+
+        $("#datepicker").datepicker($.datepicker.regional["fr"]);
+        $('.date').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true
+        });
     });
 </script>
