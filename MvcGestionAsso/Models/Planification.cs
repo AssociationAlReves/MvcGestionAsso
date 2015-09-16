@@ -10,7 +10,13 @@ namespace MvcGestionAsso.Models
 	{
 		[Range(1,7, ErrorMessage="Sélectionner un jour valide.")]
 		public JourSemaine Jour { get; set; }
+
+		[Required()]
+		[Display(Name="Heure de début")]
 		public TimeSpan HeureDebut { get; set; }
+
+		[Required()]
+		[Display(Name = "Heure de fin")]
 		public TimeSpan HeureFin { get; set; }
 	}
 

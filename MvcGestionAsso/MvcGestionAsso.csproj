@@ -262,7 +262,6 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Intervenant.cs" />
     <Compile Include="Models\Lieu.cs" />
-    <Compile Include="ViewModels\ActiviteViewModel.cs" />
     <Compile Include="ViewModels\ApplicationRoleViewModel.cs" />
     <Compile Include="ViewModels\CategorieActiviteViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
