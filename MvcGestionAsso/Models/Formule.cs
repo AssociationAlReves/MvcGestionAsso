@@ -15,16 +15,12 @@ namespace MvcGestionAsso.Models
 		[StringLength(50)]
 		public string FormuleNom { get; set; }
 
-		[Display(Name = "Début")]
-		public DateTime? DebutValidite { get; set; }
-		[Display(Name = "Fin")]
-		public DateTime? FinValidite { get; set; }
-
 		[Display(Name = "Active")]
 		public bool IsActive { get; set; }
 
 		[Required()]
-		[Range(0,1000)]
+		[Range(1,1000)]
+		[DisplayFormat(DataFormatString = "{0:C}",  ApplyFormatInEditMode = false)]
 		public decimal Tarif { get; set; }
 
 		[Display(Name="Activité")]

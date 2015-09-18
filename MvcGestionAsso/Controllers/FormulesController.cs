@@ -50,7 +50,7 @@ namespace MvcGestionAsso.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "FormuleId,FormuleNom,DebutValidite,FinValidite,IsActive,Tarif,ActiviteId")] Formule formule)
+        public async Task<ActionResult> Create([Bind(Include = "FormuleId,FormuleNom,IsActive,Tarif,ActiviteId")] Formule formule)
         {
             if (ModelState.IsValid)
             {

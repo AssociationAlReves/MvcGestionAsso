@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201509081958192_ActivitePlanif.Designer.cs">
       <DependentUpon>201509081958192_ActivitePlanif.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509182034474_FormuleNoDates.cs" />
+    <Compile Include="Migrations\201509182034474_FormuleNoDates.Designer.cs">
+      <DependentUpon>201509182034474_FormuleNoDates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Models\ITreeNodeDotNet3.cs" />
@@ -477,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509081958192_ActivitePlanif.resx">
       <DependentUpon>201509081958192_ActivitePlanif.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509182034474_FormuleNoDates.resx">
+      <DependentUpon>201509182034474_FormuleNoDates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

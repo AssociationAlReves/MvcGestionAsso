@@ -19,12 +19,6 @@ namespace MvcGestionAsso.DataLayer
 				.HasColumnAnnotation("Index",
 				new IndexAnnotation(new IndexAttribute("AK_Formule_FormuleNom") { IsUnique = false }));
 
-			Property(f => f.DebutValidite)
-				.IsOptional();
-
-			Property(f => f.FinValidite)
-				.IsOptional();
-
 			Property(f => f.IsActive)
 				.IsOptional();
 

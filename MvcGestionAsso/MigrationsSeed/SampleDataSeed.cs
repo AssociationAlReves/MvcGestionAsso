@@ -225,9 +225,7 @@ namespace MvcGestionAsso.Migrations.Seed
 						ActiviteId = zumbaCDH.ActiviteId,
 						FormuleNom = "Abonnement annuel",
 						IsActive = true,
-						Tarif = 135,
-						DebutValidite = zumbaCDH.DateDebut,
-						FinValidite = zumbaCDH.DateFin
+						Tarif = 135
 					});
 				context.Formules.AddOrUpdate(f => new { f.FormuleNom, f.ActiviteId },
 					new Formule
@@ -235,9 +233,7 @@ namespace MvcGestionAsso.Migrations.Seed
 						ActiviteId = zumbaBEL.ActiviteId,
 						FormuleNom = "Abonnement annuel",
 						IsActive = true,
-						Tarif = 135,
-						DebutValidite = zumbaBEL.DateDebut,
-						FinValidite = zumbaBEL.DateFin
+						Tarif = 135
 					});
 				context.Formules.AddOrUpdate(f => new { f.FormuleNom, f.ActiviteId },
 					new Formule
@@ -245,9 +241,7 @@ namespace MvcGestionAsso.Migrations.Seed
 						ActiviteId = zumbaBEL.ActiviteId,
 						FormuleNom = "Abonnement semestre",
 						IsActive = true,
-						Tarif = 80,
-						DebutValidite = zumbaBEL.DateDebut,
-						FinValidite = zumbaBEL.DateFin
+						Tarif = 80
 					});
 				context.Formules.AddOrUpdate(f => new { f.FormuleNom, f.ActiviteId },
 					new Formule
@@ -255,9 +249,7 @@ namespace MvcGestionAsso.Migrations.Seed
 						ActiviteId = danseBEL1.ActiviteId,
 						FormuleNom = "Abonnement annuel",
 						IsActive = true,
-						Tarif = 230,
-						DebutValidite = danseBEL1.DateDebut,
-						FinValidite = danseBEL1.DateFin
+						Tarif = 230
 					});
 				context.Formules.AddOrUpdate(f => new { f.FormuleNom, f.ActiviteId },
 					new Formule
@@ -265,9 +257,7 @@ namespace MvcGestionAsso.Migrations.Seed
 						ActiviteId = danseBEL2.ActiviteId,
 						FormuleNom = "Abonnement annuel",
 						IsActive = true,
-						Tarif = 230,
-						DebutValidite = danseBEL2.DateDebut,
-						FinValidite = danseBEL2.DateFin
+						Tarif = 230
 					});
 				context.SaveChanges();
 				#endregion
@@ -418,12 +408,12 @@ namespace MvcGestionAsso.Migrations.Seed
 
 		private static void AddAbonnement(ApplicationDbContext context, Adherent adh, Formule formule)
 		{
-			DateTime dtStart = Lorem.DateTime(formule.DebutValidite.Value, formule.FinValidite.Value);
+			DateTime dtStart = Lorem.DateTime(formule.Activite.DateDebut, formule.Activite.DateFin);
 			adh.Abonnements.Add(new Abonnement
 			{
 				AdherentId = adh.AdherentId,
 				DateDebut = dtStart,
-				DateFin = Lorem.DateTime(dtStart, formule.FinValidite.Value),
+				DateFin = Lorem.DateTime(dtStart, formule.Activite.DateFin),
 				TypeReglement = Lorem.Enum<TypeReglement>(),
 				FormuleId = formule.FormuleId,
 				Formule = formule
@@ -436,7 +426,7 @@ namespace MvcGestionAsso.Migrations.Seed
 			Formule f = abo.Formule;
 			for (int n = 0; n < numChq; n++)
 			{
-				dtCheque = Lorem.DateTime(f.DebutValidite.Value, f.FinValidite.Value);
+				dtCheque = Lorem.DateTime(f.Activite.DateDebut, f.Activite.DateFin);
 				context.Reglements.Add(new Reglement
 				{
 					AbonnementId = abo.AbonnementId,
@@ -445,7 +435,7 @@ namespace MvcGestionAsso.Migrations.Seed
 					ChequeBanque = Lorem.Words(1, 4).Limit(80),
 					ChequeTitulaire = Lorem.Chance(1, 30) ? Lorem.Words(2).Limit(80) : (adh.AdherentPrenom + " " + adh.AdherentNom).Trim().Limit(80),
 					ChequeDate = dtCheque,
-					ChequeDateEncaissement = Lorem.Chance(4, 10) ? null : (DateTime?)Lorem.DateTime(dtCheque, f.FinValidite.Value),
+					ChequeDateEncaissement = Lorem.Chance(4, 10) ? null : (DateTime?)Lorem.DateTime(dtCheque, f.Activite.DateFin),
 					ChequeNumero = (adh.AdherentId + 17 * f.FormuleId + 7 * n).ToString().PadLeft(10, '0'),
 					MoyenPaiement = MoyenPaiement.Cheque
 				});

@@ -7,10 +7,10 @@
 <h2>@ViewBag.Title</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Formule</h4>
         <hr />
@@ -20,22 +20,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FormuleNom, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FormuleNom, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DebutValidite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DebutValidite, "DateWithPicker")
-                @Html.ValidationMessageFor(model => model.DebutValidite, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FinValidite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FinValidite, "DateWithPicker")
-                @Html.ValidationMessageFor(model => model.FinValidite, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -58,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ActiviteId,  htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ActiviteId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ActiviteId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ActiviteId, "", new { @class = "text-danger" })
