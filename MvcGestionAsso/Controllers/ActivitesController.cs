@@ -21,8 +21,7 @@ namespace MvcGestionAsso.Controllers
 		{
 			ViewBag.NomSort = ComputeSort("nom", sort);
 			ViewBag.CodeSort = ComputeSort("code", sort);
-			ViewBag.DateDebutSort = ComputeSort("datedeb", sort, true);
-			ViewBag.DateFinSort = ComputeSort("datefin", sort);
+			ViewBag.AnneeSort = ComputeSort("annee", sort, false);
 			ViewBag.LieuSort = ComputeSort("lieu", sort);
 			ViewBag.CategorieSort = ComputeSort("categorie", sort);
 
@@ -33,9 +32,9 @@ namespace MvcGestionAsso.Controllers
 			#region Sorting
 			switch (sort)
 			{
-				case "datedeb_desc":
+				case "annee":
 					activites = activites
-												.OrderByDescending(a => a.DateDebut)
+												.OrderBy(a => a.DateDebut)
 												.ThenByDescending(a => a.Lieu.LieuNom);
 					break;
 
@@ -63,28 +62,16 @@ namespace MvcGestionAsso.Controllers
 												.ThenByDescending(a => a.DateDebut);
 					break;
 
-				case "datefin":
-					activites = activites
-												.OrderBy(a => a.DateFin)
-												.ThenBy(a => a.Lieu.LieuNom);
-					break;
-
-				case "datefin_desc":
-					activites = activites
-												.OrderByDescending(a => a.DateFin)
-												.ThenBy(a => a.Lieu.LieuNom);
-					break;
-
 				case "lieu":
 					activites = activites
 												.OrderBy(a => a.Lieu.LieuNom)
-												.ThenBy(a => a.Categorie.CategorieActiviteNom);
+												.ThenByDescending(a => a.DateDebut);
 					break;
 
 				case "lieu_desc":
 					activites = activites
 												.OrderByDescending(a => a.Lieu.LieuNom)
-												.ThenBy(a => a.Categorie.CategorieActiviteNom);
+												.ThenByDescending(a => a.DateDebut);
 					break;
 
 				case "categorie":
@@ -101,7 +88,7 @@ namespace MvcGestionAsso.Controllers
 
 				default:
 					activites = activites
-												.OrderBy(a => a.DateDebut)
+												.OrderByDescending(a => a.DateDebut)
 												.ThenByDescending(a => a.Lieu.LieuNom);
 					break;
 			}

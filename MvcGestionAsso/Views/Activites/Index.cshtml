@@ -24,11 +24,14 @@
             @Html.ActionLink("Code", "Index", new { sort = ViewBag.CodeSort, search = ViewBag.CurrentSearch })
         </th>
         <th>
+            @Html.ActionLink("Année", "Index", new { sort = ViewBag.AnneeSort, search = ViewBag.CurrentSearch })
+        </th>
+        @*<th>
             @Html.ActionLink("Date de début", "Index", new { sort = ViewBag.DateDebutSort, search = ViewBag.CurrentSearch })
         </th>
         <th>
             @Html.ActionLink("Date de fin", "Index", new { sort = ViewBag.DateFinSort, search = ViewBag.CurrentSearch })
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Planification)
         </th>
@@ -51,11 +54,11 @@
                 @Html.DisplayFor(modelItem => item.ActiviteCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateDebut, "ShortDateDateTime")
+                @Html.DisplayFor(modelItem => item.DateDebut.Year)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateFin, "ShortDateDateTime")
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Planification)
             </td>
