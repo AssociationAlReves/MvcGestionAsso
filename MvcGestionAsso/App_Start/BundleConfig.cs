@@ -1,5 +1,7 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 using System.Web.Optimization;
+using MvcGestionAsso.Utils;
 
 namespace MvcGestionAsso
 {
@@ -15,9 +17,15 @@ namespace MvcGestionAsso
 									"~/Scripts/jquery.timepicker.js",
 									"~/Scripts/jquery.datepair.js"));
 
-			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-									"~/Scripts/jquery.validate*"));
-
+			var jQueryValBundel = new ScriptBundle("~/bundles/jqueryval").Include(
+									"~/Scripts/globalize/globalize.js",
+									"~/Scripts/globalize/cultures/globalize.culture.fr-FR.js",
+									"~/Scripts/jquery.validate.js",
+									"~/Scripts/jquery.validate.globalize.js",
+									"~/Scripts/jquery.validate.unobtrusive.js");
+			jQueryValBundel.Orderer = new AsIsBundleOrderer();
+			bundles.Add(jQueryValBundel);
+			
 			// Utilisez la version de développement de Modernizr pour le développement et l'apprentissage. Puis, une fois
 			// prêt pour la production, utilisez l'outil de génération (bluid) sur http://modernizr.com pour choisir uniquement les tests dont vous avez besoin.
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -31,6 +39,13 @@ namespace MvcGestionAsso
 								"~/Content/bootstrap.css",
 								"~/Content/site.css",
 								"~/Content/jquery.timepicker.css"));
+		}
+	}
+	class AsIsBundleOrderer : IBundleOrderer
+	{
+		public IEnumerable<BundleFile> OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
+		{
+			return files;
 		}
 	}
 }
