@@ -255,7 +255,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Models\ITreeNodeDotNet3.cs" />
-    <Compile Include="Misc\StringExtensions.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="Models\Planification.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Activite.cs" />
@@ -340,12 +340,16 @@
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <None Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
-    <None Include="Misc\ERD Diagram %28readonly%29.edmx" />
+    <None Include="Utils\ERD Diagram %28readonly%29.edmx" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\datepair.js" />
     <Content Include="Scripts\datepair.min.js" />
+    <Content Include="Scripts\globalize\cultures\globalize.culture.en-GB.js" />
+    <Content Include="Scripts\globalize\cultures\globalize.culture.en-US.js" />
+    <Content Include="Scripts\globalize\cultures\globalize.culture.fr-FR.js" />
+    <Content Include="Scripts\globalize\globalize.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -357,6 +361,8 @@
     <Content Include="Scripts\jquery.timepicker.js" />
     <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.ui.datepicker-fr.js" />
+    <Content Include="Scripts\jquery.validate.globalize.js" />
+    <Content Include="Scripts\jquery.validate.globalize.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -449,6 +455,7 @@
     <Content Include="Views\Shared\EditorTemplates\TimeWithPicker.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Planification.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Planification.cshtml" />
+    <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
