@@ -98,6 +98,92 @@ namespace MvcGestionAsso.Controllers
 			return View(await activites.ToListAsync());
 		}
 
+		// GET: Activites
+		public ActionResult IndexByLieu(int lieuId, string sort)
+		{
+			ViewBag.LieuId = lieuId;
+
+			ViewBag.NomSort = ComputeSort("nom", sort);
+			ViewBag.CodeSort = ComputeSort("code", sort);
+			ViewBag.AnneeSort = ComputeSort("annee", sort, false);
+			ViewBag.LieuSort = ComputeSort("lieu", sort);
+			ViewBag.CategorieSort = ComputeSort("categorie", sort);
+
+			ViewBag.CurrentSort = sort;
+
+			IQueryable<Activite> activites = _applicationDbContext.Activites
+																									.Where(a => a.LieuId == lieuId)
+																									.Include(a => a.Categorie).Include(a => a.Lieu);
+
+			#region Sorting
+			switch (sort)
+			{
+				case "annee":
+					activites = activites
+												.OrderBy(a => a.DateDebut)
+												.ThenByDescending(a => a.Lieu.LieuNom);
+					break;
+
+				case "nom":
+					activites = activites
+												.OrderBy(a => a.ActiviteNom)
+												.ThenByDescending(a => a.DateDebut);
+					break;
+
+				case "nom_desc":
+					activites = activites
+												.OrderByDescending(a => a.ActiviteNom)
+												.ThenByDescending(a => a.DateDebut);
+					break;
+
+				case "code":
+					activites = activites
+												.OrderBy(a => a.ActiviteCode)
+												.ThenByDescending(a => a.DateDebut);
+					break;
+
+				case "code_desc":
+					activites = activites
+												.OrderByDescending(a => a.ActiviteCode)
+												.ThenByDescending(a => a.DateDebut);
+					break;
+
+				case "lieu":
+					activites = activites
+												.OrderBy(a => a.Lieu.LieuNom)
+												.ThenByDescending(a => a.DateDebut);
+					break;
+
+				case "lieu_desc":
+					activites = activites
+												.OrderByDescending(a => a.Lieu.LieuNom)
+												.ThenByDescending(a => a.DateDebut);
+					break;
+
+				case "categorie":
+					activites = activites
+												.OrderBy(a => a.Categorie.CategorieActiviteNom)
+												.ThenByDescending(a => a.DateDebut);
+					break;
+
+				case "categorie_desc":
+					activites = activites
+												.OrderByDescending(a => a.Categorie.CategorieActiviteNom)
+												.ThenByDescending(a => a.DateDebut);
+					break;
+
+				default:
+					activites = activites
+												.OrderByDescending(a => a.DateDebut)
+												.ThenByDescending(a => a.Lieu.LieuNom);
+					break;
+			}
+			#endregion
+
+
+			return PartialView("_IndexByLieu", activites.ToList());
+		}
+
 		private string ComputeSort(string fieldName, string inputSort, bool isDefault = false, bool isDefaultSortAscending = true)
 		{
 			string outputSort = null;

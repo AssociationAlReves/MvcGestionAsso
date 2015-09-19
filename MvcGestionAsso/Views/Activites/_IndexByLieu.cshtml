@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MvcGestionAsso.Models.Activite>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Liste des activités - </strong>@Html.ActionLink("Créer", "Create")
+    </div>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.ActionLink("Catégorie", "Index", new { sort = ViewBag.CategorieSort, search = ViewBag.CurrentSearch })
+            </th>
+            <th>
+                @Html.ActionLink("Nom", "Index", new { sort = ViewBag.NomSort, search = ViewBag.CurrentSearch })
+            </th>
+            <th>
+                @Html.ActionLink("Code", "Index", new { sort = ViewBag.CodeSort, search = ViewBag.CurrentSearch })
+            </th>
+            <th>
+                @Html.ActionLink("Année", "Index", new { sort = ViewBag.AnneeSort, search = ViewBag.CurrentSearch })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Planification)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categorie.CategorieActiviteNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActiviteNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActiviteCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDebut.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Planification)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ActiviteId }) |
+                    @Html.ActionLink("Détails", "Details", new { id = item.ActiviteId }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ActiviteId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
