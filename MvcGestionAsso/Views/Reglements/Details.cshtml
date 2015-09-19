@@ -1,0 +1,90 @@
+﻿@model MvcGestionAsso.Models.Reglement
+
+@{
+    ViewBag.Title = "Détails";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Reglement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Abonnement.AbonnementId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abonnement.AbonnementId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Montant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Montant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoyenPaiement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoyenPaiement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdhesionIncluse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdhesionIncluse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeNumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeNumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeBanque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeBanque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeTitulaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeTitulaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeDateEncaissement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeDateEncaissement)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ReglementId }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

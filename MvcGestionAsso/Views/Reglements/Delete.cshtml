@@ -1,0 +1,96 @@
+﻿@model MvcGestionAsso.Models.Reglement
+
+@{
+    ViewBag.Title = "Supprimer";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Etes-vous sûr de vouloir supprimer ceci ?</h3>
+<div>
+    <h4>Reglement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Abonnement.AbonnementId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abonnement.AbonnementId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Montant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Montant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoyenPaiement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoyenPaiement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdhesionIncluse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdhesionIncluse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeNumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeNumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeBanque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeBanque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeTitulaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeTitulaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChequeDateEncaissement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChequeDateEncaissement)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste", "Index")
+        </div>
+    }
+</div>

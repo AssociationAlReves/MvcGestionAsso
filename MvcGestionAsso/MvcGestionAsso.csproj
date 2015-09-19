@@ -201,6 +201,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LieuxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReglementsController.cs" />
     <Compile Include="DataLayer\AbonnementConfiguration.cs" />
     <Compile Include="DataLayer\AdherentConfiguration.cs" />
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
@@ -456,6 +457,11 @@
     <Content Include="Views\Shared\DisplayTemplates\Planification.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Planification.cshtml" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
+    <Content Include="Views\Reglements\Create.cshtml" />
+    <Content Include="Views\Reglements\Delete.cshtml" />
+    <Content Include="Views\Reglements\Details.cshtml" />
+    <Content Include="Views\Reglements\Edit.cshtml" />
+    <Content Include="Views\Reglements\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

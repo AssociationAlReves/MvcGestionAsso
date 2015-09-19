@@ -1,0 +1,81 @@
+﻿@model IEnumerable<MvcGestionAsso.Models.Reglement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Abonnement.AbonnementId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Montant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoyenPaiement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAdhesionIncluse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChequeNumero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChequeBanque)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChequeTitulaire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChequeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChequeDateEncaissement)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abonnement.AbonnementId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Montant)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoyenPaiement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAdhesionIncluse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChequeNumero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChequeBanque)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChequeTitulaire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChequeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChequeDateEncaissement)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.ReglementId }) |
+            @Html.ActionLink("Détails", "Details", new { id=item.ReglementId }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.ReglementId })
+        </td>
+    </tr>
+}
+
+</table>
