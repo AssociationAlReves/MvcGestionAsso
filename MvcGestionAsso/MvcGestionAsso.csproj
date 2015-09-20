@@ -343,6 +343,7 @@
     <None Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <None Include="Utils\ERD Diagram %28readonly%29.edmx" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\modals.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\datepair.js" />
@@ -463,6 +464,7 @@
     <Content Include="Views\Reglements\Edit.cshtml" />
     <Content Include="Views\Reglements\Index.cshtml" />
     <Content Include="Views\Activites\_IndexByLieu.cshtml" />
+    <Content Include="Views\Activites\_CreateForLieu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

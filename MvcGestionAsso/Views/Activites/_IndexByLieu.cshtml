@@ -3,7 +3,10 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <strong>Liste des activités - </strong>@Html.ActionLink("Créer", "Create")
+        <strong>Liste des activités - </strong>
+        @Html.ActionLink("Créer", "CreateForLieu", "Activites",
+                           new { lieuId = ViewBag.LieuId },
+                           new { @class = "btn btn-primary btn-xs", data_modal = "" })
     </div>
     <table class="table table-hover">
         <tr>
@@ -44,9 +47,15 @@
                     @Html.DisplayFor(modelItem => item.Planification)
                 </td>
                 <td>
-                    @Html.ActionLink("Modifier", "Edit", new { id = item.ActiviteId }) |
-                    @Html.ActionLink("Détails", "Details", new { id = item.ActiviteId }) |
-                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ActiviteId })
+                    @Html.ActionLink("Modifier", "Edit", "Activites",
+                            new { id = item.ActiviteId, lieuId = ViewBag.LieuId },
+                            new { @class = "btn btn-default btn-xs", data_modal = "" })
+                    @Html.ActionLink("Détails", "Details", "Activites",
+                            new { id = item.ActiviteId, lieuId = ViewBag.LieuId },
+                            new { @class = "btn btn-info btn-xs", data_modal = "" })
+                    @Html.ActionLink("Supprimer", "Delete", "Activites",
+                            new { id = item.ActiviteId, lieuId = ViewBag.LieuId },
+                            new { @class = "btn btn-danger btn-xs", data_modal = "" })
                 </td>
             </tr>
         }

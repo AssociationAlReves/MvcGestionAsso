@@ -10,12 +10,12 @@
     @Html.ActionLink("Nouveau", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LieuCode)
-        </th>
+    <tr>        
         <th>
             @Html.DisplayNameFor(model => model.LieuNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LieuCode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Adresse)
@@ -35,10 +35,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.LieuCode)
+            @Html.DisplayFor(modelItem => item.LieuNom)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LieuNom)
+            @Html.DisplayFor(modelItem => item.LieuCode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Adresse)

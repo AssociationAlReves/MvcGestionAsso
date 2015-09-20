@@ -229,6 +229,14 @@ namespace MvcGestionAsso.Controllers
 			return View();
 		}
 
+		public ActionResult CreateForLieu(int lieuId)
+		{
+			ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom");
+			Activite activite = new Activite();
+			activite.LieuId = lieuId;
+			return PartialView("_CreateForLieu", activite);
+		}
+
 		// POST: Activites/Create
 		// Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
 		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.

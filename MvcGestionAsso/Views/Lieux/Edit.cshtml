@@ -6,7 +6,6 @@
 
 <h2>@ViewBag.Title</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -89,4 +88,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/modals.js"></script>
 }
