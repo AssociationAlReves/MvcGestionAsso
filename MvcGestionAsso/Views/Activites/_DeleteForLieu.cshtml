@@ -1,0 +1,85 @@
+﻿@model MvcGestionAsso.Models.Activite
+
+@{
+    ViewBag.Title = "Supprimer l'activité";
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Etes-vous sûr de vouloir supprimer cette activité ?</h4>
+</div>
+<div class="modal-body">
+
+    <p id="MessageToClient" class="text-danger"></p>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.CategorieActiviteNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.CategorieActiviteNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lieu.LieuNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lieu.LieuNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiviteNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActiviteNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiviteCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActiviteCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DureeHeures)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DureeHeures)
+        </dd>
+
+    </dl>
+
+   
+    
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "modalForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal-footer">
+        <a class="btn btn-default" data-dismiss="modal">Annuler</a>
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+    </div>
+}

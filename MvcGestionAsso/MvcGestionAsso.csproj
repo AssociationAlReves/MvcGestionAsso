@@ -463,8 +463,10 @@
     <Content Include="Views\Reglements\Details.cshtml" />
     <Content Include="Views\Reglements\Edit.cshtml" />
     <Content Include="Views\Reglements\Index.cshtml" />
-    <Content Include="Views\Activites\_IndexByLieu.cshtml" />
+    <Content Include="Views\Activites\_IndexForLieu.cshtml" />
     <Content Include="Views\Activites\_CreateForLieu.cshtml" />
+    <Content Include="Views\Activites\_DeleteForLieu.cshtml" />
+    <Content Include="Views\Activites\_EditForLieu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

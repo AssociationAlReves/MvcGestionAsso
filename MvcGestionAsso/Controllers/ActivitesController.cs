@@ -99,7 +99,7 @@ namespace MvcGestionAsso.Controllers
 		}
 
 		// GET: Activites
-		public ActionResult IndexByLieu(int lieuId, string sort)
+		public ActionResult IndexForLieu(int lieuId, string sort)
 		{
 			ViewBag.LieuId = lieuId;
 
@@ -181,7 +181,7 @@ namespace MvcGestionAsso.Controllers
 			#endregion
 
 
-			return PartialView("_IndexByLieu", activites.ToList());
+			return PartialView("_IndexForLieu", activites.ToList());
 		}
 
 		private string ComputeSort(string fieldName, string inputSort, bool isDefault = false, bool isDefaultSortAscending = true)
@@ -233,6 +233,8 @@ namespace MvcGestionAsso.Controllers
 		{
 			ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom");
 			Activite activite = new Activite();
+			activite.DateDebut = DateTime.Now;
+			activite.DateFin = DateTime.Now.AddMonths(1);
 			activite.LieuId = lieuId;
 			return PartialView("_CreateForLieu", activite);
 		}
@@ -264,6 +266,34 @@ namespace MvcGestionAsso.Controllers
 			return View(activite);
 		}
 
+		// POST: Activites/Create
+		// Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> CreateForLieu([Bind(Include = "ActiviteId,ActiviteNom,ActiviteCode,DateDebut,DateFin,Planification,LieuId,CategorieActiviteId")] Activite activite)
+		{
+			ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
+			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
+
+			if (ModelState.IsValid)
+			{
+				// check dates
+				if (activite.DateFin < activite.DateDebut)
+				{
+					ModelState.AddModelError("DateFin", "La date de fin doit être après la date de début.");
+					return Json(new { success = false, message = "La date de fin doit être après la date de début." });
+				}
+
+				_applicationDbContext.Activites.Add(activite);
+				await _applicationDbContext.SaveChangesAsync();
+				return Json(new { success = true });
+			}
+
+			return PartialView("_CreateForLieu",	activite);
+		}
+
+
 		// GET: Activites/Edit/5
 		public async Task<ActionResult> Edit(int? id)
 		{
@@ -279,6 +309,22 @@ namespace MvcGestionAsso.Controllers
 			ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
 			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
 			return View(activite);
+		}
+
+		public ActionResult EditForLieu(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Activite activite = _applicationDbContext.Activites.Find(id);
+			if (activite == null)
+			{
+				return HttpNotFound();
+			}
+			ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
+			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
+			return PartialView("_EditForLieu", activite);
 		}
 
 		// POST: Activites/Edit/5
@@ -307,6 +353,33 @@ namespace MvcGestionAsso.Controllers
 			return View(activite);
 		}
 
+		// POST: Activites/Edit/5
+		// Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> EditForLieu([Bind(Include = "ActiviteId,ActiviteNom,ActiviteCode,DateDebut,DateFin,Planification,LieuId,CategorieActiviteId")] Activite activite)
+		{
+			ViewBag.CategorieActiviteId = new SelectList(_applicationDbContext.CategoriesActivite, "Id", "CategorieActiviteNom", activite.CategorieActiviteId);
+			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", activite.LieuId);
+
+			if (ModelState.IsValid)
+			{
+				// check dates
+				if (activite.DateFin < activite.DateDebut)
+				{
+					ModelState.AddModelError("DateFin", "La date de fin doit être après la date de début.");
+					return Json(new { success = false, message = "La date de fin doit être après la date de début." });
+				}
+
+				_applicationDbContext.Entry(activite).State = EntityState.Modified;
+				await _applicationDbContext.SaveChangesAsync();
+				return Json(new { success = true });
+			}
+			return PartialView("_EditForLieu", activite);
+		}
+
+
 		// GET: Activites/Delete/5
 		public async Task<ActionResult> Delete(int? id)
 		{
@@ -322,6 +395,20 @@ namespace MvcGestionAsso.Controllers
 			return View(activite);
 		}
 
+		public ActionResult DeleteForLieu(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Activite activite = _applicationDbContext.Activites.Find(id);
+			if (activite == null)
+			{
+				return HttpNotFound();
+			}
+			return PartialView("_DeleteForLieu", activite);
+		}
+
 		// POST: Activites/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
@@ -330,7 +417,7 @@ namespace MvcGestionAsso.Controllers
 			Activite activite = await _applicationDbContext.Activites.FindAsync(id);
 			_applicationDbContext.Activites.Remove(activite);
 			await _applicationDbContext.SaveChangesAsync();
-			return RedirectToAction("Index");
+			return Json(new { success = true });
 		}
 
 		protected override void Dispose(bool disposing)
