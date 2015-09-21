@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace MvcGestionAsso.Controllers
 {
@@ -220,6 +221,19 @@ namespace MvcGestionAsso.Controllers
 			}
 			return View(activite);
 		}
+		public async Task<ActionResult> DetailsForLieu(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Activite activite = await _applicationDbContext.Activites.FindAsync(id);
+			if (activite == null)
+			{
+				return HttpNotFound();
+			}
+			return PartialView("_DetailsForLieu", activite);
+		}
 
 		// GET: Activites/Create
 		public ActionResult Create()
@@ -418,6 +432,25 @@ namespace MvcGestionAsso.Controllers
 			_applicationDbContext.Activites.Remove(activite);
 			await _applicationDbContext.SaveChangesAsync();
 			return Json(new { success = true });
+		}
+
+		// POST: Activites/Delete/5
+		[HttpPost, ActionName("DeleteForLieu")]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> DeleteConfirmedForLieu(int id)
+		{
+			try
+			{
+				Activite activite = await _applicationDbContext.Activites.FindAsync(id);
+				_applicationDbContext.Activites.Remove(activite);
+				await _applicationDbContext.SaveChangesAsync();
+				return Json(new { success = true });
+			}
+			catch (DbUpdateException ex)
+			{
+				return Json(new { success = false, message = "Suppression impossible. Vérifiez si des Formules sont liées." });
+			}
+
 		}
 
 		protected override void Dispose(bool disposing)

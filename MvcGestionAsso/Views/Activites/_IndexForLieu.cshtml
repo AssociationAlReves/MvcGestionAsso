@@ -8,7 +8,7 @@
                            new { lieuId = ViewBag.LieuId },
                            new { @class = "btn btn-primary btn-xs", data_modal = "" })
     </div>
-    <table class="table table-hover">
+    <table class="table table-hover table-condensed">
         <tr>
             <th>
                 @Html.ActionLink("Catégorie", "Index", new { sort = ViewBag.CategorieSort, search = ViewBag.CurrentSearch })
@@ -50,7 +50,7 @@
                     @Html.ActionLink("Modifier", "EditForLieu", "Activites",
                             new { id = item.ActiviteId, lieuId = ViewBag.LieuId },
                             new { @class = "btn btn-default btn-xs", data_modal = "" })
-                    @Html.ActionLink("Détails", "Details", "Activites",
+                    @Html.ActionLink("Détails", "DetailsForLieu", "Activites",
                             new { id = item.ActiviteId, lieuId = ViewBag.LieuId },
                             new { @class = "btn btn-info btn-xs", data_modal = "" })
                     @Html.ActionLink("Supprimer", "DeleteForLieu", "Activites",
