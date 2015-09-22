@@ -1,0 +1,58 @@
+﻿@model MvcGestionAsso.Models.Intervenant
+
+@{
+    ViewBag.Title = "Détails";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Intervenant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IntervenantNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IntervenantNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IntervenantPrenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IntervenantPrenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroSecuriteSociale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSecuriteSociale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModification)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.IntervenantId }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MvcGestionAsso.Models.Intervenant>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IntervenantNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IntervenantPrenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroSecuriteSociale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IntervenantNom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IntervenantPrenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroSecuriteSociale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModification)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.IntervenantId }) |
+            @Html.ActionLink("Détails", "Details", new { id=item.IntervenantId }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.IntervenantId })
+        </td>
+    </tr>
+}
+
+</table>

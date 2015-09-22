@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MvcGestionAsso.Models.Mission>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Activite.ActiviteNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Intervenant.IntervenantNom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalaireHoraire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activite.ActiviteNom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Intervenant.IntervenantNom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalaireHoraire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDebut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateFin)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.MissionId }) |
+            @Html.ActionLink("Détails", "Details", new { id=item.MissionId }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.MissionId })
+        </td>
+    </tr>
+}
+
+</table>

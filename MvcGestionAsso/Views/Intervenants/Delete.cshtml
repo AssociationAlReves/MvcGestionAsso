@@ -1,0 +1,47 @@
+﻿@model MvcGestionAsso.Models.Intervenant
+
+@{
+    ViewBag.Title = "Supprimer";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Etes-vous sûr de vouloir supprimer ceci ?</h3>
+<div>
+    <h4>Intervenant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IntervenantNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IntervenantNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IntervenantPrenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IntervenantPrenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroSecuriteSociale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSecuriteSociale)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste", "Index")
+        </div>
+    }
+</div>

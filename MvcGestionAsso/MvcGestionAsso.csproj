@@ -199,8 +199,10 @@
     <Compile Include="Controllers\CategoriesActiviteController.cs" />
     <Compile Include="Controllers\FormulesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IntervenantsController.cs" />
     <Compile Include="Controllers\LieuxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MissionsController.cs" />
     <Compile Include="Controllers\ReglementsController.cs" />
     <Compile Include="DataLayer\AbonnementConfiguration.cs" />
     <Compile Include="DataLayer\AdherentConfiguration.cs" />
@@ -468,6 +470,16 @@
     <Content Include="Views\Activites\_DeleteForLieu.cshtml" />
     <Content Include="Views\Activites\_EditForLieu.cshtml" />
     <Content Include="Views\Activites\_DetailsForLieu.cshtml" />
+    <Content Include="Views\Intervenants\Create.cshtml" />
+    <Content Include="Views\Intervenants\Delete.cshtml" />
+    <Content Include="Views\Intervenants\Details.cshtml" />
+    <Content Include="Views\Intervenants\Edit.cshtml" />
+    <Content Include="Views\Intervenants\Index.cshtml" />
+    <Content Include="Views\Missions\Create.cshtml" />
+    <Content Include="Views\Missions\Delete.cshtml" />
+    <Content Include="Views\Missions\Details.cshtml" />
+    <Content Include="Views\Missions\Edit.cshtml" />
+    <Content Include="Views\Missions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
