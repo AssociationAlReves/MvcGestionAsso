@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6B858F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{622E0674-0480-4359-A38D-9D6FBE7C0405}"
 	ProjectSection(SolutionItems) = preProject
+		C:\Users\Xavier\Pictures\logo.png = C:\Users\Xavier\Pictures\logo.png
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject

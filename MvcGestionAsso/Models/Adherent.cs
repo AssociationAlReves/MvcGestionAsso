@@ -60,6 +60,9 @@ namespace MvcGestionAsso.Models
 		[Display(Name = "Certif. médical")]
 		public bool CertificatMedical { get; set; }
 
+		[Display(Name = "Attestation d'assurance")]
+		public bool AttestationAssurance { get; set; }
+
 		public virtual List<Abonnement> Abonnements { get; set; }
 
 		//public ApplicationUser EditeurCourant { get; set; }

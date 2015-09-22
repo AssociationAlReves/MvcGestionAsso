@@ -255,6 +255,14 @@
     <Compile Include="Migrations\201509182034474_FormuleNoDates.Designer.cs">
       <DependentUpon>201509182034474_FormuleNoDates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509222100208_AdherentAssurance.cs" />
+    <Compile Include="Migrations\201509222100208_AdherentAssurance.Designer.cs">
+      <DependentUpon>201509222100208_AdherentAssurance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509222149473_AdherentDateModif.cs" />
+    <Compile Include="Migrations\201509222149473_AdherentDateModif.Designer.cs">
+      <DependentUpon>201509222149473_AdherentDateModif.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Models\ITreeNodeDotNet3.cs" />
@@ -286,6 +294,9 @@
     <Content Include="Content\bootstrap-themes\bootstrap-superhero.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\logo16.png" />
+    <Content Include="Content\logo20.png" />
+    <Content Include="Content\logo32.png" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -515,6 +526,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509182034474_FormuleNoDates.resx">
       <DependentUpon>201509182034474_FormuleNoDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509222100208_AdherentAssurance.resx">
+      <DependentUpon>201509222100208_AdherentAssurance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509222149473_AdherentDateModif.resx">
+      <DependentUpon>201509222149473_AdherentDateModif.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

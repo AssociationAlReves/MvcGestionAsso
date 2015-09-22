@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AdherentNom, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AdherentNom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.AdherentNom, new { htmlAttributes = new { @class = "form-control", @autofocus="autofocus" } })
                 @Html.ValidationMessageFor(model => model.AdherentNom, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -98,30 +98,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateCreation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCreation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateCreation, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateModification, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateModification, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateModification, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateResiliation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateResiliation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateResiliation, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Statut, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.Statut, htmlAttributes: new { @class = "form-control" })
@@ -135,6 +111,16 @@
                 <div class="checkbox">
                     @Html.EditorFor(model => model.CertificatMedical)
                     @Html.ValidationMessageFor(model => model.CertificatMedical, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AttestationAssurance, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.AttestationAssurance)
+                    @Html.ValidationMessageFor(model => model.AttestationAssurance, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
 @using (Html.BeginForm("Index", "Adherents", FormMethod.Get, new { @class = "form-inline"}))
 {
     @Html.Label("search", "Nom ou Prénom :", new { @class = "control-label"})
-    @Html.TextBox("search", ViewBag.CurrentSearch as string, new { @class = "form-control"})
+    @Html.TextBox("search", ViewBag.CurrentSearch as string, new { @class = "form-control", @autofocus="autofocus" })
     <input type="submit" value="Rechercher" class="btn btn-default"/>
 }
 

@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LieuCode, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LieuCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.LieuCode, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
                 @Html.ValidationMessageFor(model => model.LieuCode, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -268,7 +268,7 @@ namespace MvcGestionAsso.Migrations.Seed
 				Formule abodanseBEL2 = context.Formules.First(f => f.ActiviteId == danseBEL2.ActiviteId);
 				Formule[] formules = context.Formules.ToArray();
 
-				const int numAdherents = 1000; //1000;
+				const int numAdherents = 0; //1000;
 				#region Adherents
 				if (context.Adherents.Any() == false)
 				{
