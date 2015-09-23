@@ -21,9 +21,12 @@ namespace MvcGestionAsso.DataLayer
 
 			Property(a => a.ActiviteNom)
 				.HasMaxLength(100)
+				.IsRequired();
+
+			Property(a => a.LieuId)
 				.IsRequired()
 				.HasColumnAnnotation("Index",
-				new IndexAnnotation(new IndexAttribute("AK_Activite_ActiviteNom") { IsUnique = true }));
+				new IndexAnnotation(new IndexAttribute("AK_Activite_ActiviteLieu") { IsUnique = false }));
 
 			Property(a => a.DateDebut)
 				.IsRequired();

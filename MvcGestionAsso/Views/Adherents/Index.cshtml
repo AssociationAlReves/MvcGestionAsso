@@ -9,123 +9,131 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Index", "Adherents", FormMethod.Get, new { @class = "form-inline"}))
-{
-    @Html.Label("search", "Nom ou Prénom :", new { @class = "control-label"})
-    @Html.TextBox("search", ViewBag.CurrentSearch as string, new { @class = "form-control", @autofocus="autofocus" })
-    <input type="submit" value="Rechercher" class="btn btn-default"/>
-}
+<div class="panel panel-default">
+    <div class="panel-heading">
+      Liste des adhérents - @Html.ActionLink("Créer", "Create", "", new { @class = "btn btn-primary btn-xs" })
+    </div>
+    <div class="panel-body">
+        <p>
+            @using (Html.BeginForm("Index", "Adherents", FormMethod.Get, new { @class = "form-inline" }))
+            {
+                @Html.Label("search", "Recherche par Nom ou Prénom", new { @class = "control-label" })
+                @:&nbsp;
+                @Html.TextBox("search", ViewBag.CurrentSearch as string, new { @class = "form-control input-sm", @autofocus = "autofocus" })
+                <input type="submit" value="Rechercher" class="btn btn-default btn-sm" />
+            }
+        </p>
+    </div>
 
-<p>
-    @Html.ActionLink("Nouveau", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Nom", "Index", new { sort = ViewBag.NomSort, search = ViewBag.CurrentSearch })
-        </th>
-        <th>
-            @Html.ActionLink("Prénom", "Index", new { sort = ViewBag.PrenomSort, search = ViewBag.CurrentSearch })
-        </th>
-        <th>
-            @Html.ActionLink("Famille", "Index", new { sort = ViewBag.FamilleSort, search = ViewBag.CurrentSearch })
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.First().EMail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Telephone)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Adresse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adresse2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CodePostal)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.First().Ville)
-        </th>
-        <th>
-            @Html.ActionLink(Html.DisplayNameFor(model => model.First().DateCreation).ToHtmlString(), "Index", new { sort = ViewBag.DateCreationSort, search = ViewBag.CurrentSearch })
-        </th>
-        <th>
-            @Html.ActionLink(Html.DisplayNameFor(model => model.First().DateModification).ToHtmlString(), "Index", new { sort = ViewBag.DateModifSort, search = ViewBag.CurrentSearch })
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.DateResiliation)
-        </th>*@
-        <th>
-            @Html.ActionLink(Html.DisplayNameFor(model => model.First().Statut).ToHtmlString(), "Index", new { sort = ViewBag.StatutSort, search = ViewBag.CurrentSearch })
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.CertificatMedical)
-        </th>*@
-        <th></th>
-    </tr>
+    <table class="table table-striped table-responsive">
+        <tr>
+            <th>
+                @Html.ActionLink("Nom", "Index", new { sort = ViewBag.NomSort, search = ViewBag.CurrentSearch })
+            </th>
+            <th>
+                @Html.ActionLink("Prénom", "Index", new { sort = ViewBag.PrenomSort, search = ViewBag.CurrentSearch })
+            </th>
+            <th>
+                @Html.ActionLink("Famille", "Index", new { sort = ViewBag.FamilleSort, search = ViewBag.CurrentSearch })
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.First().EMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Telephone)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Adresse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adresse2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CodePostal)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.First().Ville)
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(model => model.First().DateCreation).ToHtmlString(), "Index", new { sort = ViewBag.DateCreationSort, search = ViewBag.CurrentSearch })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(model => model.First().DateModification).ToHtmlString(), "Index", new { sort = ViewBag.DateModifSort, search = ViewBag.CurrentSearch })
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.DateResiliation)
+                </th>*@
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(model => model.First().Statut).ToHtmlString(), "Index", new { sort = ViewBag.StatutSort, search = ViewBag.CurrentSearch })
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.CertificatMedical)
+                </th>*@
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdherentNom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdherentPrenom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Famille)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.EMail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telephone)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Adresse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adresse2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodePostal)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Ville)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateModification)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.DateResiliation)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Statut)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.CertificatMedical)
-        </td>*@
-        <td>
-            @Html.ActionLink("Modifier", "Edit", new { id=item.AdherentId }) |
-            @Html.ActionLink("Détails", "Details", new { id=item.AdherentId }) |
-            @Html.ActionLink("Supprimer", "Delete", new { id=item.AdherentId })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdherentNom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdherentPrenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Famille)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.EMail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Adresse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adresse2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodePostal)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Ville)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModification)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.DateResiliation)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Statut)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.CertificatMedical)
+                </td>*@
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.AdherentId }) |
+                @Html.ActionLink("Détails", "Details", new { id = item.AdherentId }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.AdherentId })
+            </td>
+        </tr>
+        }
 
-</table>
+    </table>
+</div>
 
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sort = ViewBag.CurrentSort, search = ViewBag.CurrentSearch}))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sort = ViewBag.CurrentSort, search = ViewBag.CurrentSearch }))

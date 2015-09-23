@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
 using System.Data.Entity.Infrastructure;
+using MvcGestionAsso.BusinessRules;
 
 namespace MvcGestionAsso.Controllers
 {
@@ -304,7 +305,7 @@ namespace MvcGestionAsso.Controllers
 				return Json(new { success = true });
 			}
 
-			return PartialView("_CreateForLieu",	activite);
+			return PartialView("_CreateForLieu", activite);
 		}
 
 
@@ -429,9 +430,20 @@ namespace MvcGestionAsso.Controllers
 		public async Task<ActionResult> DeleteConfirmed(int id)
 		{
 			Activite activite = await _applicationDbContext.Activites.FindAsync(id);
-			_applicationDbContext.Activites.Remove(activite);
-			await _applicationDbContext.SaveChangesAsync();
-			return Json(new { success = true });
+
+			BusinessRuleResult result = ActiviteBR.CanDelete(_applicationDbContext, activite);
+
+			if (result.Success)
+			{
+				_applicationDbContext.Activites.Remove(activite);
+				await _applicationDbContext.SaveChangesAsync();
+				return Json(new { success = result.Success, message = result.Message });
+			}
+			else
+			{
+				return Json(new { success = result.Success, message = result.Message });
+			}
+
 		}
 
 		// POST: Activites/Delete/5
@@ -442,9 +454,19 @@ namespace MvcGestionAsso.Controllers
 			try
 			{
 				Activite activite = await _applicationDbContext.Activites.FindAsync(id);
-				_applicationDbContext.Activites.Remove(activite);
-				await _applicationDbContext.SaveChangesAsync();
-				return Json(new { success = true });
+
+				BusinessRuleResult result = ActiviteBR.CanDelete(_applicationDbContext, activite);
+
+				if (result.Success)
+				{
+					_applicationDbContext.Activites.Remove(activite);
+					await _applicationDbContext.SaveChangesAsync();
+					return Json(new { success = result.Success, message = result.Message });
+				}
+				else
+				{
+					return Json(new { success = result.Success, message = result.Message });
+				}	
 			}
 			catch (DbUpdateException ex)
 			{
