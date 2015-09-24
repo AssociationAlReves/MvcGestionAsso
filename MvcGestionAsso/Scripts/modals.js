@@ -1,7 +1,7 @@
 ﻿$(function () {
     $("a[data-modal]").on("click", function () {
         $("#mainModalContent").load(this.href, function () {
-            $("#mainModal").modal({ keyboard: true }, "show");
+            $("#mainModal").modal({ keyboard: true, backdrop: "static" }, "show");
 
             $("#modalForm").submit(function () {
                 if ($("#modalForm").valid()) {
