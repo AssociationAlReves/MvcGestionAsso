@@ -36,7 +36,7 @@ namespace MvcGestionAsso
 								"~/Scripts/respond.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
-								"~/Content/bootstrap.css",
+								"~/Content/bootstrap-themes/bootstrap-yeti.css",
 								"~/Content/site.css",
 								"~/Content/jquery.timepicker.css"));
 		}

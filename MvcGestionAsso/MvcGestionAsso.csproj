@@ -49,6 +49,10 @@
       <HintPath>..\..\Lorem.NET\Lorem.NET\bin\Release\LoremNET.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mvc.CascadeDropDown, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mvc.CascadeDropDown.1.1.0\lib\Mvc.CascadeDropDown.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -296,8 +300,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-themes\bootstrap-default.css" />
     <Content Include="Content\bootstrap-themes\bootstrap-default.min.css" />
+    <Content Include="Content\bootstrap-themes\bootstrap-simplex.css" />
+    <Content Include="Content\bootstrap-themes\bootstrap-simplex.min.css" />
     <Content Include="Content\bootstrap-themes\bootstrap-superhero.css" />
     <Content Include="Content\bootstrap-themes\bootstrap-superhero.min.css" />
+    <Content Include="Content\bootstrap-themes\bootstrap-yeti.css" />
+    <Content Include="Content\bootstrap-themes\bootstrap-yeti.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\logo16.png" />

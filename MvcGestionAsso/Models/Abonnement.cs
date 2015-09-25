@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -14,14 +16,21 @@ namespace MvcGestionAsso.Models
 
 		public virtual List<Reglement> Reglements { get; set; }
 
+		[Required]
 		public int FormuleId { get; set; }
 		public Formule Formule { get; set; }
 
 		public TypeReglement TypeReglement { get; set; }
 
+
 		public DateTime DateDebut { get; set; }
 
 		public DateTime DateFin { get; set; }
+
+		[NotMapped]
+		public int LieuId { get; set; }
+		[NotMapped]
+		public int ActiviteId { get; set; }
 	}
 
 	public enum TypeReglement
