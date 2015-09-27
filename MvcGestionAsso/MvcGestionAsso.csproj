@@ -464,6 +464,9 @@
     <Content Include="Views\Missions\Edit.cshtml" />
     <Content Include="Views\Missions\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Views\Abonnements\_IndexForAdherent.cshtml" />
+    <Content Include="Views\Abonnements\_CreateForAdherent.cshtml" />
+    <Content Include="Views\Abonnements\_EditForAdherent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

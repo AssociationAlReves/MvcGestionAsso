@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
 using MvcGestionAsso.Utils;
+using System.Data.Entity.Infrastructure;
 
 namespace MvcGestionAsso.Controllers
 {
@@ -22,6 +23,16 @@ namespace MvcGestionAsso.Controllers
 		{
 			var abonnements = db.Abonnements.Include(a => a.Adherent).Include(a => a.Formule);
 			return View(await abonnements.ToListAsync());
+		}
+
+		public ActionResult IndexForAdherent(int adherentId)
+		{
+			var abonnements = db.Abonnements.Where(a => a.AdherentId == adherentId)
+																				.Include(a => a.Adherent)
+																				.Include(a => a.Formule.Activite)
+																				.Include(a => a.Formule.Activite.Lieu)
+																				.Include(a => a.Formule);
+			return PartialView("_IndexForAdherent", abonnements.ToList());
 		}
 
 		// GET: Abonnements/Details/5
@@ -47,6 +58,18 @@ namespace MvcGestionAsso.Controllers
 			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom");
 			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom");
 			return View();
+		}
+
+		// GET: Abonnements/Create
+		public ActionResult CreateForAdherent(int adherentId)
+		{
+			Abonnement abo = new Abonnement();
+			abo.AdherentId = adherentId;
+			abo.FormuleId = 0;
+			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom");
+			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom");
+			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom");
+			return PartialView("_CreateForAdherent", abo);
 		}
 
 		public ActionResult GetActivitesByLieu(int lieuId)
@@ -88,13 +111,7 @@ namespace MvcGestionAsso.Controllers
 				await db.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
-			foreach (ModelState modelState in ViewData.ModelState.Values)
-			{
-				foreach (ModelError error in modelState.Errors)
-				{
-					System.Diagnostics.Trace.WriteLine(error.ErrorMessage);
-				}
-			}
+
 
 			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
 			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
@@ -102,6 +119,49 @@ namespace MvcGestionAsso.Controllers
 			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
 			return View(abonnement);
 		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> CreateForAdherent([Bind(Include = "AbonnementId,AdherentId,LieuId,ActiviteId,FormuleId,TypeReglement")] Abonnement abonnement)
+		{
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					db.Abonnements.Add(abonnement);
+					await db.SaveChangesAsync();
+					return Json(new { success = true });
+				}
+				else
+				{
+					ModelState.TraceModelErrors();
+
+					return Json(new
+					{
+						success = false,
+						message = String.Join(" ", ModelState.GetModelErrors().ToArray())
+					});
+				}
+			}
+			catch (DbUpdateException ex)
+			{
+				return Json(new
+				{
+					success = false,
+					message = ex.InnerException.InnerException.Message
+				});
+			}
+			catch (Exception ex)
+			{
+				return Json(new
+				{
+					success = false,
+					message = ex.Message
+				});
+			}
+
+		}
+
 
 		// GET: Abonnements/Edit/5
 		public async Task<ActionResult> Edit(int? id)
@@ -116,8 +176,25 @@ namespace MvcGestionAsso.Controllers
 				return HttpNotFound();
 			}
 			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);	
+			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
 			return View(abonnement);
+		}
+
+		public async Task<ActionResult> EditForAdherent(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Abonnement abonnement = await db.Abonnements.FindAsync(id);
+			if (abonnement == null)
+			{
+				return HttpNotFound();
+			}
+			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
+			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
+			return PartialView("_EditForAdherent", abonnement);
 		}
 
 		// POST: Abonnements/Edit/5
@@ -140,6 +217,33 @@ namespace MvcGestionAsso.Controllers
 			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
 			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
 			return View(abonnement);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> EditForAdherent([Bind(Include = "AbonnementId,AdherentId,FormuleId,TypeReglement,DateCreation")] Abonnement abonnement)
+		{
+			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
+			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
+			
+			if (ModelState.IsValid)
+			{
+				db.Entry(abonnement).State = EntityState.Modified;
+				await db.SaveChangesAsync();
+				return Json(new { success = true });
+			}
+			else
+			{
+				ModelState.TraceModelErrors();
+
+				return Json(new
+				{
+					success = false,
+					message = String.Join(" ", ModelState.GetModelErrors().ToArray())
+				});
+			}
+			return PartialView("_EditForAdherent", abonnement);
 		}
 
 		// GET: Abonnements/Delete/5

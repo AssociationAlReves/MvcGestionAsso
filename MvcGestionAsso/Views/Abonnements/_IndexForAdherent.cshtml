@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MvcGestionAsso.Models.Abonnement>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Liste des abonnements - </strong>
+        @Html.ActionLink("Créer", "CreateForAdherent", "Abonnements",
+                           new { adherentId = ViewBag.AdherentId },
+                           new { @class = "btn btn-primary btn-xs", data_modal = "" })
+    </div>
+    <table class="table table-hover table-condensed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lieu.LieuNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activite.ActiviteNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Formule.FormuleNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeReglement)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DateCreation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Lieu.LieuNom)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Activite.ActiviteNom)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Formule.FormuleNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeReglement)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.DateCreation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateModification)
+                </td>*@
+                <td>
+                    @Html.ActionLink("Modifier", "EditForAdherent",
+                            new { id = item.AbonnementId },
+                            new { @class = "btn btn-default btn-xs", data_modal = "" })
+                    @Html.ActionLink("Détails", "DetailsForAdherent",
+                            new { id = item.AbonnementId },
+                         new { @class = "btn btn-info btn-xs", data_modal = "" })
+                    @Html.ActionLink("Supprimer", "DeleteForAdherent",
+                            new { id = item.AbonnementId },
+                            new { @class = "btn btn-danger btn-xs", data_modal = "" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

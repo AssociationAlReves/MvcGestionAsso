@@ -12,7 +12,7 @@ namespace MvcGestionAsso.Models
 
 		[Required(ErrorMessage = "Le nom de l'activité est requis.")]
 		[StringLength(100, ErrorMessage = "Le nom de l'activité doit comporter moins de 100 caractères.")]
-		[Display(Name = "Nom de l'activité")]
+		[Display(Name = "Activité")]
 		public string ActiviteNom { get; set; }
 
 		[Required(ErrorMessage = "Le code de l'activité est requis.")]

@@ -42,6 +42,16 @@ namespace MvcGestionAsso.Models
 		[Range(1, int.MaxValue, ErrorMessage = "Vous devez sélectionner une activité.")]
 		[Display(Name = "Activité")]
 		public int ActiviteId { get; set; }
+
+		public Lieu Lieu
+		{
+			get { return Formule.Activite.Lieu; }
+		}
+
+		public Activite Activite
+		{
+			get { return Formule.Activite; }
+		}
 	}
 
 	public enum TypeReglement

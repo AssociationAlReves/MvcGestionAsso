@@ -145,7 +145,19 @@
                     </div>
                 </div>
             </div>
+
+            
+
         </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                @{
+    Html.RenderAction("IndexForAdherent", "Abonnements", new { adherentId = Model.AdherentId });
+                }
+            </div>
+        </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-1 col-md-10">
@@ -161,4 +173,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/modals.js"></script>
 }

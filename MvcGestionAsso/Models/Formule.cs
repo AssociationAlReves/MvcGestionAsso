@@ -10,7 +10,7 @@ namespace MvcGestionAsso.Models
 	{
 		public int FormuleId { get; set; }
 
-		[Display(Name="Nom de la formule")]
+		[Display(Name="Formule")]
 		[Required()]
 		[StringLength(50)]
 		public string FormuleNom { get; set; }
