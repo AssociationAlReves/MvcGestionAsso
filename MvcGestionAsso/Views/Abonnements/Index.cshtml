@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Adherent.AdherentNom)
+            @Html.DisplayNameFor(model => model.Adherent.NomComplet)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Formule.FormuleNom)
@@ -21,10 +21,10 @@
             @Html.DisplayNameFor(model => model.TypeReglement)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateDebut)
+            @Html.DisplayNameFor(model => model.DateCreation)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateFin)
+            @Html.DisplayNameFor(model => model.DateModification)
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Adherent.AdherentNom)
+            @Html.DisplayFor(modelItem => item.Adherent.NomComplet)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Formule.FormuleNom)
@@ -41,10 +41,10 @@
             @Html.DisplayFor(modelItem => item.TypeReglement)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateDebut)
+            @Html.DisplayFor(modelItem => item.DateCreation)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateFin)
+            @Html.DisplayFor(modelItem => item.DateModification)
         </td>
         <td>
             @Html.ActionLink("Modifier", "Edit", new { id=item.AbonnementId }) |

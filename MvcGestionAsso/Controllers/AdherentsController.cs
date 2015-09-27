@@ -164,7 +164,7 @@ namespace MvcGestionAsso.Controllers
 		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "AdherentId,AdherentNom,AdherentPrenom,Famille,Notes,EMail,Telephone,Adresse,Adresse2,CodePostal,Ville,DateCreation,DateModification,DateResiliation,Statut,CertificatMedical")] Adherent adherent)
+		public async Task<ActionResult> Create([Bind(Include = "AdherentId,AdherentNom,AdherentPrenom,Famille,Notes,EMail,Telephone,Adresse,Adresse2,CodePostal,Ville,Statut,CertificatMedical")] Adherent adherent)
 		{
 			if (ModelState.IsValid)
 			{
@@ -196,7 +196,7 @@ namespace MvcGestionAsso.Controllers
 		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Edit([Bind(Include = "AdherentId,AdherentNom,AdherentPrenom,Famille,Notes,EMail,Telephone,Adresse,Adresse2,CodePostal,Ville,DateCreation,DateModification,DateResiliation,Statut,CertificatMedical")] Adherent adherent)
+		public async Task<ActionResult> Edit([Bind(Include = "AdherentId,AdherentNom,AdherentPrenom,Famille,Notes,EMail,Telephone,Adresse,Adresse2,CodePostal,Ville,Statut,DateCreation,CertificatMedical")] Adherent adherent)
 		{
 			if (ModelState.IsValid)
 			{

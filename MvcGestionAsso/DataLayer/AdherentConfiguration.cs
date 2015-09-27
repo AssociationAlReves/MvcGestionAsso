@@ -32,8 +32,8 @@ namespace MvcGestionAsso.DataLayer
 			Property(a => a.CodePostal).HasMaxLength(5).IsOptional();
 			Property(a => a.Ville).HasMaxLength(150).IsOptional();
 
-			Property(a => a.DateCreation).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
-			Property(a => a.DateModification).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+			Property(a => a.DateCreation);
+			Property(a => a.DateModification);
 			Property(a => a.DateResiliation).IsOptional();
 
 			Property(a => a.Statut).IsRequired();

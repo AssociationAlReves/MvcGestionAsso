@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MvcGestionAsso.Models
 {
-	public class Adherent
+	public class Adherent : ITrackable
 	{
 		public int AdherentId { get; set; }
 
@@ -19,6 +19,12 @@ namespace MvcGestionAsso.Models
 		[StringLength(30)]
 		[Display(Name = "Prénom")]
 		public string AdherentPrenom { get; set; }
+
+		[Display(Name = "Adhérent")]
+		public string NomComplet
+		{
+			get { return (AdherentPrenom + " " + AdherentNom).Trim(); }
+		}
 
 		[StringLength(30)]
 		public string Famille { get; set; }
@@ -49,9 +55,10 @@ namespace MvcGestionAsso.Models
 		[StringLength(150)]
 		public string Ville { get; set; }
 
-
-		public DateTime DateCreation { get; set; }
-		public DateTime DateModification { get; set; }
+		[Display(Name="Créé le")]
+		public DateTime? DateCreation { get; set; }
+		[Display(Name = "Modifié le")]
+		public DateTime? DateModification { get; set; }
 
 		public DateTime? DateResiliation { get; set; }
 

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MvcGestionAsso.Models
 {
-	public class Intervenant
+	public class Intervenant : ITrackable
 	{
 		public int IntervenantId { get; set; }
 
@@ -14,8 +14,8 @@ namespace MvcGestionAsso.Models
 
 		public string NumeroSecuriteSociale { get; set; }
 
-		public DateTime DateCreation { get; set; }
-		public DateTime DateModification { get; set; }
+		public DateTime? DateCreation { get; set; }
+		public DateTime? DateModification { get; set; }
 
 		public virtual List<Mission> Missions { get; set; }
 	}

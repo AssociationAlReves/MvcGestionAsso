@@ -18,15 +18,15 @@
         @Html.HiddenFor(model => model.AbonnementId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdherentId, "AdherentId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="AdherentId">@Html.DisplayNameFor(model => model.AdherentId)</label>
             <div class="col-md-10">
-                @Html.DropDownList("AdherentId", null, htmlAttributes: new { @class = "form-control", @autofocus="autofocus" } })
+                @Html.DropDownList("AdherentId", null, htmlAttributes: new { @class = "form-control", @autofocus="autofocus" })
                 @Html.ValidationMessageFor(model => model.AdherentId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FormuleId, "FormuleId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="FormuleId">@Html.DisplayNameFor(model => model.FormuleId)</label>
             <div class="col-md-10">
                 @Html.DropDownList("FormuleId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.FormuleId, "", new { @class = "text-danger" })
@@ -41,21 +41,21 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateDebut, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.DateCreation, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateDebut, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DateCreation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateCreation, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateFin, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DateModification, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateFin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DateModification, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateModification, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MvcGestionAsso.Models;
@@ -50,5 +51,40 @@ namespace MvcGestionAsso.DataLayer
 			return new ApplicationDbContext();
 		}
 
+		public override int SaveChanges()
+		{
+
+			SetITrackableDates();
+
+			return base.SaveChanges();
+		}
+
+		private void SetITrackableDates()
+		{
+			var entities = ChangeTracker.Entries().Where(x => x.Entity is ITrackable && (x.State == EntityState.Added || x.State == EntityState.Modified));
+
+			foreach (var entity in entities)
+			{
+				if (entity.State == EntityState.Added)
+				{
+					((ITrackable)entity.Entity).DateCreation = DateTime.Now;
+					//((ITrackable)entity.Entity).DateModification = DateTime.Now;
+				}
+
+				((ITrackable)entity.Entity).DateModification = DateTime.Now;
+			}
+		}
+
+		public override Task<int> SaveChangesAsync()
+		{
+			SetITrackableDates();
+			return base.SaveChangesAsync();
+		}
+
+		public override Task<int> SaveChangesAsync(System.Threading.CancellationToken cancellationToken)
+		{
+			SetITrackableDates();
+			return base.SaveChangesAsync(cancellationToken);
+		}
 	}
 }

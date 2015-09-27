@@ -317,7 +317,6 @@ namespace MvcGestionAsso.Migrations.Seed
 								switch (abo.TypeReglement)
 								{
 
-									case TypeReglement.CarteBleue:
 									case TypeReglement.Especes:
 										context.Reglements.Add(new Reglement { AbonnementId = abo.AbonnementId, Montant = abo.Formule.Tarif, IsAdhesionIncluse = true });
 										break;
@@ -325,14 +324,9 @@ namespace MvcGestionAsso.Migrations.Seed
 
 										AddReglementCheque(context, adh, abo, 1);
 										break;
-									case TypeReglement.Cheque_2Fois:
-										AddReglementCheque(context, adh, abo, 2);
-										break;
 									case TypeReglement.Cheque_3Fois:
 										AddReglementCheque(context, adh, abo, 3);
 										break;
-									case TypeReglement.Cheque_4Fois:
-										AddReglementCheque(context, adh, abo, 4);
 										break;
 								}
 
@@ -412,8 +406,8 @@ namespace MvcGestionAsso.Migrations.Seed
 			adh.Abonnements.Add(new Abonnement
 			{
 				AdherentId = adh.AdherentId,
-				DateDebut = dtStart,
-				DateFin = Lorem.DateTime(dtStart, formule.Activite.DateFin),
+				DateCreation = dtStart,
+				DateModification = Lorem.DateTime(dtStart, formule.Activite.DateFin),
 				TypeReglement = Lorem.Enum<TypeReglement>(),
 				FormuleId = formule.FormuleId,
 				Formule = formule

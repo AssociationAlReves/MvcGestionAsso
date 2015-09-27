@@ -79,7 +79,7 @@ namespace MvcGestionAsso.Controllers
 		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "AbonnementId,AdherentId,FormuleId,TypeReglement,DateDebut,DateFin")] Abonnement abonnement)
+		public async Task<ActionResult> Create([Bind(Include = "AbonnementId,AdherentId,LieuId,ActiviteId,FormuleId,TypeReglement")] Abonnement abonnement)
 		{
 			if (ModelState.IsValid)
 			{
@@ -87,9 +87,18 @@ namespace MvcGestionAsso.Controllers
 				await db.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
+			foreach (ModelState modelState in ViewData.ModelState.Values)
+			{
+				foreach (ModelError error in modelState.Errors)
+				{
+					System.Diagnostics.Trace.WriteLine(error.ErrorMessage);
+				}
+			}
 
 			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
 			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
+			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
 			return View(abonnement);
 		}
 
@@ -115,7 +124,7 @@ namespace MvcGestionAsso.Controllers
 		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Edit([Bind(Include = "AbonnementId,AdherentId,FormuleId,TypeReglement,DateDebut,DateFin")] Abonnement abonnement)
+		public async Task<ActionResult> Edit([Bind(Include = "AbonnementId,AdherentId,FormuleId,TypeReglement,DateCreation")] Abonnement abonnement)
 		{
 			if (ModelState.IsValid)
 			{

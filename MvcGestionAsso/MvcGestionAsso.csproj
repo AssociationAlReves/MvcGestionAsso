@@ -225,56 +225,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MigrationsSeed\SampleDataSeed.cs" />
-    <Compile Include="Migrations\201508292144100_Initial.cs" />
-    <Compile Include="Migrations\201508292144100_Initial.Designer.cs">
-      <DependentUpon>201508292144100_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508292202422_AboAdherent.cs" />
-    <Compile Include="Migrations\201508292202422_AboAdherent.Designer.cs">
-      <DependentUpon>201508292202422_AboAdherent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508302017530_RemoveCascadeConventions.cs" />
-    <Compile Include="Migrations\201508302017530_RemoveCascadeConventions.Designer.cs">
-      <DependentUpon>201508302017530_RemoveCascadeConventions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508311206243_Categories.cs" />
-    <Compile Include="Migrations\201508311206243_Categories.Designer.cs">
-      <DependentUpon>201508311206243_Categories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509020830398_AdhIndexNomPrenom.cs" />
-    <Compile Include="Migrations\201509020830398_AdhIndexNomPrenom.Designer.cs">
-      <DependentUpon>201509020830398_AdhIndexNomPrenom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509020946410_AdhNoEditeur.cs" />
-    <Compile Include="Migrations\201509020946410_AdhNoEditeur.Designer.cs">
-      <DependentUpon>201509020946410_AdhNoEditeur.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509062028108_ActiviteHeureDebutFin.cs" />
-    <Compile Include="Migrations\201509062028108_ActiviteHeureDebutFin.Designer.cs">
-      <DependentUpon>201509062028108_ActiviteHeureDebutFin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509081958192_ActivitePlanif.cs" />
-    <Compile Include="Migrations\201509081958192_ActivitePlanif.Designer.cs">
-      <DependentUpon>201509081958192_ActivitePlanif.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509182034474_FormuleNoDates.cs" />
-    <Compile Include="Migrations\201509182034474_FormuleNoDates.Designer.cs">
-      <DependentUpon>201509182034474_FormuleNoDates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509222100208_AdherentAssurance.cs" />
-    <Compile Include="Migrations\201509222100208_AdherentAssurance.Designer.cs">
-      <DependentUpon>201509222100208_AdherentAssurance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509222149473_AdherentDateModif.cs" />
-    <Compile Include="Migrations\201509222149473_AdherentDateModif.Designer.cs">
-      <DependentUpon>201509222149473_AdherentDateModif.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509232147512_ActiviteLieuIndex.cs" />
-    <Compile Include="Migrations\201509232147512_ActiviteLieuIndex.Designer.cs">
-      <DependentUpon>201509232147512_ActiviteLieuIndex.cs</DependentUpon>
+    <Compile Include="Migrations\201509272000481_Initial.cs" />
+    <Compile Include="Migrations\201509272000481_Initial.Designer.cs">
+      <DependentUpon>201509272000481_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
+    <Compile Include="Models\ITrackable.cs" />
     <Compile Include="Models\ITreeNodeDotNet3.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="Models\Planification.cs" />
@@ -515,41 +472,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508292144100_Initial.resx">
-      <DependentUpon>201508292144100_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508292202422_AboAdherent.resx">
-      <DependentUpon>201508292202422_AboAdherent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508302017530_RemoveCascadeConventions.resx">
-      <DependentUpon>201508302017530_RemoveCascadeConventions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508311206243_Categories.resx">
-      <DependentUpon>201508311206243_Categories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509020830398_AdhIndexNomPrenom.resx">
-      <DependentUpon>201509020830398_AdhIndexNomPrenom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509020946410_AdhNoEditeur.resx">
-      <DependentUpon>201509020946410_AdhNoEditeur.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509062028108_ActiviteHeureDebutFin.resx">
-      <DependentUpon>201509062028108_ActiviteHeureDebutFin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509081958192_ActivitePlanif.resx">
-      <DependentUpon>201509081958192_ActivitePlanif.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509182034474_FormuleNoDates.resx">
-      <DependentUpon>201509182034474_FormuleNoDates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509222100208_AdherentAssurance.resx">
-      <DependentUpon>201509222100208_AdherentAssurance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509222149473_AdherentDateModif.resx">
-      <DependentUpon>201509222149473_AdherentDateModif.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509232147512_ActiviteLieuIndex.resx">
-      <DependentUpon>201509232147512_ActiviteLieuIndex.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509272000481_Initial.resx">
+      <DependentUpon>201509272000481_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

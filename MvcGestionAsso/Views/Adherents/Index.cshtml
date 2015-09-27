@@ -58,10 +58,10 @@
                 @Html.DisplayNameFor(model => model.First().Ville)
             </th>
             <th>
-                @Html.ActionLink(Html.DisplayNameFor(model => model.First().DateCreation).ToHtmlString(), "Index", new { sort = ViewBag.DateCreationSort, search = ViewBag.CurrentSearch })
+                @Html.ActionLink("Créé le", "Index", new { sort = ViewBag.DateCreationSort, search = ViewBag.CurrentSearch })
             </th>
             <th>
-                @Html.ActionLink(Html.DisplayNameFor(model => model.First().DateModification).ToHtmlString(), "Index", new { sort = ViewBag.DateModifSort, search = ViewBag.CurrentSearch })
+                @Html.ActionLink("Modifié le", "Index", new { sort = ViewBag.DateModifSort, search = ViewBag.CurrentSearch })
             </th>
             @*<th>
                     @Html.DisplayNameFor(model => model.DateResiliation)

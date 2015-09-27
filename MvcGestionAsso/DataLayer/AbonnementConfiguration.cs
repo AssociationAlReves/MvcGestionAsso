@@ -20,8 +20,12 @@ namespace MvcGestionAsso.DataLayer
 				.HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("AK_Abo_AdherentFormule", 2) { IsUnique = true }));
 
 			Property(a => a.TypeReglement).IsRequired();
-			Property(a => a.DateFin).IsRequired();
-			Property(a => a.DateDebut).IsRequired();
+
+			Property(a => a.DateCreation);//.HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+			Property(a => a.DateModification);//.HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+
+			Ignore(a => a.LieuId);
+			Ignore(a => a.ActiviteId);
 		}
 	}
 }
