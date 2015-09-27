@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
+using MvcGestionAsso.Utils;
 
 namespace MvcGestionAsso.Controllers
 {
@@ -115,7 +116,7 @@ namespace MvcGestionAsso.Controllers
 				return HttpNotFound();
 			}
 			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);	
 			return View(abonnement);
 		}
 
@@ -131,6 +132,10 @@ namespace MvcGestionAsso.Controllers
 				db.Entry(abonnement).State = EntityState.Modified;
 				await db.SaveChangesAsync();
 				return RedirectToAction("Index");
+			}
+			else
+			{
+				ModelState.TraceModelErrors();
 			}
 			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
 			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);

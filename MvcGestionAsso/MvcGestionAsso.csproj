@@ -233,6 +233,7 @@
     <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Models\ITrackable.cs" />
     <Compile Include="Models\ITreeNodeDotNet3.cs" />
+    <Compile Include="Utils\MvcExtensions.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="Models\Planification.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
