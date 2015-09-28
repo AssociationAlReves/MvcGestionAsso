@@ -194,7 +194,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="BusinessRules\ActiviteBR.cs" />
+    <Compile Include="BusinessRules\AssoBusinessRules.cs" />
     <Compile Include="BusinessRules\BusinessRuleResult.cs" />
     <Compile Include="Controllers\AbonnementsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -467,6 +467,7 @@
     <Content Include="Views\Abonnements\_IndexForAdherent.cshtml" />
     <Content Include="Views\Abonnements\_CreateForAdherent.cshtml" />
     <Content Include="Views\Abonnements\_EditForAdherent.cshtml" />
+    <Content Include="Views\Abonnements\_DeleteForAdherent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

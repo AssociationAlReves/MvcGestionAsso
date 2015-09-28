@@ -22,6 +22,7 @@
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.AdherentId)
+            @Html.HiddenFor(model => model.AbonnementId)
             @*@Html.HiddenFor(model => model.LieuId)
             @Html.HiddenFor(model => model.ActiviteId)
             @Html.HiddenFor(model => model.FormuleId)*@
@@ -44,7 +45,6 @@
             <div class="form-group">
                 <label class="control-label col-md-2" for="FormuleId">@Html.DisplayNameFor(model => model.FormuleId)</label>
                 <div class="col-md-10">
-                    @*@Html.DropDownList("FormuleId", null, "", htmlAttributes: new { @class = "form-control", @autofocus = "autofocus" })*@
                     @Html.CascadingDropDownListFor(model => model.FormuleId, a => a.ActiviteId, Url.Action("GetFormulesByActivite", "Abonnements"), "activiteId", null, true, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.FormuleId, "", new { @class = "text-danger" })
                 </div>

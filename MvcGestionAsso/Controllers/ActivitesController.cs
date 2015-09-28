@@ -431,7 +431,7 @@ namespace MvcGestionAsso.Controllers
 		{
 			Activite activite = await _applicationDbContext.Activites.FindAsync(id);
 
-			BusinessRuleResult result = ActiviteBR.CanDelete(_applicationDbContext, activite);
+			BusinessRuleResult result = AssoBusinessRules.CanDelete(_applicationDbContext, activite);
 
 			if (result.Success)
 			{
@@ -455,7 +455,7 @@ namespace MvcGestionAsso.Controllers
 			{
 				Activite activite = await _applicationDbContext.Activites.FindAsync(id);
 
-				BusinessRuleResult result = ActiviteBR.CanDelete(_applicationDbContext, activite);
+				BusinessRuleResult result = AssoBusinessRules.CanDelete(_applicationDbContext, activite);
 
 				if (result.Success)
 				{

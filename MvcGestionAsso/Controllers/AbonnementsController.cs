@@ -11,23 +11,24 @@ using MvcGestionAsso.DataLayer;
 using MvcGestionAsso.Models;
 using MvcGestionAsso.Utils;
 using System.Data.Entity.Infrastructure;
+using MvcGestionAsso.BusinessRules;
 
 namespace MvcGestionAsso.Controllers
 {
 	public class AbonnementsController : Controller
 	{
-		private ApplicationDbContext db = new ApplicationDbContext();
+		private ApplicationDbContext _applicationDbContext = new ApplicationDbContext();
 
 		// GET: Abonnements
 		public async Task<ActionResult> Index()
 		{
-			var abonnements = db.Abonnements.Include(a => a.Adherent).Include(a => a.Formule);
+			var abonnements = _applicationDbContext.Abonnements.Include(a => a.Adherent).Include(a => a.Formule);
 			return View(await abonnements.ToListAsync());
 		}
 
 		public ActionResult IndexForAdherent(int adherentId)
 		{
-			var abonnements = db.Abonnements.Where(a => a.AdherentId == adherentId)
+			var abonnements = _applicationDbContext.Abonnements.Where(a => a.AdherentId == adherentId)
 																				.Include(a => a.Adherent)
 																				.Include(a => a.Formule.Activite)
 																				.Include(a => a.Formule.Activite.Lieu)
@@ -42,7 +43,7 @@ namespace MvcGestionAsso.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Abonnement abonnement = await db.Abonnements.FindAsync(id);
+			Abonnement abonnement = await _applicationDbContext.Abonnements.FindAsync(id);
 			if (abonnement == null)
 			{
 				return HttpNotFound();
@@ -53,10 +54,10 @@ namespace MvcGestionAsso.Controllers
 		// GET: Abonnements/Create
 		public ActionResult Create()
 		{
-			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom");
-			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom");
-			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom");
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom");
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "AdherentNom");
+			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom");
+			ViewBag.ActiviteId = new SelectList(_applicationDbContext.Activites, "ActiviteId", "ActiviteNom");
+			ViewBag.FormuleId = new SelectList(_applicationDbContext.Formules, "FormuleId", "FormuleNom");
 			return View();
 		}
 
@@ -66,15 +67,15 @@ namespace MvcGestionAsso.Controllers
 			Abonnement abo = new Abonnement();
 			abo.AdherentId = adherentId;
 			abo.FormuleId = 0;
-			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom");
-			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom");
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom");
+			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom");
+			ViewBag.ActiviteId = new SelectList(_applicationDbContext.Activites, "ActiviteId", "ActiviteNom");
+			ViewBag.FormuleId = new SelectList(_applicationDbContext.Formules, "FormuleId", "FormuleNom");
 			return PartialView("_CreateForAdherent", abo);
 		}
 
 		public ActionResult GetActivitesByLieu(int lieuId)
 		{
-			List<Activite> activites = db.Activites.Where(a => a.LieuId == lieuId).ToList();
+			List<Activite> activites = _applicationDbContext.Activites.Where(a => a.LieuId == lieuId).ToList();
 
 			if (activites.Any())
 			{
@@ -86,7 +87,7 @@ namespace MvcGestionAsso.Controllers
 		}
 		public ActionResult GetFormulesByActivite(int activiteId)
 		{
-			List<Formule> formules = db.Formules.Where(f => f.ActiviteId == activiteId).ToList();
+			List<Formule> formules = _applicationDbContext.Formules.Where(f => f.ActiviteId == activiteId).ToList();
 
 			if (formules.Any())
 			{
@@ -107,16 +108,16 @@ namespace MvcGestionAsso.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				db.Abonnements.Add(abonnement);
-				await db.SaveChangesAsync();
+				_applicationDbContext.Abonnements.Add(abonnement);
+				await _applicationDbContext.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
 
 
-			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
-			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
-			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
+			ViewBag.FormuleId = new SelectList(_applicationDbContext.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
+			ViewBag.ActiviteId = new SelectList(_applicationDbContext.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
 			return View(abonnement);
 		}
 
@@ -128,8 +129,8 @@ namespace MvcGestionAsso.Controllers
 			{
 				if (ModelState.IsValid)
 				{
-					db.Abonnements.Add(abonnement);
-					await db.SaveChangesAsync();
+					_applicationDbContext.Abonnements.Add(abonnement);
+					await _applicationDbContext.SaveChangesAsync();
 					return Json(new { success = true });
 				}
 				else
@@ -170,13 +171,13 @@ namespace MvcGestionAsso.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Abonnement abonnement = await db.Abonnements.FindAsync(id);
+			Abonnement abonnement = await _applicationDbContext.Abonnements.FindAsync(id);
 			if (abonnement == null)
 			{
 				return HttpNotFound();
 			}
-			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
+			ViewBag.FormuleId = new SelectList(_applicationDbContext.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
 			return View(abonnement);
 		}
 
@@ -186,14 +187,21 @@ namespace MvcGestionAsso.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Abonnement abonnement = await db.Abonnements.FindAsync(id);
+			Abonnement abonnement = await _applicationDbContext.Abonnements
+																			.Include(a => a.Formule)
+																			.Include(a => a.Formule.Activite)
+																			.Include(a => a.Formule.Activite.Lieu)
+																			.Include(a => a.Adherent)
+																			.FirstAsync(a => a.AbonnementId == id);
 			if (abonnement == null)
 			{
 				return HttpNotFound();
 			}
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
-			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
-			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
+			abonnement.LieuId = abonnement.Lieu.LieuId;
+			abonnement.ActiviteId = abonnement.Activite.ActiviteId;
+			ViewBag.FormuleId = new SelectList(_applicationDbContext.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
+			ViewBag.ActiviteId = new SelectList(_applicationDbContext.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
 			return PartialView("_EditForAdherent", abonnement);
 		}
 
@@ -206,31 +214,31 @@ namespace MvcGestionAsso.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				db.Entry(abonnement).State = EntityState.Modified;
-				await db.SaveChangesAsync();
+				_applicationDbContext.Entry(abonnement).State = EntityState.Modified;
+				await _applicationDbContext.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
 			else
 			{
 				ModelState.TraceModelErrors();
 			}
-			ViewBag.AdherentId = new SelectList(db.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "AdherentNom", abonnement.AdherentId);
+			ViewBag.FormuleId = new SelectList(_applicationDbContext.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
 			return View(abonnement);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> EditForAdherent([Bind(Include = "AbonnementId,AdherentId,FormuleId,TypeReglement,DateCreation")] Abonnement abonnement)
+		public async Task<ActionResult> EditForAdherent([Bind(Include = "AbonnementId,AdherentId,LieuId,ActiviteId,FormuleId,TypeReglement")] Abonnement abonnement)
 		{
-			ViewBag.FormuleId = new SelectList(db.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
-			ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
-			ViewBag.ActiviteId = new SelectList(db.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
-			
+			//ViewBag.FormuleId = new SelectList(_applicationDbContext.Formules, "FormuleId", "FormuleNom", abonnement.FormuleId);
+			//ViewBag.LieuId = new SelectList(_applicationDbContext.Lieux, "LieuId", "LieuNom", abonnement.LieuId);
+			//ViewBag.ActiviteId = new SelectList(_applicationDbContext.Activites, "ActiviteId", "ActiviteNom", abonnement.ActiviteId);
+
 			if (ModelState.IsValid)
 			{
-				db.Entry(abonnement).State = EntityState.Modified;
-				await db.SaveChangesAsync();
+				_applicationDbContext.Entry(abonnement).State = EntityState.Modified;
+				await _applicationDbContext.SaveChangesAsync();
 				return Json(new { success = true });
 			}
 			else
@@ -253,7 +261,7 @@ namespace MvcGestionAsso.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Abonnement abonnement = await db.Abonnements.FindAsync(id);
+			Abonnement abonnement = await _applicationDbContext.Abonnements.FindAsync(id);
 			if (abonnement == null)
 			{
 				return HttpNotFound();
@@ -261,14 +269,56 @@ namespace MvcGestionAsso.Controllers
 			return View(abonnement);
 		}
 
+		public async Task<ActionResult> DeleteForAdherent(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Abonnement abonnement = await _applicationDbContext.Abonnements
+																			.Include(a => a.Formule)
+																			.Include(a => a.Adherent)
+																			.FirstAsync(a => a.AbonnementId == id);
+			if (abonnement == null)
+			{
+				return HttpNotFound();
+			}
+			return PartialView("_DeleteForAdherent", abonnement);
+		}
+
+		[HttpPost, ActionName("DeleteForAdherent")]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> DeleteConfirmedForAdherent(int id)
+		{
+			try
+			{
+				Abonnement abonnement = await _applicationDbContext.Abonnements.FindAsync(id);
+				BusinessRuleResult result = AssoBusinessRules.CanDelete(_applicationDbContext, abonnement);
+
+				if (result.Success)
+				{
+					_applicationDbContext.Abonnements.Remove(abonnement);
+					await _applicationDbContext.SaveChangesAsync();
+					return Json(new { success = result.Success, message = result.Message });
+				}
+				else
+				{
+					return Json(new { success = result.Success, message = result.Message });
+				}
+			}
+			catch (DbUpdateException)
+			{
+				return Json(new { success = false, message = "Suppression impossible. Vérifiez si des règlements sont liés." });
+			}
+		}
 		// POST: Abonnements/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> DeleteConfirmed(int id)
 		{
-			Abonnement abonnement = await db.Abonnements.FindAsync(id);
-			db.Abonnements.Remove(abonnement);
-			await db.SaveChangesAsync();
+			Abonnement abonnement = await _applicationDbContext.Abonnements.FindAsync(id);
+			_applicationDbContext.Abonnements.Remove(abonnement);
+			await _applicationDbContext.SaveChangesAsync();
 			return RedirectToAction("Index");
 		}
 
@@ -276,7 +326,7 @@ namespace MvcGestionAsso.Controllers
 		{
 			if (disposing)
 			{
-				db.Dispose();
+				_applicationDbContext.Dispose();
 			}
 			base.Dispose(disposing);
 		}

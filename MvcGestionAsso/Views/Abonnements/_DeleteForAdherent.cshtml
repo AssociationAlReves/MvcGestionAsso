@@ -1,0 +1,64 @@
+﻿@model MvcGestionAsso.Models.Abonnement
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Etes-vous sûr de vouloir supprimer cet abonnement ?</h4>
+</div>
+<div class="modal-body">
+
+    <p id="MessageToClient" class="text-danger"></p>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Adherent.NomComplet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adherent.NomComplet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Formule.FormuleNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Formule.FormuleNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeReglement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeReglement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModification)
+        </dd>
+
+    </dl>
+
+</div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "modalForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal-footer">
+        <a class="btn btn-default" data-dismiss="modal">Annuler</a>
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+    </div>
+}
