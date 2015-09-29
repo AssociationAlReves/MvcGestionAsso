@@ -67,7 +67,9 @@ namespace MvcGestionAsso.Controllers
 
 		List<SelectListItem> GetListActivitesWithLieu()
 		{
-			return _applicationDbContext.Activites.Include(a => a.Lieu).Select(activite => new SelectListItem { Text = activite.ActiviteNom + " (" + activite.Lieu.LieuNom + ")", Value = activite.ActiviteId.ToString() }).ToList();
+			return _applicationDbContext.Activites.Include(a => a.Lieu)
+										.Select(activite => new SelectListItem { Text = activite.ActiviteNom + " (" + activite.Lieu.LieuNom + ")", Value = activite.ActiviteId.ToString() })
+										.ToList();
 		}
 
 		// GET: Formules/Edit/5

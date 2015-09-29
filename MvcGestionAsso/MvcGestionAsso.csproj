@@ -468,6 +468,7 @@
     <Content Include="Views\Abonnements\_CreateForAdherent.cshtml" />
     <Content Include="Views\Abonnements\_EditForAdherent.cshtml" />
     <Content Include="Views\Abonnements\_DeleteForAdherent.cshtml" />
+    <Content Include="Views\Reglements\CreateForAdherent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

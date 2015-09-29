@@ -28,11 +28,8 @@ namespace MvcGestionAsso.Controllers
 
 		public ActionResult IndexForAdherent(int adherentId)
 		{
-			var abonnements = _applicationDbContext.Abonnements.Where(a => a.AdherentId == adherentId)
-																				.Include(a => a.Adherent)
-																				.Include(a => a.Formule.Activite)
-																				.Include(a => a.Formule.Activite.Lieu)
-																				.Include(a => a.Formule);
+			var abonnements = _applicationDbContext.GetAbonnementsWithRelatedInfos()
+																							.Where(a => a.AdherentId == adherentId);
 			return PartialView("_IndexForAdherent", abonnements.ToList());
 		}
 

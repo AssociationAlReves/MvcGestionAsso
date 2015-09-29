@@ -27,6 +27,14 @@ namespace MvcGestionAsso.DataLayer
 		public DbSet<Abonnement> Abonnements { get; set; }
 		public DbSet<Reglement> Reglements { get; set; }
 
+		public IQueryable<Abonnement> GetAbonnementsWithRelatedInfos()
+		{
+			return Abonnements.Include(a => a.Adherent)
+																	.Include(a => a.Formule.Activite)
+																	.Include(a => a.Formule.Activite.Lieu)
+																	.Include(a => a.Formule);
+		}
+
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
