@@ -29,16 +29,18 @@ namespace MvcGestionAsso.Models
 		[Display(Name = "Date d'encaissement")]
 		public DateTime? ChequeDateEncaissement { get; set; }
 
-		//public int AdherentId { get; set; }
-		//public virtual Adherent Adherent { get; set; }
+		[Display(Name = "Adhérent")]
+		public int AdherentId { get; set; }
+		[Display(Name = "Adhérent")]
+		public virtual Adherent Adherent { get; set; }
 
 		//public int FormuleId { get; set; }
 		//public virtual Formule Formule { get; set; }
 
-		[Display(Name = "Abonnement")]
-		public int AbonnementId { get; set; }
-		[Display(Name = "Abonnement")]
-		public virtual Abonnement Abonnement { get; set; }
+		//[Display(Name = "Abonnement")]
+		//public int AbonnementId { get; set; }
+		//[Display(Name = "Abonnement")]
+		//public virtual Abonnement Abonnement { get; set; }
 	}
 
 	public enum MoyenPaiement

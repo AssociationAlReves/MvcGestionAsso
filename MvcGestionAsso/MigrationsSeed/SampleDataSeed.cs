@@ -318,7 +318,7 @@ namespace MvcGestionAsso.Migrations.Seed
 								{
 
 									case TypeReglement.Especes:
-										context.Reglements.Add(new Reglement { AbonnementId = abo.AbonnementId, Montant = abo.Formule.Tarif, IsAdhesionIncluse = true });
+										context.Reglements.Add(new Reglement { AdherentId = adh.AdherentId, Montant = abo.Formule.Tarif, IsAdhesionIncluse = true });
 										break;
 									case TypeReglement.Cheque_Comptant:
 
@@ -423,7 +423,7 @@ namespace MvcGestionAsso.Migrations.Seed
 				dtCheque = Lorem.DateTime(f.Activite.DateDebut, f.Activite.DateFin);
 				context.Reglements.Add(new Reglement
 				{
-					AbonnementId = abo.AbonnementId,
+					AdherentId = adh.AdherentId,
 					Montant = f.Tarif / numChq,
 					IsAdhesionIncluse = n == 0,
 					ChequeBanque = Lorem.Words(1, 4).Limit(80),

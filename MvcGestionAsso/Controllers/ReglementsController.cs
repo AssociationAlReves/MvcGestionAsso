@@ -19,7 +19,7 @@ namespace MvcGestionAsso.Controllers
 		// GET: Reglements
 		public async Task<ActionResult> Index()
 		{
-			var reglements = _applicationDbContext.Reglements.Include(r => r.Abonnement);
+			var reglements = _applicationDbContext.Reglements.Include(r => r.Adherent);
 			return View(await reglements.ToListAsync());
 		}
 
@@ -41,27 +41,21 @@ namespace MvcGestionAsso.Controllers
 		// GET: Reglements/Create
 		public ActionResult Create()
 		{
-			ViewBag.AbonnementId = new SelectList(_applicationDbContext.Abonnements, "AbonnementId", "AbonnementId");
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "NomComplet");
 			return View();
 		}
 
 		// GET: Reglements/Create
 		public ActionResult CreateForAdherent(int adherentId)
 		{
-			var abonnementsDispoAdherent = _applicationDbContext.GetAbonnementsWithRelatedInfos()
-																	.ToList();
-
-			var abonnementslist = abonnementsDispoAdherent
-																	.Select(a => new SelectListItem { Text = a.Formule.FormuleNom + " (" + a.Activite.ActiviteNom + " / " + a.Activite.Lieu.LieuNom + ")", Value = a.AbonnementId.ToString() });
-
-			ViewBag.AbonnementId = new SelectList(abonnementslist, "Value", "Text");
+			ViewBag.AdherentId = adherentId;
 			return View();
 		}
 
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "ReglementId,Montant,MoyenPaiement,IsAdhesionIncluse,ChequeNumero,ChequeBanque,ChequeTitulaire,ChequeDate,ChequeDateEncaissement,AbonnementId")] Reglement reglement)
+		public async Task<ActionResult> Create([Bind(Include = "ReglementId,Montant,MoyenPaiement,IsAdhesionIncluse,ChequeNumero,ChequeBanque,ChequeTitulaire,ChequeDate,ChequeDateEncaissement,AdherentId")] Reglement reglement)
 		{
 			if (ModelState.IsValid)
 			{
@@ -70,13 +64,13 @@ namespace MvcGestionAsso.Controllers
 				return RedirectToAction("Index");
 			}
 
-			ViewBag.AbonnementId = new SelectList(_applicationDbContext.Abonnements, "AbonnementId", "AbonnementId", reglement.AbonnementId);
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "NomComplet", reglement.AdherentId);
 			return View(reglement);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> CreateForAdherent([Bind(Include = "ReglementId,Montant,MoyenPaiement,IsAdhesionIncluse,ChequeNumero,ChequeBanque,ChequeTitulaire,ChequeDate,ChequeDateEncaissement,AbonnementId")] Reglement reglement)
+		public async Task<ActionResult> CreateForAdherent([Bind(Include = "ReglementId,Montant,MoyenPaiement,IsAdhesionIncluse,ChequeNumero,ChequeBanque,ChequeTitulaire,ChequeDate,ChequeDateEncaissement,AdherentId")] Reglement reglement)
 		{
 			if (ModelState.IsValid)
 			{
@@ -85,7 +79,7 @@ namespace MvcGestionAsso.Controllers
 				return RedirectToAction("Index");
 			}
 
-			ViewBag.AbonnementId = new SelectList(_applicationDbContext.Abonnements, "AbonnementId", "AbonnementId", reglement.AbonnementId);
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "NomComplet", reglement.AdherentId); 
 			return View(reglement);
 		}
 
@@ -101,7 +95,7 @@ namespace MvcGestionAsso.Controllers
 			{
 				return HttpNotFound();
 			}
-			ViewBag.AbonnementId = new SelectList(_applicationDbContext.Abonnements, "AbonnementId", "AbonnementId", reglement.AbonnementId);
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "NomComplet", reglement.AdherentId); 
 			return View(reglement);
 		}
 
@@ -110,7 +104,7 @@ namespace MvcGestionAsso.Controllers
 		// plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Edit([Bind(Include = "ReglementId,Montant,MoyenPaiement,IsAdhesionIncluse,ChequeNumero,ChequeBanque,ChequeTitulaire,ChequeDate,ChequeDateEncaissement,AbonnementId")] Reglement reglement)
+		public async Task<ActionResult> Edit([Bind(Include = "ReglementId,Montant,MoyenPaiement,IsAdhesionIncluse,ChequeNumero,ChequeBanque,ChequeTitulaire,ChequeDate,ChequeDateEncaissement,AdherentId")] Reglement reglement)
 		{
 			if (ModelState.IsValid)
 			{
@@ -118,7 +112,7 @@ namespace MvcGestionAsso.Controllers
 				await _applicationDbContext.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
-			ViewBag.AbonnementId = new SelectList(_applicationDbContext.Abonnements, "AbonnementId", "AbonnementId", reglement.AbonnementId);
+			ViewBag.AdherentId = new SelectList(_applicationDbContext.Adherents, "AdherentId", "NomComplet", reglement.AdherentId); 
 			return View(reglement);
 		}
 

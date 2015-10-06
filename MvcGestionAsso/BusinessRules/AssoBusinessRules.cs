@@ -28,14 +28,18 @@ namespace MvcGestionAsso.BusinessRules
 			if (abonnement == null)
 				return new BusinessRuleResult { Success = false, Message = "L'abonnement n'existe pas." };
 
+			// TODO check if reglements in same period than the abonnement => not deletable
 
+			/*
 			bool hasReglements = context.Reglements.Where(r => r.AbonnementId == abonnement.AbonnementId)
 																					.Any();
-
 			if (hasReglements)
 				return new BusinessRuleResult() { Success = false, Message = "L'abonnement ne peut être supprimée car des règlements y sont liées." };
 			else
 				return new BusinessRuleResult() { Success = true };
+			 */
+
+			return new BusinessRuleResult() { Success = true };
 		}
 
 	}

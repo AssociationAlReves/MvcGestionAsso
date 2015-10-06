@@ -16,6 +16,11 @@ namespace MvcGestionAsso.DataLayer
 			Property(r => r.Montant).HasPrecision(18, 2).IsRequired();
 			Property(r => r.MoyenPaiement).IsRequired();
 
+			Property(r => r.AdherentId).IsRequired()
+				.HasColumnAnnotation("Index",
+				new IndexAnnotation(new IndexAttribute("AK_Reglement_Adherent") { IsUnique = false }
+				));
+
 			Property(r => r.IsAdhesionIncluse).IsRequired();
 
 			Property(r => r.ChequeNumero).HasMaxLength(10).IsOptional()

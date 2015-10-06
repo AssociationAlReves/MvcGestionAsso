@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Abonnement.AbonnementId)
+            @Html.DisplayNameFor(model => model.AdherentId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Montant)
@@ -44,7 +44,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Abonnement.AbonnementId)
+            @Html.DisplayFor(modelItem => item.AdherentId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Montant)
