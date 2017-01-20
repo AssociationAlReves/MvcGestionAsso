@@ -5,15 +5,15 @@ using System.Web;
 
 namespace MvcGestionAsso.BusinessRules
 {
-	public class BusinessRuleResult
-	{
-		 public bool Success { get; set; }
+    public class BusinessRuleResult
+    {
+        public bool Success { get; set; }
         public string Message { get; set; }
 
 
-				public BusinessRuleResult()
+        public BusinessRuleResult()
         {
             Success = false;
         }
-	}
+    }
 }

@@ -197,4 +197,3 @@ FakesAssemblies/
 
 # User defined sensitive files
 *.sensitive.*
-MvcGestionAsso/Controllers/ActivitesController.cs
